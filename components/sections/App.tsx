@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper as swp } from "swiper/types";
 
 const AppSlides = [
   {
@@ -49,7 +50,7 @@ const AppSlides = [
 
 export default function App() {
   const isMobile = useIsMobile();
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<swp>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -57,28 +58,25 @@ export default function App() {
       <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] h-full w-full px-4 sm:px-8 md:px-12 lg:px-[5rem] gap-8">
         {/* Text Content */}
         <div className="flex flex-col justify-center pt-4 sm:pt-8 lg:pt-[5rem] text-left h-full px-4 sm:px-8 lg:px-[4rem] order-2 lg:order-1">
-          <h3 className="text-lg sm:text-xl md:text-2xl text-blue-500 font-medium">
+          <h3 className="text-lg sm:text-xl md:text-2xl text-blue-400 font-medium">
             Inside The App
           </h3>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mt-4 sm:mt-6 lg:mt-8 text-gray-900">
-            <span className="font-medium text-black block mb-2">
-              {AppSlides[activeIndex].title}
-            </span>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal mt-4 sm:mt-6 lg:mt-8 text-black">
+            {AppSlides[activeIndex].title}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-700 pr-4 sm:pr-12 lg:pr-16">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-600 pr-4 sm:pr-12 lg:pr-16 mt-4 lg:mt-6">
             {AppSlides[activeIndex].content}
           </p>
 
-          {/* Pagination dots */}
-          <div className="paginationTemp flex mt-8 sm:mt-12 space-x-2 justify-start hidden sm:block"></div>
-
-          {/* Mobile pagination dots */}
-          <div className="flex mt-6 sm:mt-8 space-x-2 justify-center lg:justify-start sm:hidden">
+          {/* Pagination dots for desktop */}
+          <div className="flex mt-8 sm:mt-12 lg:mt-16 space-x-2 justify-start hidden sm:flex">
             {AppSlides.map((_, index) => (
               <div
                 key={index}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
-                  index === activeIndex ? "bg-teal-500" : "bg-gray-400"
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  index === activeIndex
+                    ? "w-8 bg-teal-600 rounded-full"
+                    : "w-2.5 bg-gray-300"
                 }`}
                 onClick={() => {
                   if (swiperRef.current) {
@@ -86,6 +84,18 @@ export default function App() {
                   }
                 }}
               ></div>
+            ))}
+          </div>
+          {/* Mobile pagination dots */}
+          <div className="flex mt-6 sm:mt-8 space-x-2 justify-center lg:justify-start sm:hidden">
+            {AppSlides.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => swiperRef.current?.slideTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ease-in-out cursor-pointer ${
+                  index === activeIndex ? "w-8 bg-teal-500" : "w-2 bg-gray-400"
+                }`}
+              />
             ))}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export default function Journey() {
   return (
@@ -19,7 +19,7 @@ export default function Journey() {
             </p>
           </div>
         </div>
-        
+
         {/* Image - Right Half, No Gaps */}
         <div className="w-1/2 relative">
           <Image
@@ -48,7 +48,7 @@ export default function Journey() {
             </p>
           </div>
         </div>
-        
+
         {/* Image - Bottom, Full Width No Gaps */}
         <div className="flex-1 relative -mx-0">
           <Image
@@ -61,5 +61,5 @@ export default function Journey() {
         </div>
       </div>
     </section>
-  )
+  );
 }
