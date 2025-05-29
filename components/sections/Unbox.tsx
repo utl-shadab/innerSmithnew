@@ -2,8 +2,15 @@ import Image from "next/image"
 
 export default function Unbox() {
   return (
-    <section className="w-full bg-white py-10 px-0 h-screen">
-      <video src="https://thescaleagency.s3.amazonaws.com/innersmith_desktop.mp4" autoPlay loop muted className="w-full h-full"></video>
+    <section className="relative w-full h-screen overflow-hidden">
+      <video 
+        src="https://thescaleagency.s3.amazonaws.com/innersmith_desktop.mp4" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      />
     </section>
   )
 }
