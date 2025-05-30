@@ -1,14 +1,18 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper as swp } from "swiper/types";
+import { Autoplay, Navigation } from "swiper/modules";
+import type { Swiper as swp } from "swiper/types";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AppSlides = [
   {
@@ -52,153 +56,224 @@ export default function App() {
   const isMobile = useIsMobile();
   const swiperRef = useRef<swp>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
+  const phoneFrameRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const dotsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(
+        [
+          titleRef.current,
+          subtitleRef.current,
+          descriptionRef.current,
+          dotsRef.current,
+        ],
+        {
+          opacity: 0,
+          y: 30,
+        }
+      );
+      gsap.set(phoneFrameRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 20,
+      });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      tl.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+        .to(
+          subtitleRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
+        .to(
+          descriptionRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
+        .to(
+          dotsRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
+        .to(
+          phoneFrameRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power4.out",
+          },
+          "-=0.8"
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (titleRef.current && subtitleRef.current && descriptionRef.current) {
+      gsap.to([titleRef.current, descriptionRef.current], {
+        opacity: 0,
+        y: -10,
+        duration: 0.3,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.to([titleRef.current, descriptionRef.current], {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        },
+      });
+    }
+  }, [activeIndex]);
+
+  const handleDotClick = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index);
+    }
+  };
 
   return (
-    <section className="min-h-screen w-full bg-gray-100 relative overflow-hidden py-8 sm:py-16 md:py-24 lg:py-32">
-      <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] h-full w-full px-4 sm:px-8 md:px-12 lg:px-[5rem] gap-8">
-        {/* Text Content */}
-        <div className="flex flex-col justify-center pt-4 sm:pt-8 lg:pt-[5rem] text-left h-full px-4 sm:px-8 lg:px-[4rem] order-2 lg:order-1">
-          <h3 className="text-lg sm:text-xl md:text-2xl text-blue-400 font-medium">
-            Inside The App
-          </h3>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-normal mt-4 sm:mt-6 lg:mt-8 text-black">
-            {AppSlides[activeIndex].title}
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-600 pr-4 sm:pr-12 lg:pr-16 mt-4 lg:mt-6">
-            {AppSlides[activeIndex].content}
-          </p>
+    <section
+      ref={sectionRef}
+      className="min-h-screen w-full bg-[#f8f9fa] relative overflow-hidden flex items-center"
+    >
+      <div className="w-full  mx-auto px-6 lg:px-12 xl:px-16 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div
+            ref={textContentRef}
+            className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 "
+          >
+            <h3
+              ref={titleRef}
+              className="text-lg title  lg:text-xl text-[#7dd3fc] font-medium tracking-wide uppercase mb-6"
+            >
+              INSIDE THE APP
+            </h3>
+            <h2
+              ref={subtitleRef}
+              className="text-4xl lg:text-6xl xl:text-7xl font-light leading-tight text-gray-900 mb-6"
+            >
+              {AppSlides[activeIndex].title}
+            </h2>
+            <p
+              ref={descriptionRef}
+              className="text-lg lg:text-xl xl:text-2xl text-center lg:text-left leading-relaxed para text-gray-600 mb-12 w-full lg:max-w-lg"
+            >
+              {AppSlides[activeIndex].content}
+            </p>
 
-          {/* Pagination dots for desktop */}
-          <div className="flex mt-8 sm:mt-12 lg:mt-16 space-x-2 justify-start hidden sm:flex">
-            {AppSlides.map((_, index) => (
-              <div
-                key={index}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  index === activeIndex
-                    ? "w-8 bg-teal-600 rounded-full"
-                    : "w-2.5 bg-gray-300"
-                }`}
-                onClick={() => {
-                  if (swiperRef.current) {
-                    swiperRef.current.slideTo(index + 1);
-                  }
-                }}
-              ></div>
-            ))}
-          </div>
-          {/* Mobile pagination dots */}
-          <div className="flex mt-6 sm:mt-8 space-x-2 justify-center lg:justify-start sm:hidden">
-            {AppSlides.map((_, index) => (
-              <div
-                key={index}
-                onClick={() => swiperRef.current?.slideTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ease-in-out cursor-pointer ${
-                  index === activeIndex ? "w-8 bg-teal-500" : "w-2 bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile View Slider */}
-        <div className="slider pt-4 sm:pt-8 relative block sm:hidden order-1 lg:order-2">
-          <div className="relative flex justify-center items-center h-auto">
-            <div className="relative w-[280px] h-[580px] mx-auto">
-              <Image
-                src="/svgs/mobileScreen.svg"
-                alt="Phone frame"
-                fill
-                className="absolute inset-0 z-[3] object-contain"
-              />
-              <div className="absolute inset-0 flex items-center justify-center z-[2] px-[22px] pt-[18px] pb-[22px]">
-                <Swiper
-                  modules={[Autoplay, Navigation]}
-                  slidesPerView={1}
-                  spaceBetween={0}
-                  navigation={false}
-                  centeredSlides={true}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  onSwiper={(swiper) => {
-                    swiperRef.current = swiper;
-                  }}
-                  onSlideChange={(swiper) => {
-                    setActiveIndex(swiper.realIndex);
-                  }}
-                  loop={true}
-                  className="w-full h-full rounded-[32px] overflow-hidden"
-                >
-                  {AppSlides.map((slide, index) => (
-                    <SwiperSlide
-                      key={index}
-                      className="flex items-center justify-center"
-                    >
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={slide.imgLink}
-                          alt={slide.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
+            <div
+              ref={dotsRef}
+              className="flex justify-center lg:justify-start space-x-3"
+            >
+              {AppSlides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`h-2.5 rounded-full transition-all duration-500 ease-out cursor-pointer hover:scale-110 ${
+                    index === activeIndex
+                      ? "w-10 bg-teal-600"
+                      : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                  }`}
+                  onClick={() => handleDotClick(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Desktop View Slider */}
-        <div className="sliderDiv relative my-auto hidden sm:block order-1 lg:order-2">
-          <div className="relative flex justify-center items-center h-auto w-full">
-            <div className="relative w-[320px] h-[650px] mx-auto">
-              <Image
-                src="/svgs/mobileScreen.svg"
-                alt="Phone frame"
-                fill
-                className="absolute inset-0 z-[3] object-contain"
-              />
-              <div className="absolute inset-0 flex items-center justify-center z-[2] px-[24px] pt-[20px] pb-[24px]">
-                <Swiper
-                  modules={[Autoplay, Pagination, Navigation]}
-                  slidesPerView={1}
-                  spaceBetween={0}
-                  speed={1000}
-                  navigation={false}
-                  pagination={{ el: ".paginationTemp", clickable: true }}
-                  centeredSlides={true}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  onSwiper={(swiper) => {
-                    swiperRef.current = swiper;
-                  }}
-                  onSlideChange={(swiper) => {
-                    setActiveIndex(swiper.realIndex);
-                  }}
-                  loop={true}
-                  className="w-full h-full rounded-[36px] overflow-hidden"
-                >
-                  {AppSlides.map((slide, index) => (
-                    <SwiperSlide
-                      key={index}
-                      className="flex items-center justify-center"
+          <div
+            ref={phoneFrameRef}
+            className="flex justify-center items-center order-1 lg:order-2"
+          >
+            <div className="relative">
+              <div className="  frame-size relative h-[76vw] w-[40vw]  sm:h-[60vw] sm:w-[32vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[260px] xl:h-[520px]">
+                <div className="absolute inset-0 z-20">
+                  <Image
+                    src="/svgs/mobileScreen.svg"
+                    alt="Phone frame"
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                    priority
+                  />
+                </div>
+
+                <div className="absolute inset-0 z-10">
+                  <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-[28px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
+                    <Swiper
+                      modules={[Autoplay, Navigation]}
+                      slidesPerView={1}
+                      spaceBetween={0}
+                      speed={1000}
+                      navigation={false}
+                      centeredSlides={true}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                      }}
+                      onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                      }}
+                      onSlideChange={(swiper) => {
+                        setActiveIndex(swiper.realIndex);
+                      }}
+                      loop={true}
+                      className="w-full h-full"
                     >
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={slide.imgLink}
-                          alt={slide.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                      {AppSlides.map((slide, index) => (
+                        <SwiperSlide key={index} className="relative">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={slide.imgLink || "/placeholder.svg"}
+                              alt={slide.title}
+                              fill
+                              className="object-cover object-center"
+                              sizes="(max-width: 1024px) 340px, (max-width: 1280px) 280px, 420px"
+                              priority={index === 0}
+                            />
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

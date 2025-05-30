@@ -35,17 +35,14 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
       },
     });
 
-    // Setup
     gsap.set(topPanelRef.current, { yPercent: -150 });
     gsap.set(bottomPanelRef.current, { yPercent: 150 });
 
     for (let i = 0; i < images.length; i++) {
-      // Shutter in
       tl.to([topPanelRef.current, bottomPanelRef.current], {
         yPercent: 0,
       });
 
-      // Fade out current image/text and fade in new
       tl.to(
         loaderContainerRef.current,
         {
@@ -65,15 +62,11 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
         "<"
       );
 
-      // Shutter out
       tl.to(topPanelRef.current, { yPercent: -150 });
       tl.to(bottomPanelRef.current, { yPercent: 150 }, "<");
-
-      // Pause
       tl.to({}, { duration: 0.4 });
     }
 
-    // Final shutter in (both panels)
     tl.to([topPanelRef.current, bottomPanelRef.current], { yPercent: 0 });
 
     return () => {
@@ -91,7 +84,6 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
         className="fixed top-0 left-0 w-full h-full z-50"
       >
         <div className="relative w-full h-screen overflow-hidden flex justify-center items-center">
-          {/* Top Shutter Panel */}
           <div
             ref={topPanelRef}
             className="absolute top-[0] left-0 w-full h-2/3 bg-transprent z-40 max-xl:h-full"
@@ -106,7 +98,6 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
             />
           </div>
 
-          {/* Bottom Shutter Panel */}
           <div
             ref={bottomPanelRef}
             className="absolute bottom-0 left-0 w-full h-2/5 bg-tranparent z-40 max-xl:h-2/3 max-sm:h-full rotate-180"

@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   title: "InnerSmith - Find Your Center",
   description: "A meditative journey through mindful breathing, inner peace, and natural harmony.",
   keywords: "meditation, mindfulness, breathing, inner peace, wellness",
-    generator: 'v0.dev'
+  icons: {
+    icon: '/favicon.ico', 
+  },
+   
 }
 
 export default function RootLayout({
