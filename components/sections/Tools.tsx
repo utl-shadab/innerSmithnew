@@ -96,7 +96,6 @@ export default function Tools() {
             }
           );
 
-          // Animate the description
           gsap.fromTo(
             splitCardDesc.lines,
             { y: 20, opacity: 0 },
@@ -115,10 +114,12 @@ export default function Tools() {
   }, []);
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-20"
+      id="tools"
+      style={{ scrollSnapAlign: "start" }}>
       <div className="max-w-7xl mx-auto px-4">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-light text-gray-900">
+          <h2 className="text-3xl md:text-5xl font-light text-gray-900 title">
             <span className="font-semibold">500+</span> Scientifically-Backed
             <br />
             Tools, <span className="text-gray-600">Matched to You</span>

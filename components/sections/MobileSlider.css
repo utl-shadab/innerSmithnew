@@ -1,0 +1,344 @@
+@media screen and (max-width: 900px) {
+    .title {
+        font-size: 4vw;
+        margin-bottom: 0.5rem;
+        line-height: 6vw;
+    }
+
+    .para {
+        font-size: 6vw;
+        line-height: 8vw;
+    }
+
+    .custom-width {
+        width: 100% !important;
+    }
+
+    .custom-margin {
+        margin-top: 7vw;
+    }
+
+    .custom-size {
+        font-size: 12vw;
+        margin-top: 10vw;
+    }
+
+    .second-custom {
+        font-size: 5vw;
+        margin-top: 2vw;
+        margin-top: 4vw;
+
+        line-height: 8vw;
+    }
+
+    .custom-height-and-width {
+        height: 11vw;
+        width: 7vw;
+        margin-top: 5vw;
+    }
+
+    .mini-dot {
+        width: 1.5vw;
+        height: 1.5vw;
+    }
+
+    .scroll-text {
+        font-size: 3vw;
+        line-height: 16vw;
+    }
+
+    .button-custom {
+        font-size: 4vw;
+        padding: 3vw 4vw;
+        margin-top: 5vw;
+
+    }
+
+    .arrow {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .stats-text {
+        font-size: 8vw;
+    }
+
+    .slider-state {
+        margin-top: 10vw;
+        width: 100%;
+    }
+
+    .slide-text {
+        font-size: 4vw;
+    }
+
+    .people {
+        font-size: 3vw;
+    }
+
+    .state-heading {
+        font-size: 12vw;
+    }
+}
+@media screen and (max-width: 770px) {
+  .title {
+    font-size: 4.5vw;
+    line-height: 6.5vw;
+  }
+
+  .para {
+    font-size: 6.5vw;
+    line-height: 9vw;
+  }
+
+  .custom-size {
+    font-size: 13vw;
+    margin-top: 10vw;
+  }
+
+  .state-heading {
+    font-size: 11vw;
+  }
+
+  .slide-text {
+    font-size: 4.5vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .para {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .custom-size {
+    font-size: 14vw;
+  }
+
+  .state-heading {
+    font-size: 12vw;
+  }
+
+  .slide-text {
+    font-size: 5vw;
+  }
+
+  .stats-text {
+    font-size: 9vw;
+  }
+}
+
+/* 520px */
+@media screen and (max-width: 520px) {
+  .title {
+    font-size: 5.5vw;
+    line-height: 7.5vw;
+  }
+
+  .para {
+    font-size: 7.5vw;
+    line-height: 10vw;
+  }
+
+  .custom-size {
+    font-size: 15vw;
+  }
+
+  .slide-text {
+    font-size: 5.5vw;
+  }
+
+  .state-heading {
+    font-size: 13vw;
+  }
+}
+
+/* 480px */
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
+  .para {
+    font-size: 8vw;
+    line-height: 10.5vw;
+  }
+
+  .custom-size {
+    font-size: 16vw;
+  }
+
+  .slide-text {
+    font-size: 6vw;
+  }
+
+  .state-heading {
+    font-size: 14vw;
+  }
+
+  .people {
+    font-size: 4vw;
+  }
+
+  .stats-text {
+    font-size: 10vw;
+  }
+}
+
+/* 420px */
+@media screen and (max-width: 420px) {
+  .title {
+    font-size: 6.5vw;
+    line-height: 9vw;
+  }
+
+  .para {
+    font-size: 8.5vw;
+    line-height: 11vw;
+  }
+
+  .custom-size {
+    font-size: 17vw;
+  }
+
+  .state-heading {
+    font-size: 15vw;
+  }
+
+  .slide-text {
+    font-size: 6.5vw;
+  }
+
+  .people {
+    font-size: 4.5vw;
+  }
+}
+
+/* 380px */
+@media screen and (max-width: 380px) {
+  .title {
+    font-size: 7vw;
+    line-height: 9.5vw;
+  }
+
+  .para {
+    font-size: 9vw;
+    line-height: 12vw;
+  }
+
+  .custom-size {
+    font-size: 18vw;
+  }
+
+  .state-heading {
+    font-size: 16vw;
+  }
+
+  .slide-text {
+    font-size: 7vw;
+  }
+
+  .stats-text {
+    font-size: 11vw;
+  }
+}
+
+/* 350px */
+@media screen and (max-width: 350px) {
+  .title {
+    font-size: 7.5vw;
+    line-height: 10vw;
+  }
+
+  .para {
+    font-size: 9.5vw;
+    line-height: 12.5vw;
+  }
+
+  .custom-size {
+    font-size: 19vw;
+  }
+
+  .state-heading {
+    font-size: 17vw;
+  }
+
+  .slide-text {
+    font-size: 7.5vw;
+  }
+
+  .people {
+    font-size: 5vw;
+  }
+}
+
+/* 320px */
+@media screen and (max-width: 320px) {
+  .title {
+    font-size: 8vw;
+    line-height: 10.5vw;
+  }
+
+  .para {
+    font-size: 10vw;
+    line-height: 13vw;
+  }
+
+  .custom-size {
+    font-size: 20vw;
+  }
+
+  .state-heading {
+    font-size: 18vw;
+  }
+
+  .slide-text {
+    font-size: 8vw;
+  }
+
+  .stats-text {
+    font-size: 12vw;
+  }
+
+  .people {
+    font-size: 5.5vw;
+  }
+}
+
+/* 300px */
+@media screen and (max-width: 300px) {
+  .title {
+    font-size: 8.5vw;
+    line-height: 11vw;
+  }
+
+  .para {
+    font-size: 11vw;
+    line-height: 13.5vw;
+  }
+
+  .custom-size {
+    font-size: 21vw;
+  }
+
+  .state-heading {
+    font-size: 19vw;
+  }
+
+  .slide-text {
+    font-size: 8.5vw;
+  }
+
+  .stats-text {
+    font-size: 13vw;
+  }
+
+  .people {
+    font-size: 6vw;
+  }
+}

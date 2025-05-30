@@ -86,7 +86,7 @@ export default function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative h-[200vh] overflow-hidden">
-      {/* Background Image */}
+    
       <div ref={imageRef} className="absolute inset-0 w-full h-full z-0" style={{ willChange: "transform" }}>
         <Image
           src="/images/heroFullbg.png"
@@ -97,7 +97,6 @@ export default function HeroSection() {
           sizes="100vw"
           quality={75}
         />
-        {/* Overlay */}
         <div
           ref={overlayRef}
           className="absolute inset-0 bg-black/40"
@@ -105,7 +104,6 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Logo */}
       <div ref={logoRef} className="absolute top-12 left-20 z-20">
        <Image
           src="/mainLogomini.svg"
@@ -118,36 +116,35 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* First 100vh - Initial Hero Content */}
       <div
         ref={firstViewRef}
         className="relative z-10 h-screen flex flex-col items-center justify-center text-white px-4"
       >
         <div className="text-center max-w-4xl mx-auto">
-          <p className="text-lg md:text-xl mb-6 opacity-90">Stress is a loop that keeps you stuck.</p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 tracking-wide">InnerSmith</h1>
-          <p className="text-lg md:text-xl mb-12">
+          <p className="text-lg md:text-xl mb-6 opacity-90 title">Stress is a loop that keeps you stuck.</p>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 tracking-wide custom-margin custom-size">InnerSmith</h1>
+          <p className="text-lg md:text-xl mb-12 second-custom">
             helps you break free and <em className="italic">Feel Better, Live Better.</em>
           </p>
           <div className="flex flex-col items-center">
-            <div className="w-6 h-10 mb-2 border-2 border-white rounded-full flex justify-center items-start animate-bounce">
-              <div className="w-1 h-2 bg-white rounded-full mt-2"></div>
+            <div className="w-6 h-10 custom-height-and-width mb-2 border-2 border-white rounded-full flex justify-center items-start animate-bounce">
+              <div className="w-1 h-2 mini-dot bg-white rounded-full mt-2"></div>
             </div>
-            <p className="text-sm uppercase tracking-wider">Scroll to Continue</p>
+            <p className="text-sm scroll-text uppercase tracking-wider">Scroll to Continue</p>
           </div>
         </div>
       </div>
 
-      {/* Second 100vh - Scrolling Reveal Text */}
+     
       <div
         ref={secondViewRef}
         className="relative z-10 h-screen flex items-center justify-center text-white px-4"
       >
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-xl md:text-2xl mb-8 opacity-90">
+          <h2 className="text-xl para md:text-2xl mb-8 opacity-90">
             Say hello to the <span className="font-semibold">world's first holistic wellness app</span>
           </h2>
-          <p className="text-lg md:text-xl leading-relaxed">
+          <p className="text-lg md:text-xl para leading-relaxed custom-margin">
             that improves your sleep, focus, and emotional balance,
             <br />
             starting on day one.

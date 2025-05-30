@@ -1,13 +1,13 @@
 import Image from "next/image"
-
+import "./MobileSlider.css"
 export default function Journey() {
   return (
-    <section className="h-screen relative overflow-hidden bg-white">
-      {/* Desktop Layout */}
+    <section className="h-screen relative overflow-hidden bg-white"
+      id="journey"
+      style={{ scrollSnapAlign: 'start' }}>
       <div className="hidden lg:flex h-full">
-        {/* Text Content - Left Half */}
-        <div className="w-1/2 flex items-center justify-center px-8 xl:px-16">
-          <div className="max-w-lg space-y-6">
+        <div className="w-3/5 flex items-center justify-center px-8 xl:px-16">
+          <div className="max-w-5xl space-y-6">
             <h3 className="text-lg xl:text-xl font-medium text-green-600 uppercase tracking-wide">
               A JOURNEY THAT FITS YOU
             </h3>
@@ -20,42 +20,39 @@ export default function Journey() {
           </div>
         </div>
         
-        {/* Image - Right Half, No Gaps */}
-        <div className="w-1/2 relative">
+        <div className="w-2/5 relative">
           <Image
-            src="/images/rightImage2.png"
+            src="/images/rightImage2.svg"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
-            className="object-cover"
+            className="object-fill"
             priority
           />
         </div>
       </div>
 
-      {/* Mobile & Tablet Layout */}
       <div className="lg:hidden h-full flex flex-col">
-        {/* Text Content - Top */}
         <div className="flex-1 flex items-center px-6 md:px-8 py-8">
           <div className="space-y-4 md:space-y-6">
-            <h3 className="text-base md:text-lg font-medium text-green-600 uppercase tracking-wide">
+            <h3 className="text-base md:text-lg title font-medium text-green-600 uppercase tracking-wide">
               A JOURNEY THAT FITS YOU
             </h3>
-            <h2 className="text-2xl md:text-3xl font-light leading-tight text-gray-900">
+            <h2 className="text-2xl md:text-3xl font-light para leading-tight text-gray-900">
               Be it heartache, loss, exhaustion, or just a rough day,
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 font-light">
+            <p className="text-2xl md:text-3xl font-light para leading-tight">
               there's a path for you here.
             </p>
           </div>
         </div>
         
-        {/* Image - Bottom, Full Width No Gaps */}
         <div className="flex-1 relative -mx-0">
           <Image
-            src="/images/rightImage2.png"
+            src="/images/rightImagePhone.png"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
-            className="object-cover"
+            className="object-cover w-full h-full smallFit"
+           style={{ bottom: 0, objectFit: "cover", }}
             priority
           />
         </div>

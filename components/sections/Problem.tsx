@@ -74,9 +74,11 @@ export default function Problem() {
     <section
       className="h-screen bg-white w-full flex relative justify-start max-sm:py-[3rem] items-center overflow-hidden"
       ref={sectionRef}
+      id="problem"
+      style={{ scrollSnapAlign: 'start' }}
     >
       {/* Desktop Layout (md and above) */}
-      <div className="hidden md:grid grid-cols-2 mx-[15rem] max-sm:h-full max-sm:py-[5rem]">
+      <div className="hidden lg:grid grid-cols-2 mx-[5rem] max-sm:h-full max-sm:py-[5rem]">
         <div className="flex flex-col justify-center gap-[2rem] pr-[4rem] items-start max-sm:items-center max-sm:mb-10">
           <h2 className="text-[#525299] font-semibold text-[1.125rem] md:text-[1.25rem]">
             The Problem
@@ -96,12 +98,12 @@ export default function Problem() {
       </div>
 
       {/* Mobile Layout (below md) */}
-      <div className="md:hidden w-full h-full flex flex-col justify-center items-center px-6 py-12">
+      <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center items-center px-6 py-12">
         <div className="w-full flex flex-col items-center text-center gap-8">
-          <h2 className="text-[#525299] font-semibold text-[1.5rem] leading-tight">
+          <h2 className="text-[#525299] font-semibold text-[1.5rem] title leading-tight">
             The Problem
           </h2>
-          <p className="text-[2rem] text-center text-[#8a8a8a] font-light leading-relaxed">
+          <p className="text-[2rem] para text-center text-[#8a8a8a] font-light leading-relaxed">
             <span className="problem-heading font-medium text-black">
               Stress is a lifestyle issue.
             </span>{" "}

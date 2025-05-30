@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/public/mainLogo.svg";
+import './MobileSlider.css'
 export default function Footer() {
   const [popup, setPopup] = useState<"none" | "form" | "success">("none");
   const [formData, setFormData] = useState({ name: "", email: "", zenBox: true });
@@ -24,23 +25,23 @@ export default function Footer() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center relative">
-      {/* Background Image */}
+    <div className="h-screen flex items-center justify-center relative"
+      id="footer"
+      style={{ scrollSnapAlign: "start" }}>
       <div className="absolute inset-0 w-full h-full">
         <Image src="/images/Footerbg.png" alt="Mountain landscape background" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight title">
           Ready to take charge of
           <br />
           your emotions?
         </h2>
-        <p className="text-lg md:text-xl mb-12 opacity-90">The tools are here. You just have to begin.</p>
+        <p className="text-lg md:text-xl mb-12 opacity-90 para">The tools are here. You just have to begin.</p>
 
-        {/* Logo */}
+        
         <div className="flex items-center justify-center mb-8">
 
           <Image
@@ -48,19 +49,19 @@ export default function Footer() {
             alt="InnerSmith Logo"
             width={1000}
             height={300}
-            className="w-[20rem] h-auto"
+            className="custom-width lg:w-[20rem] h-auto"
           />
         </div>
 
         {/* CTA Button */}
         <button
           onClick={() => setPopup("form")}
-          className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center mx-auto mb-8"
+          className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-100 transition-colors button-custom duration-300 flex items-center mx-auto mb-8"
         >
           JOIN THE WAITLIST
-          <ArrowRight className="ml-2 w-5 h-5 -rotate-45" />
+          <ArrowRight className="ml-2 w-5 h-5 -rotate-45 arrow" />
         </button>
-        <p className="text-sm opacity-75">(12K+ PEOPLE HAVE ALREADY JOINED)</p>
+        <p className="text-sm opacity-75 title">(12K+ PEOPLE HAVE ALREADY JOINED)</p>
       </div>
       <AnimatePresence>
         {popup !== "none" && (

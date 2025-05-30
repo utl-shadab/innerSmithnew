@@ -36,21 +36,19 @@ export default function PinnedSections() {
       sectionsRef.current.forEach((section, index) => {
         if (!section) return
 
-        // Pin each section with smoother settings
         ScrollTrigger.create({
           trigger: section,
           start: "top top",
           end: "bottom top",
           pin: true,
+          scrub: true,
           pinSpacing: false,
           anticipatePin: 1,
         })
 
-        // Set z-index for stacking effect
         gsap.set(section, { zIndex: sections.length - index })
       })
 
-      // Refresh ScrollTrigger for smoother performance
       ScrollTrigger.refresh()
     }, containerRef)
 
@@ -62,7 +60,7 @@ export default function PinnedSections() {
       {sections.map((section, index) => {
         const SectionComponent = section.component
         return (
-          <div key={section.id} ref={(el) => (sectionsRef.current[index] = el)} className="relative h-screen">
+          <div key={section.id} ref={(el) => { sectionsRef.current[index] = el }} className="relative h-screen">
             <SectionComponent />
           </div>
         )
