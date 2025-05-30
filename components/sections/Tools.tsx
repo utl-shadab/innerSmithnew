@@ -118,7 +118,7 @@ export default function Tools() {
     <section className="bg-white h-full justify-center items-center flex"
       id="tools"
       style={{ scrollSnapAlign: "start" }}>
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="w-full mx-auto px-6 lg:px-12 xl:px-16">
         <div ref={titleRef} className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-light text-gray-900 font-normal title">
             <span className="font-bold">500+</span> Scientifically-Backed
@@ -145,10 +145,10 @@ export default function Tools() {
                     height={70}
                   />
                 </div>
-                <h3 className="font-semibold text-3xl mb-2 text-gray-900">
+                <h3 className="card-title font-semibold text-3xl mb-2 text-gray-900">
                   {card.title}
                 </h3>
-                <p className="text-gray-600 text-2xl leading-relaxed">
+                <p className="card-description text-gray-600 text-2xl leading-relaxed">
                   {card.description}
                 </p>
               </CardContent>
