@@ -5,26 +5,27 @@ import SplitType from "split-type";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
+
 const cardData = [
   {
-    image: "/svgs/user.svg",
-    title: "9 in 10 Feel Better in Just 14 Days",
-    description: "Tailored stress relief, powered by practices old and new, proven to help you feel better.",
+    icon: "svgs/userFeel.svg",
+    title: "Users Feel Better in 14 Days",
+    description: "We combine ancient rituals and modern methods to support your stress relief.",
   },
   {
-    image: "/svgs/accur.svg",
-    title: "98% tool match accuracy",
-    description: "Every recommendation is tuned to your mood, energy, and what actually helps you reset.",
+    icon: "svgs/accuracy.svg",
+    title: "98% Tool Match Accuracy",
+    description: "Tools are handpicked based on your mood, style, and what works best for you.",
   },
   {
-    image: "/svgs/risk.svg",
-    title: "healing path, one just for you.",
-    description: "Explore daily journeys that shift and grow with how you feel.",
+    icon: "svgs/journeys.svg",
+    title: "50+ Journeys, One That Fits You",
+    description: "Your daily guidance evolves with you to keep your journey engaging.",
   },
   {
-    image: "/svgs/journey.svg",
-    title: "7 days Risk-free trial",
-    description: "Experience meaningful change, or get 100% of your money back, no questions asked.",
+    icon: "svgs/riskfree.svg",
+    title: "7 Days, Risk-Free Trial",
+    description: "Experience meaningful change, or get 100% of your money back.",
   },
 ];
 
@@ -114,13 +115,13 @@ export default function Tools() {
   }, []);
 
   return (
-    <section className="bg-white py-20"
+    <section className="bg-white h-full justify-center items-center flex"
       id="tools"
       style={{ scrollSnapAlign: "start" }}>
       <div className="max-w-7xl mx-auto px-4">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-light text-gray-900 title">
-            <span className="font-semibold">500+</span> Scientifically-Backed
+          <h2 className="text-3xl md:text-5xl font-light text-gray-900 font-normal title">
+            <span className="font-bold">500+</span> Scientifically-Backed
             <br />
             Tools, <span className="text-gray-600">Matched to You</span>
           </h2>
@@ -130,24 +131,24 @@ export default function Tools() {
             <Card
               key={index}
               ref={(el) => { cardRefs.current[index] = el; }}
-              className="rounded-2xl shadow-md text-left relative overflow-hidden"
+              className="rounded-2xl shadow-md text-left relative overflow-hidden bg-gray-50 h-[500px]"
              
             >
               
-              <CardContent className="pt-8 px-6 pb-8 relative z-10">
-                <div className="w-full h-full mb-4">
+              <CardContent className="pt-8 px-6 pb-8 relative z-10 text-left">
+                <div className="mb-4">
                   <Image
-                    src={card.image}
-                    alt={card.title}
-                    width={400}
-                    height={100}
-                    className="card-image h-auto max-h-20 w-full object-fill"
+                    src={card.icon}
+                    alt=""
+                    className="card-image h-auto max-h-20 object-contain"
+                    width={70}
+                    height={70}
                   />
                 </div>
-                <h3 className="card-title font-semibold text-lg mb-2 text-gray-900">
+                <h3 className="font-semibold text-3xl mb-2 text-gray-900">
                   {card.title}
                 </h3>
-                <p className="card-description text-sm text-gray-600 leading-relaxed">
+                <p className="text-gray-600 text-2xl leading-relaxed">
                   {card.description}
                 </p>
               </CardContent>

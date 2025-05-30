@@ -4,15 +4,16 @@ import { useRef, useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/all";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import type { Swiper as swp } from "swiper/types";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const AppSlides = [
   {
@@ -63,6 +64,11 @@ export default function App() {
   const subtitleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const dotsRef = useRef<HTMLDivElement>(null);
+  
+  // Touch handling for mobile swipe
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -145,21 +151,24 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (titleRef.current && subtitleRef.current && descriptionRef.current) {
-      gsap.to([titleRef.current, descriptionRef.current], {
+    if (subtitleRef.current) {
+      gsap.set(subtitleRef.current, {
         opacity: 0,
-        y: -10,
-        duration: 0.3,
-        ease: "power2.out",
-        onComplete: () => {
-          gsap.to([titleRef.current, descriptionRef.current], {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        },
+        y: 20
       });
+
+      const tl = gsap.timeline();
+      
+      tl.fromTo(
+        subtitleRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out"
+        }
+      );
     }
   }, [activeIndex]);
 
@@ -169,35 +178,89 @@ export default function App() {
     }
   };
 
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    touchStartX.current = e.touches[0].clientX;
+    
+    // Pause autoplay when user starts touching
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.stop();
+      setIsAutoplayPaused(true);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isMobile) return;
+    
+    const swipeThreshold = 50; // Minimum distance for a swipe
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        // Swipe left - next slide
+        if (swiperRef.current) {
+          swiperRef.current.slideNext();
+        }
+      } else {
+        // Swipe right - previous slide
+        if (swiperRef.current) {
+          swiperRef.current.slidePrev();
+        }
+      }
+    }
+    
+    // Resume autoplay after a delay
+    setTimeout(() => {
+      if (swiperRef.current && swiperRef.current.autoplay && isAutoplayPaused) {
+        swiperRef.current.autoplay.start();
+        setIsAutoplayPaused(false);
+      }
+    }, 2000); // 2 second delay before resuming autoplay
+  };
+
+  // Prevent default drag behavior on images and maintain proper cursor
+  const handleImageDragStart = (e: React.DragEvent) => {
+    e.preventDefault();
+    return false;
+  };
+
+  const handleImagePointerDown = (e: React.PointerEvent) => {
+    // Prevent default behavior that might interfere with Swiper
+    e.preventDefault();
+  };
+
   return (
     <section
       ref={sectionRef}
       className="min-h-screen w-full bg-[#f8f9fa] relative overflow-hidden flex items-center"
     >
-      <div className="w-full  mx-auto px-6 lg:px-12 xl:px-16 ">
+      <div className="w-full mx-auto px-6 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div
             ref={textContentRef}
-            className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 "
+            className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1"
           >
             <h3
               ref={titleRef}
-              className="text-lg title  lg:text-xl text-[#7dd3fc] font-medium tracking-wide uppercase mb-6"
+              className="text-lg title lg:text-xl text-[#7dd3fc] font-medium tracking-wide uppercase mb-6"
             >
               INSIDE THE APP
             </h3>
             <h2
               ref={subtitleRef}
-              className="text-4xl lg:text-6xl xl:text-7xl font-light leading-tight text-gray-900 mb-6"
+              className="text-4xl lg:text-5xl 2xl:text-6xl font-light leading-tight text-gray-900 mb-6"
             >
               {AppSlides[activeIndex].title}
             </h2>
-            <p
-              ref={descriptionRef}
-              className="text-lg lg:text-xl xl:text-2xl text-center lg:text-left leading-relaxed para text-gray-600 mb-12 w-full lg:max-w-lg"
-            >
+            <span className="text-gray-500 para text-4xl lg:text-5xl 2xl:text-6xl font-light leading-tight mb-6 sm:text-2xl">
               {AppSlides[activeIndex].content}
-            </p>
+            </span>
 
             <div
               ref={dotsRef}
@@ -221,30 +284,38 @@ export default function App() {
           <div
             ref={phoneFrameRef}
             className="flex justify-center items-center order-1 lg:order-2"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ 
+              touchAction: isMobile ? 'pan-y' : 'auto' // Allow vertical scrolling but handle horizontal
+            }}
           >
             <div className="relative">
-              <div className="  frame-size relative h-[76vw] w-[40vw]  sm:h-[60vw] sm:w-[32vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[260px] xl:h-[520px]">
-                <div className="absolute inset-0 z-20">
+              <div className="frame-size relative h-[76vw] w-[40vw] sm:h-[60vw] sm:w-[32vw] md:w-[35vw] md:h-[66vw] lg:w-[40vw] lg:h-[76vw] xl:w-[400px] xl:h-[760px]">
+                <div className="absolute inset-0 z-20 pointer-events-none">
                   <Image
                     src="/svgs/mobileScreen.svg"
                     alt="Phone frame"
                     fill
                     className="object-contain drop-shadow-2xl"
                     priority
+                    draggable={false}
+                    onDragStart={handleImageDragStart}
                   />
                 </div>
 
                 <div className="absolute inset-0 z-10">
                   <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-[28px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
                     <Swiper
-                      modules={[Autoplay, Navigation]}
+                      modules={[Autoplay, Navigation, Thumbs]}
                       slidesPerView={1}
                       spaceBetween={0}
-                      speed={1000}
+                      speed={800}
                       navigation={false}
                       centeredSlides={true}
                       autoplay={{
-                        delay: 3000,
+                        delay: 4000,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                       }}
@@ -255,6 +326,20 @@ export default function App() {
                         setActiveIndex(swiper.realIndex);
                       }}
                       loop={true}
+                      touchEventsTarget="container"
+                      touchRatio={1.2}
+                      touchAngle={45}
+                      simulateTouch={true}
+                      allowTouchMove={true}
+                      grabCursor={true} // Enable grab cursor for both mobile and desktop
+                      touchStartPreventDefault={false}
+                      touchReleaseOnEdges={true}
+                      resistanceRatio={0.85}
+                      // Enable mouse/desktop dragging
+                      mousewheel={false}
+                      keyboard={{
+                        enabled: false,
+                      }}
                       className="w-full h-full"
                     >
                       {AppSlides.map((slide, index) => (
@@ -267,6 +352,20 @@ export default function App() {
                               className="object-cover object-center"
                               sizes="(max-width: 1024px) 340px, (max-width: 1280px) 280px, 420px"
                               priority={index === 0}
+                              draggable={false}
+                              onDragStart={handleImageDragStart}
+                              onPointerDown={handleImagePointerDown}
+                              style={{
+                                userSelect: 'none',
+                                WebkitUserSelect: 'none',
+                                MozUserSelect: 'none',
+                                msUserSelect: 'none',
+                                WebkitUserDrag: 'none',
+                                KhtmlUserDrag: 'none',
+                                MozUserDrag: 'none',
+                                OUserDrag: 'none',
+                                userDrag: 'none'
+                              }}
                             />
                           </div>
                         </SwiperSlide>
@@ -274,6 +373,17 @@ export default function App() {
                     </Swiper>
                   </div>
                 </div>
+
+                {/* Mobile swipe indicator - only show on mobile */}
+                {isMobile && (
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30">
+                    <div className="flex items-center space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
+                      <div className="w-4 h-0.5 bg-white/60 rounded-full animate-pulse"></div>
+                      <span className="text-white/80 text-xs font-medium">Swipe</span>
+                      <div className="w-4 h-0.5 bg-white/60 rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
