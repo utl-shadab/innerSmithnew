@@ -40,8 +40,6 @@
     text-align: center;
     font-size: 6vw;
     line-height: 8vw;
-    font-style: normal;
-    font-weight: 400;
   }
 
   .para {
@@ -50,10 +48,11 @@
     line-height: 8vw;
   }
 
-  .problem-heading {
-    font-size: 6vw;
-    line-height: 8vw;
-  }
+     .problem-heading {
+        font-weight: 400 !important;
+        font-size: 6vw;
+        line-height: 8vw;
+    }
 
   .custom-width {
     width: 100% !important;
@@ -129,10 +128,7 @@
     line-height: 6.5vw;
   }
 
-  .para {
-    font-size: 6.5vw;
-    line-height: 9vw;
-  }
+  
 
   .custom-size {
     font-size: 13vw;

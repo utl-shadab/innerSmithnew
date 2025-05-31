@@ -9,9 +9,14 @@
 }
 
 .problem-heading {
-    font-weight: 400;
     font-size: 58px;
     line-height: 73px;
+    font-weight: 400 !important;
+
+}
+
+.word {
+    font-weight: 400 !important;
 }
 
 .problem-span {
@@ -90,7 +95,7 @@
         line-height: normal;
     }
 
-       .scroll-text {
+    .scroll-text {
         font-size: 3vw;
         line-height: 5vw;
     }
@@ -110,4 +115,164 @@
         top: 6vw;
     }
 
+}
+
+@media screen and (max-width: 760px) {
+    .hero-para {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+    .animate-bounce svg {
+        width: 10vw;
+        height: 16vw;
+    }
+
+    .problem-heading {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+    .para {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+    .problem-span {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+    .custom-size {
+        font-size: 10vw;
+        line-height: normal;
+    }
+
+    .scroll-text {
+        font-size: 3vw;
+        line-height: 4vw;
+    }
+
+    .hero-bottom {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+    .people {
+        font-size: 5vw;
+        line-height: 7vw;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .hero-para {
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+
+    .problem-heading {
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+
+    .problem-span {
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+
+    .custom-size {
+        font-size: 8vw;
+        line-height: normal;
+    }
+
+    .scroll-text {
+        font-size: 2vw;
+        line-height: 3.5vw;
+    }
+
+    .hero-bottom {
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+
+    .people {
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .hero-para {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .problem-heading {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .problem-span {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .custom-size {
+        font-size: 7vw;
+        line-height: normal;
+    }
+
+    .scroll-text {
+        font-size: 2vw;
+        line-height: 3vw;
+    }
+
+    .hero-bottom {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .people {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .hero-para {
+        font-size: 3vw;
+        line-height: 5vw;
+    }
+
+    .problem-heading {
+        font-size: 3vw;
+        line-height: 5vw;
+    }
+
+    .problem-span {
+        font-size: 3vw;
+        line-height: 5vw;
+    }
+
+    .custom-size {
+        font-size: 6vw;
+        line-height: normal;
+    }
+
+    .scroll-text {
+        font-size: 1.8vw;
+        line-height: 2.8vw;
+    }
+
+    .hero-bottom {
+        font-size: 3vw;
+        line-height: 5vw;
+    }
+
+    .people {
+        font-size: 3vw;
+        line-height: 5vw;
+    }
 }

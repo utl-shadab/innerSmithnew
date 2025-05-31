@@ -85,7 +85,9 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative h-[200vh] overflow-hidden" >
+    <section ref={heroRef} className="relative h-[200vh] overflow-hidden z-10" 
+    id="hero"
+    style={{ scrollSnapAlign: "start" }}>
 
       <div ref={imageRef} className="absolute bg-black inset-0 w-full h-full z-0" style={{ willChange: "transform", backgroundColor: 'rgba(0, 0, 0, 0.64)' }}>
         <Image
@@ -118,7 +120,7 @@ export default function HeroSection() {
 
       <div
         ref={firstViewRef}
-        className="relative z-10 h-screen flex flex-col items-center justify-center text-white px-4"
+        className="relative z-30 h-screen flex flex-col items-center justify-center text-white px-4"
 
       >
         <div className="text-center max-w-6xl mx-auto mt-6">
@@ -147,7 +149,7 @@ export default function HeroSection() {
 
       <div
         ref={secondViewRef}
-        className="relative z-10 h-screen flex items-center justify-center text-white px-4"
+        className="relative z-20 h-screen flex items-center justify-center text-white px-4"
       >
         <div className="text-center max-w-7xl mx-auto">
           <h2 className=" para hero-bottom  opacity-90">

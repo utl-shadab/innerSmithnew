@@ -250,3 +250,6 @@ body.smooth-sections-active {
   user-select: none;
   pointer-events: none;
 }
+.word{
+  font-weight: 400 !important; 
+}
