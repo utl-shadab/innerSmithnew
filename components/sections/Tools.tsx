@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import SplitType from "split-type";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const cardData = [
   {
@@ -32,6 +33,27 @@ const cardData = [
 export default function Tools() {
   const titleRef = useRef(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const autoSlide = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+    }, 5000);
+    return () => clearInterval(autoSlide);
+  }, [isMobile]);
 
   useEffect(() => {
     if (titleRef.current) {
@@ -49,112 +71,207 @@ export default function Tools() {
       );
     }
 
-    cardRefs.current.forEach((card, index) => {
-      if (card) {
-        const cardImage = card.querySelector(".card-image");
-        const cardTitleElement = card.querySelector(".card-title") as HTMLElement | null;
-        const cardDescElement = card.querySelector(".card-description") as HTMLElement | null;
+    if (!isMobile) {
+      cardRefs.current.forEach((card, index) => {
+        if (card) {
+          const cardImage = card.querySelector(".card-image");
+          const cardTitleElement = card.querySelector(".card-title") as HTMLElement | null;
+          const cardDescElement = card.querySelector(".card-description") as HTMLElement | null;
 
-        if (cardTitleElement && cardDescElement) {
-          const splitCardTitle = new SplitType(cardTitleElement, { types: "lines" });
-          const splitCardDesc = new SplitType(cardDescElement, { types: "lines" });
+          if (cardTitleElement && cardDescElement) {
+            const splitCardTitle = new SplitType(cardTitleElement, { types: "lines" });
+            const splitCardDesc = new SplitType(cardDescElement, { types: "lines" });
 
-          gsap.fromTo(
-            card,
-            { y: 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-              ease: "power3.out",
-              delay: index * 0.2,
-            }
-          );
-          if (cardImage) {
             gsap.fromTo(
-              cardImage,
-              { opacity: 0, scale: 0.8 },
+              card,
+              { y: 50, opacity: 0 },
               {
+                y: 0,
                 opacity: 1,
-                scale: 1,
-                duration: 0.8,
+                duration: 1,
                 ease: "power3.out",
                 delay: index * 0.2,
               }
             );
+            if (cardImage) {
+              gsap.fromTo(
+                cardImage,
+                { opacity: 0, scale: 0.8 },
+                {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.8,
+                  ease: "power3.out",
+                  delay: index * 0.2,
+                }
+              );
+            }
+
+            gsap.fromTo(
+              splitCardTitle.lines,
+              { y: 20, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                stagger: 0.1,
+                delay: index * 0.2 + 0.2,
+              }
+            );
+
+            gsap.fromTo(
+              splitCardDesc.lines,
+              { y: 20, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                stagger: 0.1,
+                delay: index * 0.2 + 0.4,
+              }
+            );
           }
-
-          gsap.fromTo(
-            splitCardTitle.lines,
-            { y: 20, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.1,
-              delay: index * 0.2 + 0.2,
-            }
-          );
-
-          gsap.fromTo(
-            splitCardDesc.lines,
-            { y: 20, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.1,
-              delay: index * 0.2 + 0.4,
-            }
-          );
         }
-      }
-    });
-  }, []);
+      });
+    }
+  }, [isMobile]);
 
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length);
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+  };
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      y: 0, // prevent vertical motion
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? "100%" : "-100%",
+      y: 0,
+      opacity: 0,
+    }),
+  };
   return (
-    <section className="bg-white h-screen justify-center items-center flex"
+    <section
+      className="bg-white min-h-screen flex justify-center items-center py-10"
       id="tools"
-      style={{ scrollSnapAlign: "start" }}>
+      style={{ scrollSnapAlign: "start" }}
+    >
       <div className="w-full mx-auto px-6 lg:px-20 xl:px-24">
-        <div ref={titleRef} className="text-center mb-16 w-full max-w-3xl mx-auto">
+        <div ref={titleRef} className="text-center mb-10 w-full max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl text-gray-900 font-normal para">
-            <span className="font-bold">500+</span>  Scientifically-Backed
-           
+            <span className="font-bold">500+</span> Scientifically-Backed
             Tools, <span className="text-[#515151] font-light">Matched to You</span>
           </h2>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ">
-          {cardData.map((card, index) => (
-            <Card
-              key={index}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className="rounded-3xl shadow-md text-left relative overflow-hidden bg-[#F3F3F3]  px-4 h-auto max-h-[500px]"
-             
-            >
-              
-              <CardContent className="pt-8  pb-8 relative z-10 text-left">
-                <div className="mb-4">
-                  <Image
-                    src={card.icon}
-                    alt=""
-                    className="card-image h-auto max-h-20 object-contain"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <h3 className="card-title w-full max-w-[139px] font-[500] leading-8 text-2xl mb-2 text-gray-900">
-                  {card.title}
-                </h3>
-                <p className="card-description text-gray-600 text-xl leading-relaxed">
-                  {card.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+
+        {isMobile ? (
+          <div className="relative w-full flex flex-col items-center">
+            <div className="relative w-full h-[400px] max-w-[400px] overflow-hidden">
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 60, damping: 15 },
+                    opacity: { duration: 0.4 },
+                  }}
+                  className="absolute w-full h-full top-0 left-0"
+                >
+
+                  <Card
+                    className="rounded-3xl shadow-md text-left relative overflow-hidden bg-[#F3F3F3] px-4 h-auto  opacity-100"
+                  >
+                    <CardContent className="pt-8 pb-8 relative z-10 text-left">
+                      <div className="mb-4">
+                        <Image
+                          src={cardData[currentIndex].icon}
+                          alt=""
+                          className="h-auto max-h-20 object-contain"
+                          width={70}
+                          height={70}
+                          style={{ transform: "none" }}
+                        />
+                      </div>
+                      <h3 className="w-full max-w-[139px]  font-[500] leading-8 text-2xl mb-2 text-gray-900">
+                        {cardData[currentIndex].title}
+                      </h3>
+                      <p className="text-gray-600 text-xl leading-relaxed">
+                        {cardData[currentIndex].description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-6">
+              <button
+                onClick={handlePrev}
+                className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={handleNext}
+                className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full hidden md:block mx-auto h-full pt-20 px-6 lg:px-20 xl:px-24">
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ">
+              {cardData.map((card, index) => (
+                <Card
+                  key={index}
+                  ref={(el) => { cardRefs.current[index] = el; }}
+                  className="rounded-3xl shadow-md text-left relative overflow-hidden bg-[#F3F3F3]  px-4 h-auto max-h-[500px]"
+
+                >
+
+                  <CardContent className="pt-8  pb-8 relative z-10 text-left">
+                    <div className="mb-4">
+                      <Image
+                        src={card.icon}
+                        alt=""
+                        className="card-image h-auto max-h-20 object-contain"
+                        width={70}
+                        height={70}
+                      />
+                    </div>
+                    <h3 className="card-title w-full  font-[500] leading-8 text-2xl mb-2 text-gray-900">
+                      {card.title}
+                    </h3>
+                    <p className="card-description text-gray-600 text-xl leading-relaxed">
+                      {card.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
