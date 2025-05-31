@@ -91,11 +91,11 @@ export default function Problem() {
       {/* Mobile Layout (below md) */}
       <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center items-center px-6 py-12">
         <div className="w-full flex flex-col items-center text-center gap-8">
-          <h2 className="text-[#525299] font-semibold text-[1.5rem] title leading-tight">
+          <h2 className="text-[#525299] font-semibold text-[1.5rem] title leading-tight" style={{fontWeight: "400"}}>
             The Problem
           </h2>
           <p className="text-[2rem] para text-center text-[#8a8a8a] font-light leading-relaxed">
-            <span className="problem-heading font-medium text-black">
+            <span className="problem-heading font-semibold text-black" style={{fontSize: "2rem"}}>
               Stress is a lifestyle issue.
             </span>{" "}
             It builds quietly, drains you daily, but we don’t talk about it enough.
