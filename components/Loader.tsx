@@ -47,7 +47,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
         loaderContainerRef.current,
         {
           opacity: 0,
-          duration: 0.3,
+          duration: 0.4,
           ease: "power1.out",
           onComplete: () => setIndex(i),
         },
@@ -56,7 +56,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
         loaderContainerRef.current,
         {
           opacity: 1,
-          duration: 0.3,
+          duration: 0.4,
           ease: "power1.in",
         },
         "<"

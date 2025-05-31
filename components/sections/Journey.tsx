@@ -107,10 +107,10 @@ export default function Journey() {
         
         <div className="flex-1 relative -mx-0">
           <Image
-            src="/images/rightImagePhone.png"
+            src="/rounded-full.jpg"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
-            className="object-cover w-full h-full smallFit"
+            className="object-cover w-full h-full smallFit  max-w-lg mx-auto"
            style={{ bottom: 0, objectFit: "cover", }}
             priority
           />

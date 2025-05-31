@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Albert_Sans } from "next/font/google"
 import "./globals.css"
-
+import MusicComp from "@/components/ui/music"
 const inter = Inter({ subsets: ["latin"] })
 const albertSans = Albert_Sans({ subsets: ["latin"] })
 
@@ -23,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${albertSans.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} ${albertSans.className} antialiased`}>
+        <MusicComp src="/musicbg.mp3" autoPlay={false} />
+        {children}</body>
     </html>
   )
 }

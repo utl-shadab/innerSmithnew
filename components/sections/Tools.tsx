@@ -115,14 +115,14 @@ export default function Tools() {
   }, []);
 
   return (
-    <section className="bg-white h-full justify-center items-center flex"
+    <section className="bg-white h-screen justify-center items-center flex"
       id="tools"
       style={{ scrollSnapAlign: "start" }}>
       <div className="w-full mx-auto px-6 lg:px-20 xl:px-24">
-        <div ref={titleRef} className="text-center mb-16 w-full max-3xl">
+        <div ref={titleRef} className="text-center mb-16 w-full max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl text-gray-900 font-normal para">
             <span className="font-bold">500+</span>  Scientifically-Backed
-            <br />
+           
             Tools, <span className="text-[#515151] font-light">Matched to You</span>
           </h2>
         </div>
@@ -131,7 +131,7 @@ export default function Tools() {
             <Card
               key={index}
               ref={(el) => { cardRefs.current[index] = el; }}
-              className="rounded-2xl shadow-md text-left relative overflow-hidden bg-gray-50  px-4 h-auto max-h-[500px]"
+              className="rounded-3xl shadow-md text-left relative overflow-hidden bg-[#F3F3F3]  px-4 h-auto max-h-[500px]"
              
             >
               
@@ -145,7 +145,7 @@ export default function Tools() {
                     height={70}
                   />
                 </div>
-                <h3 className="card-title font-semibold text-2xl mb-2 text-gray-900">
+                <h3 className="card-title w-full max-w-[139px] font-[500] leading-8 text-2xl mb-2 text-gray-900">
                   {card.title}
                 </h3>
                 <p className="card-description text-gray-600 text-xl leading-relaxed">

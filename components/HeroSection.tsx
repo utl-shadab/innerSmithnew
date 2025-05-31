@@ -119,15 +119,16 @@ export default function HeroSection() {
       <div
         ref={firstViewRef}
         className="relative z-10 h-screen flex flex-col items-center justify-center text-white px-4"
-        
+
       >
         <div className="text-center max-w-6xl mx-auto mt-6">
           <p className=" hero-para  opacity-90">Stress is a loop that keeps you stuck.</p>
           <h1 className="font-light my-2 tracking-wide custom-margin custom-size">InnerSmith</h1>
-          <p className="  second-custom hero-para">
-            helps you break free and <em className="italic">Feel Better, Live Better.</em>
+          <p className="second-custom hero-para">
+            helps you break free and <br className="break-mobile" />
+            <em className="italic">Feel Better, Live Better.</em>
           </p>
-          <div className="flex flex-col items-center mt-20 gap-3">
+          <div className="flex flex-col items-center mt-20 small-margin gap-3">
             <div className="animate-bounce">
               <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40" fill="none">
                 <mask id="mask0_682_20273" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="40">

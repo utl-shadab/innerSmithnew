@@ -4,7 +4,7 @@ import LaptopLottie from '@/components/laptopLottie';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
-
+import "../hero.css"
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Problem() {
@@ -34,7 +34,7 @@ export default function Problem() {
           toggleActions: "play reverse play reverse",
           markers: false,
         },
-        defaults: { ease: "power2.out" },
+        defaults: { ease: "power4.out" },
       });
 
       tl.fromTo(
@@ -71,11 +71,11 @@ export default function Problem() {
       {/* Desktop Layout (md and above) */}
       <div className="hidden lg:grid grid-cols-2  mx-[5rem] max-sm:h-full max-sm:py-[5rem]">
         <div className="flex flex-col justify-center gap-[2rem] pr-[4rem] items-start max-sm:items-center max-sm:mb-10">
-          <h2 className="text-[#525299] font-semibold main-title">
+          <h2 className="text-[#525299]  main-title">
             The Problem
           </h2>
-          <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
+          <p className="problem-span text-left text-[#515151]  max-sm:text-center ">
+            <span className="problem-heading  text-black">
               Stress is a lifestyle issue.
             </span>{" "}
             It builds quietly, drains you daily, but we don’t talk about it enough.

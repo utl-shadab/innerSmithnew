@@ -4,6 +4,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+ 
 }
 
 @layer utilities {
@@ -96,7 +97,22 @@ body {
       background-size: auto 120%;
 }
 
-.relative.h-screen {
-  will-change: transform;
+
+
+.break-mobile {
+  display: none;
 }
 
+/* Show the line break on tablet screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .break-mobile {
+    display: block;
+  }
+}
+
+/* Optionally, adjust for mobile screens (max-width: 768px) if needed */
+@media (max-width: 768px) {
+  .break-mobile {
+    display: block;
+  }
+}

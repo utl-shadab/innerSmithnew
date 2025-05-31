@@ -66,8 +66,8 @@ const Stats = () => {
       id="stats"
       style={{ scrollSnapAlign: "start" }}
     >
-      <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-10 lg:gap-20 mx-auto">
-        <div className=" stats-text font-light text-xl lg:text-4xl text-center lg:text-left whitespace-nowrap">
+      <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-10 lg:gap-1 mx-auto">
+        <div className=" stats-text font-light  text-center lg:text-left whitespace-nowrap">
           You&apos;re Not Alone—
         </div>
 

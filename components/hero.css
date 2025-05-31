@@ -9,16 +9,14 @@
 }
 
 .problem-heading {
-    font-size: 58px;
-    font-style: normal;
     font-weight: 400;
+    font-size: 58px;
     line-height: 73px;
 }
 
 .problem-span {
-    font-size: 58px;
-    font-style: normal;
     font-weight: 300;
+    font-size: 58px;
     line-height: 73px;
 }
 
@@ -72,6 +70,11 @@
         line-height: 8vw;
     }
 
+    .small-margin {
+        margin-top: 20vw;
+
+    }
+
     .problem-heading {
         font-size: 6vw;
         line-height: 8vw;
@@ -87,9 +90,9 @@
         line-height: normal;
     }
 
-    .scroll-text {
-        font-size: 4vw;
-        line-height: 6vw;
+       .scroll-text {
+        font-size: 3vw;
+        line-height: 5vw;
     }
 
     .hero-bottom {
