@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Loader from "@/components/Loader"
-import HeroSection from "@/components/HeroSection"
+// import HeroSection from "@/components/sections/HeroSection"
 import PinnedSections from "@/components/PinnedSections"
 import { initializeLenis } from "@/lib/lenis"
 
@@ -23,7 +23,7 @@ export default function Home() {
     <main className="relative">
       {isLoading && <Loader onComplete={handleLoaderComplete} />}
       <div className={`transition-opacity duration-1000 ${isLoading ? "opacity-0" : "opacity-100"}`}>
-        <HeroSection />
+        {/* <HeroSection /> */}
         <PinnedSections />
       </div>
     </main>

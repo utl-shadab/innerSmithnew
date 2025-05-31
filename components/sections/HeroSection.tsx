@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import "./hero.css"
+import "../hero.css"
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
@@ -160,6 +160,7 @@ export default function HeroSection() {
           </p>
         </div>
       </div>
+      <div className="h-20 w-full "></div>
     </section>
   );
 }

@@ -62,7 +62,7 @@ const Stats = () => {
 
   return (
     <section
-      className="h-screen bg-black w-screen overflow-hidden relative px-4 py-10 sm:py-16 md:py-20"
+      className="h-screen bg-black w-screen overflow-hidden relative px-4 z-20 py-10 sm:py-16 md:py-20"
       id="stats"
       style={{ scrollSnapAlign: "start" }}
     >
