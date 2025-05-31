@@ -44,7 +44,8 @@ export default function SmoothAnimatedSections() {
   const [showIntro, setShowIntro] = useState(true) 
   const problemRef = useRef<HTMLDivElement>(null)
 
-  const gsapSections = sections.slice(2)
+  // Include Problem section in GSAP sections (start from index 1, not 2)
+  const gsapSections = sections.slice(1) // Now includes Problem, Stats, Disrupt, etc.
 
   const gotoSection = useCallback((gsapIndex: number, direction: number) => {
     if (animatingRef.current) return;
@@ -63,11 +64,12 @@ export default function SmoothAnimatedSections() {
     }
     
     const prevGsapIndex = currentIndexRef.current;
-    if (gsapIndex === prevGsapIndex && currentSection === gsapIndex + 2) return;
+    if (gsapIndex === prevGsapIndex && currentSection === gsapIndex + 1) return; // Adjust offset
 
+    // First section entry (Problem section)
     if (gsapIndex === 0 && prevGsapIndex === -1 && direction === 1) {
       animatingRef.current = true;
-      setCurrentSection(2); 
+      setCurrentSection(1); // Problem section
 
       gsap.set(sectionsElements[0], {
         zIndex: 10,
@@ -101,7 +103,7 @@ export default function SmoothAnimatedSections() {
     }
 
     animatingRef.current = true;
-    setCurrentSection(gsapIndex + 2);
+    setCurrentSection(gsapIndex + 1); // Adjust currentSection to match gsapSections
 
     const fromTop = direction === -1;
     const dFactor = fromTop ? -1 : 1;
@@ -158,7 +160,7 @@ export default function SmoothAnimatedSections() {
   }, [gsapSections.length, currentSection]);
 
   useEffect(() => {
-    if (currentSection < 2) { 
+    if (currentSection < 1) { // Only Hero section uses normal scroll
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       if (observerRef.current) {
@@ -167,7 +169,6 @@ export default function SmoothAnimatedSections() {
       }
 
       if (fixedContainerRef.current) {
-     
         gsap.set(fixedContainerRef.current, { 
           opacity: 0, 
           pointerEvents: 'none', 
@@ -175,12 +176,11 @@ export default function SmoothAnimatedSections() {
         });
       }
 
-    } else { // GSAP Mode 
+    } else { // GSAP Mode (Problem section onwards)
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
 
       if (fixedContainerRef.current) {
-        
          gsap.set(fixedContainerRef.current, { 
            opacity: 1, 
            pointerEvents: 'auto', 
@@ -188,9 +188,9 @@ export default function SmoothAnimatedSections() {
           });
       }
 
-      const targetGsapIndex = currentSection - 2;
-      if (currentIndexRef.current === -1 && currentSection === 2) {
-        setTimeout(() => gotoSection(0, 1), 50); 
+      const targetGsapIndex = currentSection - 1; // Adjust offset for gsapSections
+      if (currentIndexRef.current === -1 && currentSection === 1) {
+        setTimeout(() => gotoSection(0, 1), 50); // Go to Problem section
       } else if (currentIndexRef.current !== targetGsapIndex && targetGsapIndex >= 0 && targetGsapIndex < gsapSections.length) {
         setTimeout(() => gotoSection(targetGsapIndex, targetGsapIndex > currentIndexRef.current ? 1 : -1), 50);
       }
@@ -205,34 +205,34 @@ export default function SmoothAnimatedSections() {
             const currentGsapIdx = currentIndexRef.current;
             if (currentGsapIdx > 0) {
               gotoSection(currentGsapIdx - 1, -1);
-            } else if (currentGsapIdx === 0) { 
+            } else if (currentGsapIdx === 0) { // Exit from Problem section back to Hero
               animatingRef.current = true;
-              const statsOuter = outerWrappersRef.current[0];
-              const statsInner = innerWrappersRef.current[0];
-              const statsBg = backgroundsRef.current[0];
-              const statsSectionEl = sectionsRef.current[0];
+              const problemOuter = outerWrappersRef.current[0];
+              const problemInner = innerWrappersRef.current[0];
+              const problemBg = backgroundsRef.current[0];
+              const problemSectionEl = sectionsRef.current[0];
 
               const exitTimeline = gsap.timeline({
                 onComplete: () => {
-                  if (statsSectionEl) {
-                      gsap.set(statsSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
+                  if (problemSectionEl) {
+                      gsap.set(problemSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
                   }
-                  if (statsOuter) gsap.set(statsOuter, { yPercent: 100 });
-                  if (statsInner) gsap.set(statsInner, { yPercent: -100 });
+                  if (problemOuter) gsap.set(problemOuter, { yPercent: 100 });
+                  if (problemInner) gsap.set(problemInner, { yPercent: -100 });
                   
-                  setCurrentSection(1); 
+                  setCurrentSection(0); // Back to Hero
                   currentIndexRef.current = -1; 
                   animatingRef.current = false;
                 }
               });
 
-              if (statsOuter && statsInner && statsBg) {
-                exitTimeline.to([statsOuter, statsInner], {
+              if (problemOuter && problemInner && problemBg) {
+                exitTimeline.to([problemOuter, problemInner], {
                   yPercent: (i) => i ? -100 : 100, 
                   duration: 1.0,
                   ease: "power1.inOut",
                 }, 0)
-                .to(statsBg, {
+                .to(problemBg, {
                   yPercent: 15, 
                   duration: 1.0,
                   ease: "power1.inOut",
@@ -248,12 +248,12 @@ export default function SmoothAnimatedSections() {
               }
               
               if (exitTimeline.getChildren().length === 0) {
-                console.warn("Stats exit: No animations added to timeline. Completing manually.");
-                if (statsSectionEl) gsap.set(statsSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
-                if (statsOuter) gsap.set(statsOuter, { yPercent: 100 });
-                if (statsInner) gsap.set(statsInner, { yPercent: -100 });
+                console.warn("Problem exit: No animations added to timeline. Completing manually.");
+                if (problemSectionEl) gsap.set(problemSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
+                if (problemOuter) gsap.set(problemOuter, { yPercent: 100 });
+                if (problemInner) gsap.set(problemInner, { yPercent: -100 });
                 if (fixedContainerRef.current) gsap.set(fixedContainerRef.current, { opacity: 0 });
-                setCurrentSection(1);
+                setCurrentSection(0);
                 currentIndexRef.current = -1;
                 animatingRef.current = false;
               }
@@ -281,16 +281,16 @@ export default function SmoothAnimatedSections() {
 
   useEffect(() => {
     const onScroll = () => {
-      if (currentSection >= 2) return; 
+      if (currentSection >= 1) return; // Only active when in Hero section
 
       if (problemRef.current) {
         const rect = problemRef.current.getBoundingClientRect();
         if (rect.bottom <= window.innerHeight + 50) { 
-          setCurrentSection(2);
+          setCurrentSection(1); // Go to Problem section (first GSAP section)
         }
       }
     };
-    if (currentSection < 2) {
+    if (currentSection < 1) {
       window.addEventListener('scroll', onScroll, { passive: true });
     }
     return () => {
@@ -316,14 +316,14 @@ export default function SmoothAnimatedSections() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (currentSection < 2) {
+      if (currentSection < 1) { // Hero section
         let scrolled = false;
         if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
           e.preventDefault();
-          if (problemRef.current && currentSection === 1) { 
+          if (problemRef.current && currentSection === 0) { 
             const rect = problemRef.current.getBoundingClientRect();
             if (rect.bottom <= window.innerHeight + 100) { 
-              setCurrentSection(2); 
+              setCurrentSection(1); // Go to Problem section
               scrolled = true;
             }
           }
@@ -337,7 +337,7 @@ export default function SmoothAnimatedSections() {
           setCurrentSection(0);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      } else { 
+      } else { // GSAP sections
         if (animatingRef.current) return;
         const currentGsapIdx = currentIndexRef.current;
         switch (e.key) {
@@ -346,30 +346,30 @@ export default function SmoothAnimatedSections() {
             e.preventDefault();
             if (currentGsapIdx > 0) {
               gotoSection(currentGsapIdx - 1, -1);
-            } else if (currentGsapIdx === 0) { 
+            } else if (currentGsapIdx === 0) { // Exit from Problem section
               animatingRef.current = true;
-              const statsOuter = outerWrappersRef.current[0];
-              const statsInner = innerWrappersRef.current[0];
-              const statsBg = backgroundsRef.current[0];
-              const statsSectionEl = sectionsRef.current[0];
+              const problemOuter = outerWrappersRef.current[0];
+              const problemInner = innerWrappersRef.current[0];
+              const problemBg = backgroundsRef.current[0];
+              const problemSectionEl = sectionsRef.current[0];
 
               const exitTimeline = gsap.timeline({
                 onComplete: () => {
-                  if (statsSectionEl) {
-                      gsap.set(statsSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
+                  if (problemSectionEl) {
+                      gsap.set(problemSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
                   }
-                  if (statsOuter) gsap.set(statsOuter, { yPercent: 100 });
-                  if (statsInner) gsap.set(statsInner, { yPercent: -100 });
+                  if (problemOuter) gsap.set(problemOuter, { yPercent: 100 });
+                  if (problemInner) gsap.set(problemInner, { yPercent: -100 });
                   
-                  setCurrentSection(1); 
+                  setCurrentSection(0); 
                   currentIndexRef.current = -1; 
                   animatingRef.current = false;
                 }
               });
 
-              if (statsOuter && statsInner && statsBg) {
-                exitTimeline.to([statsOuter, statsInner], { yPercent: (i) => i ? -100 : 100, duration: 1.0, ease: "power1.inOut" }, 0)
-                .to(statsBg, { yPercent: 15, duration: 1.0, ease: "power1.inOut" }, 0);
+              if (problemOuter && problemInner && problemBg) {
+                exitTimeline.to([problemOuter, problemInner], { yPercent: (i) => i ? -100 : 100, duration: 1.0, ease: "power1.inOut" }, 0)
+                .to(problemBg, { yPercent: 15, duration: 1.0, ease: "power1.inOut" }, 0);
               }
               
               if (fixedContainerRef.current) {
@@ -377,10 +377,10 @@ export default function SmoothAnimatedSections() {
               }
 
               if (exitTimeline.getChildren().length === 0) {
-                if (statsSectionEl) gsap.set(statsSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
-                if (statsOuter) gsap.set(statsOuter, { yPercent: 100 });
-                if (statsInner) gsap.set(statsInner, { yPercent: -100 });
-                setCurrentSection(1);
+                if (problemSectionEl) gsap.set(problemSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
+                if (problemOuter) gsap.set(problemOuter, { yPercent: 100 });
+                if (problemInner) gsap.set(problemInner, { yPercent: -100 });
+                setCurrentSection(0);
                 currentIndexRef.current = -1;
                 animatingRef.current = false;
               }
@@ -427,10 +427,17 @@ export default function SmoothAnimatedSections() {
           <HeroSection />
         </div>
         
-      </div>
-        <div id="problem" className="relative w-full h-full" ref={problemRef}>
+        {/* Keep a trigger div for scroll detection */}
+        <div 
+          id="problem-trigger" 
+          ref={problemRef}
+          className="relative w-full h-full"
+          style={{ opacity: currentSection >= 1 ? 0 : 1, pointerEvents: currentSection >= 1 ? 'none' : 'auto' }}
+        >
           <Problem />
         </div>
+      </div>
+      
       <div
         ref={fixedContainerRef}
         className="smooth-sections-container fixed inset-0 w-full h-full overflow-hidden bg-black"
