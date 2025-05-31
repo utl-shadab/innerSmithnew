@@ -1,22 +1,82 @@
+"use client";
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitType from 'split-type';
 import "./MobileSlider.css"
+gsap.registerPlugin(ScrollTrigger);
 export default function Feel() {
+   const sectionRef = useRef(null);
+    const triggerRef = useRef<ScrollTrigger | undefined>(undefined);
+  
+    useEffect(() => {
+      let tl: gsap.core.Timeline | undefined;
+  
+      const setupAnimations = () => {
+        const section = sectionRef.current;
+        const heading = new SplitType(".problem-heading", {
+          types: "words,chars",
+        });
+  
+        if (!section) return;
+  
+        gsap.set(section, { clearProps: "all" });
+        document.querySelectorAll(".problem-heading .word").forEach((el) => {
+          (el as HTMLElement).style.whiteSpace = "nowrap";
+        });
+        tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top-=100% center",
+            end: "bottom-=100% top",
+            toggleActions: "play reverse play reverse",
+            markers: false,
+          },
+          defaults: { ease: "power2.out" },
+        });
+  
+        tl.fromTo(
+          ".problem-heading .char",
+          { fontWeight: "300", color: "#515151" },
+          {
+            fontWeight: "400",
+            color: "#000",
+            stagger: 0.1,
+            duration: 0.2,
+          }
+        );
+  
+        triggerRef.current = tl.scrollTrigger;
+      };
+  
+      requestAnimationFrame(() => {
+        setTimeout(setupAnimations, 100);
+      });
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        tl?.kill();
+        triggerRef.current?.kill();
+      };
+    }, []);
   return (
     <section className="h-screen relative overflow-hidden bg-gray-50"
       id="feel"
-      style={{ scrollSnapAlign: 'start' }}>
+      style={{ scrollSnapAlign: 'start' }}
+       ref={sectionRef}
+       >
       {/* Desktop Layout */}
       <div className="hidden lg:flex h-full items-center">
         <div className="w-3/5 flex items-center px-8 xl:px-16 2xl:px-20">
-          <div className="max-w-2xl space-y-6 xl:space-y-8">
-            <h3 className="text-lg xl:text-xl font-normal  text-orange-400 leading-relaxed">
-              Feel More You, With InnerSmith
-            </h3>
-            <h2 className="text-4xl xl:text-5xl 2xl:text-6xl font-light  leading-tight text-gray-900">
-              InnerSmith guides you through quick, calming activities{' '}
-              <span className="text-gray-500 para">
-                that help you show up for your work, your people, and yourself.
-              </span>
+          <div className="max-w-[46rem] space-y-6 xl:space-y-8">
+            <h2 className="main-title font-normal  text-[#FE8A65] leading-relaxed">
+             Feel More Like Yourself With InnerSmith
             </h2>
+           <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+             InnerSmith guides you through quick, calming activities 
+            </span>{" "}
+             that help you show up for your work, your people, and yourself.
+          </p>
           </div>
         </div>
         
@@ -34,15 +94,15 @@ export default function Feel() {
       <div className="hidden md:flex lg:hidden h-full flex-col">
         <div className="flex-1 flex items-center justify-center px-8">
           <div className=" custom-width text-center space-y-5">
-            <h3 className="text-lg font-normal text-orange-400 title leading-relaxed">
-              Feel More You, With InnerSmith
-            </h3>
-            <h2 className="text-3xl md:text-4xl font-light para leading-tight text-gray-900">
-              InnerSmith guides you through quick, calming activities{' '}
-              <span className="text-gray-500 para">
-                that help you show up for your work, your people, and yourself.
-              </span>
+            <h2 className="main-title font-normal title text-[#FE8A65] title leading-relaxed">
+             Feel More Like Yourself With InnerSmith
             </h2>
+            <p className="problem-span text-left para text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+             InnerSmith guides you through quick, calming activities 
+            </span>{" "}
+            that help you show up for your work, your people, and yourself.
+          </p>
           </div>
         </div>
         
@@ -60,15 +120,15 @@ export default function Feel() {
         {/* Text Content */}
         <div className="flex-1 flex items-center px-6">
           <div className="space-y-4">
-            <h3 className="text-base font-normal text-orange-400 leading-relaxed">
-              Feel More You, With InnerSmith
+            <h3 className="text-base title font-normal  text-[#FE8A65] leading-relaxed">
+             Feel More Like Yourself With InnerSmith
             </h3>
-            <h2 className="text-2xl font-light leading-tight text-gray-900">
-              InnerSmith guides you through quick, calming activities{' '}
-              <span className="text-gray-500">
-                that help you show up for your work, your people, and yourself.
-              </span>
-            </h2>
+            <p className="problem-span text-left para text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+             InnerSmith guides you through quick, calming activities 
+            </span>{" "}
+            that help you show up for your work, your people, and yourself.
+          </p>
           </div>
         </div>
         

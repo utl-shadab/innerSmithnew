@@ -8,7 +8,7 @@ let lenis: Lenis | null = null
 
 export function initializeLenis() {
   lenis = new Lenis({
-    duration: 1.5,
+    duration: 4,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     lerp: 0.02,
     touchMultiplier: 1.5,

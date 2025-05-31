@@ -5,7 +5,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Problem() {
@@ -17,8 +16,6 @@ export default function Problem() {
 
     const setupAnimations = () => {
       const section = sectionRef.current;
-
-      // Split text for animation
       const heading = new SplitType(".problem-heading", {
         types: "words,chars",
       });
@@ -26,13 +23,9 @@ export default function Problem() {
       if (!section) return;
 
       gsap.set(section, { clearProps: "all" });
-
-      // Prevent words from breaking across lines
       document.querySelectorAll(".problem-heading .word").forEach((el) => {
         (el as HTMLElement).style.whiteSpace = "nowrap";
       });
-
-      // Timeline for animation
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -61,8 +54,6 @@ export default function Problem() {
     requestAnimationFrame(() => {
       setTimeout(setupAnimations, 100);
     });
-
-    // Clean up
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       tl?.kill();
@@ -78,12 +69,12 @@ export default function Problem() {
       style={{ scrollSnapAlign: 'start' }}
     >
       {/* Desktop Layout (md and above) */}
-      <div className="hidden lg:grid grid-cols-2 mx-[5rem] max-sm:h-full max-sm:py-[5rem]">
+      <div className="hidden lg:grid grid-cols-2  mx-[5rem] max-sm:h-full max-sm:py-[5rem]">
         <div className="flex flex-col justify-center gap-[2rem] pr-[4rem] items-start max-sm:items-center max-sm:mb-10">
-          <h2 className="text-[#525299] font-semibold text-[1.125rem] md:text-[1.25rem]">
+          <h2 className="text-[#525299] font-semibold main-title">
             The Problem
           </h2>
-          <p className="text-[2.25rem] md:text-[3rem] text-left text-[#515151] font-[300] max-sm:text-center leading-[1.25]">
+          <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
             <span className="problem-heading font-[400] text-black">
               Stress is a lifestyle issue.
             </span>{" "}

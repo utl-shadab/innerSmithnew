@@ -84,7 +84,6 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
         className="fixed top-0 left-0 w-full h-full z-50"
       >
         <div className="relative w-full h-screen overflow-hidden flex justify-center items-center">
-       
           <div
             ref={topPanelRef}
             className="absolute top-[0] left-0 w-full h-2/3 bg-transprent z-40 max-xl:h-full"
@@ -143,7 +142,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
               key={index}
               className={`transition-opacity duration-500 ease-in-out ${
                 isClient ? "text-white" : "text-black"
-              } text-[4rem] xs:text-[5rem] sm:text-[7rem] md:text-[10rem] lg:text-[15rem] font-bold z-10`}
+              } text-[4rem] xs:text-[32px] sm:text-[48px] md:text-[80px] lg:text-[128px] font-bold z-10`}
             >
               {texts[index]}
             </div>

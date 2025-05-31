@@ -1,9 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Albert_Sans } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
+const albertSans = Albert_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "InnerSmith - Find Your Center",
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} ${albertSans.className} antialiased`}>{children}</body>
     </html>
   )
 }

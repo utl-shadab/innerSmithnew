@@ -1,22 +1,81 @@
+"use client";
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitType from 'split-type';
 import Image from "next/image"
+gsap.registerPlugin(ScrollTrigger);
 import "./MobileSlider.css"
 export default function Journey() {
+   const sectionRef = useRef(null);
+      const triggerRef = useRef<ScrollTrigger | undefined>(undefined);
+    
+      useEffect(() => {
+        let tl: gsap.core.Timeline | undefined;
+    
+        const setupAnimations = () => {
+          const section = sectionRef.current;
+          const heading = new SplitType(".problem-heading", {
+            types: "words,chars",
+          });
+    
+          if (!section) return;
+    
+          gsap.set(section, { clearProps: "all" });
+          document.querySelectorAll(".problem-heading .word").forEach((el) => {
+            (el as HTMLElement).style.whiteSpace = "nowrap";
+          });
+          tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top-=100% center",
+              end: "bottom-=100% top",
+              toggleActions: "play reverse play reverse",
+              markers: false,
+            },
+            defaults: { ease: "power2.out" },
+          });
+    
+          tl.fromTo(
+            ".problem-heading .char",
+            { fontWeight: "300", color: "#515151" },
+            {
+              fontWeight: "400",
+              color: "#000",
+              stagger: 0.1,
+              duration: 0.2,
+            }
+          );
+    
+          triggerRef.current = tl.scrollTrigger;
+        };
+    
+        requestAnimationFrame(() => {
+          setTimeout(setupAnimations, 100);
+        });
+        return () => {
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+          tl?.kill();
+          triggerRef.current?.kill();
+        };
+      }, []);
   return (
     <section className="h-screen relative overflow-hidden bg-white"
       id="journey"
+      ref={sectionRef}
       style={{ scrollSnapAlign: 'start' }}>
       <div className="hidden lg:flex h-full">
         <div className="w-3/5 flex items-center justify-center px-8 xl:px-16">
-          <div className="max-w-5xl space-y-6">
-            <h3 className="text-lg xl:text-xl font-medium text-green-600 uppercase tracking-wide">
-              A JOURNEY THAT FITS YOU
-            </h3>
-            <h2 className="text-4xl xl:text-5xl 2xl:text-6xl font-light leading-tight text-gray-900">
-              Be it heartache, loss, exhaustion, or just a rough day,
+          <div className="max-w-2xl space-y-6">
+            <h2 className="main-title title font-medium text-[#7BB338] uppercase tracking-wide">
+              A Journey That Fits You
             </h2>
-            <p className="text-xl xl:text-2xl text-gray-600 font-light">
+             <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+              Be it heartache, loss, exhaustion, or just a rough day,
+            </span>{" "}
               there's a path for you here.
-            </p>
+          </p>
           </div>
         </div>
         
@@ -34,15 +93,15 @@ export default function Journey() {
       <div className="lg:hidden h-full flex flex-col">
         <div className="flex-1 flex items-center px-6 md:px-8 py-8">
           <div className="space-y-4 md:space-y-6">
-            <h3 className="text-base md:text-lg title font-medium text-green-600 uppercase tracking-wide">
-              A JOURNEY THAT FITS YOU
-            </h3>
-            <h2 className="text-2xl md:text-3xl font-light para leading-tight text-gray-900">
-              Be it heartache, loss, exhaustion, or just a rough day,
+            <h2 className="main-title title font-medium text-[#7BB338] uppercase tracking-wide">
+              A Journey That Fits You
             </h2>
-            <p className="text-2xl md:text-3xl font-light para leading-tight">
+             <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+              Be it heartache, loss, exhaustion, or just a rough day,
+            </span>{" "}
               there's a path for you here.
-            </p>
+          </p>
           </div>
         </div>
         

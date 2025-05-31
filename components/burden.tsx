@@ -1,12 +1,12 @@
 
 
 import Lottie from "lottie-react";
-import laptopAnimation from "@/../../public/lapman.json"; 
+import laptopAnimation from "@/../../public/burden.json"; 
 
-const laptopLottie = () => {
+const BurdenAnimation = () => {
   return (   
       <Lottie animationData={laptopAnimation} loop={true} autoplay={true} />
   );
 };
 
-export default laptopLottie;
+export default BurdenAnimation;
