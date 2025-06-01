@@ -13,6 +13,14 @@
   line-height: 100%;
 }
 
+.problem-span {
+  font-weight: 300 !important;
+}
+
+.problem-heading {
+  font-weight: 400 !important;
+}
+
 .state-heading {
   font-size: 96px;
   font-style: normal;
@@ -27,10 +35,12 @@
     line-height: 6vw;
     text-align: center;
   }
-/* .smallFit{
-  height: 40vw;
-  width: 100%;
-} */
+
+  .smallFit {
+    height: 40vw;
+    width: 100%;
+  }
+
   .flex-mobile {
     display: flex;
     flex-direction: column-reverse;
@@ -48,11 +58,10 @@
     line-height: 8vw;
   }
 
-     .problem-heading {
-        font-weight: 400 !important;
-        font-size: 6vw;
-        line-height: 8vw;
-    }
+  .problem-heading {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
 
   .custom-width {
     width: 100% !important;
@@ -124,11 +133,13 @@
 
 @media screen and (max-width: 770px) {
   .title {
-    font-size: 4.5vw;
-    line-height: 6.5vw;
+    font-size: 5vw;
+    line-height: 7vw;
   }
 
-  
+  .video-logo {
+    width: 100%;
+  }
 
   .custom-size {
     font-size: 13vw;
@@ -142,12 +153,66 @@
   .slide-text {
     font-size: 4.5vw;
   }
+
+  .para {
+    text-align: center;
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .problem-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .custom-button {
+    font-size: 5.5vw;
+    padding: 6vw 8vw;
+    margin-top: 8vw;
+  }
+
+  .btn-arrow {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .footer-btm {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .card-content {
+    font-size: 4.5vw;
+    line-height: 6vw;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 20vw;
+  }
+
+  .card-title {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .card-description {
+    font-size: 4vw;
+    line-height: 6vw;
+  }
+
+  .problem-span {
+
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
   .title {
     font-size: 5vw;
-    line-height: 7vw;
+    line-height: 6vw;
   }
 
   .para {
@@ -157,6 +222,41 @@
 
   .custom-size {
     font-size: 14vw;
+    margin-top: 6vw;
+  }
+
+  .footer-para {
+    font-size: 4vw;
+    line-height: 6vw;
+  }
+
+  .custom-width {
+    width: 84% !important;
+  }
+
+  .footer-btm {
+    font-size: 4vw;
+    line-height: 6vw;
+  }
+
+  .custom-button {
+    font-size: 3.5vw;
+    padding: 4vw 6vw;
+    margin-top: 6vw;
+  }
+
+  .animate-bounce svg {
+    width: 9vw;
+    height: 13vw;
+  }
+
+  .btn-arrow {
+    width: 5vw;
+    height: 6vw;
+  }
+
+  .video-logo {
+    width: 80%;
   }
 
   .state-heading {
@@ -175,11 +275,16 @@
 /* 520px */
 @media screen and (max-width: 520px) {
   .title {
-    font-size: 5.5vw;
-    line-height: 7.5vw;
+    font-size: 4.5vw;
+    line-height: 5.5vw;
   }
 
   .para {
+    font-size: 7.5vw;
+    line-height: 10vw;
+  }
+
+  .problem-heading {
     font-size: 7.5vw;
     line-height: 10vw;
   }
@@ -205,7 +310,12 @@
   }
 
   .para {
-    font-size: 8vw;
+    font-size: 9vw;
+    line-height: 10.5vw;
+  }
+
+  .problem-heading {
+    font-size: 9vw;
     line-height: 10.5vw;
   }
 
@@ -233,17 +343,74 @@
 /* 420px */
 @media screen and (max-width: 420px) {
   .title {
+    font-size: 4.5vw;
+    line-height: 4vw;
+  }
+
+  .para {
     font-size: 6.5vw;
     line-height: 9vw;
   }
 
-  .para {
-    font-size: 8.5vw;
-    line-height: 11vw;
+  .problem-heading {
+    font-size: 6.5vw;
+    line-height: 9vw;
   }
 
   .custom-size {
     font-size: 17vw;
+  }
+
+  .animate-bounce svg {
+    width: 12vw;
+    height: 14vw;
+  }
+
+  .second-custom {
+    font-size: 7vw;
+    margin-top: 1vw;
+    line-height: 9vw;
+  }
+
+  .card-hide {
+    display: none;
+  }
+
+  .card-position {
+    top: 27vw;
+  }
+
+  .card-margin {
+    margin-top: 10vw;
+  }
+
+  .manage-buttons {
+    margin-top: 0;
+  }
+
+  .custom-footer-title {
+    font-size: 9vw;
+    line-height: 11vw;
+  }
+
+  .footer-para {
+    font-size: 5vw;
+    margin-top: 3vw;
+    line-height: 6vw;
+  }
+
+  .custom-gap {
+    padding: 2vw;
+  }
+
+  .smallFit {
+    top: -12% !important;
+    position: absolute !important;
+  }
+
+  .frame-size {
+    width: 55vw;
+    height: 103vw;
   }
 
   .state-heading {
@@ -295,17 +462,41 @@
     line-height: 10vw;
   }
 
+  .custom-size {
+    font-size: 17vw;
+  }
+
   .para {
     font-size: 9.5vw;
     line-height: 12.5vw;
   }
 
-  .custom-size {
-    font-size: 19vw;
+  .problem-heading {
+    font-size: 9.5vw;
+    line-height: 12.5vw;
+  }
+
+  .padding {
+    padding: 0 2vw;
+  }
+
+  .slider-state {
+    margin-top: 3vw;
+    width: 100%;
+    margin-left: 6vw;
   }
 
   .state-heading {
     font-size: 17vw;
+  }
+
+  .manage-buttons {
+    margin-top: -95px;
+  }
+
+  .font-custom {
+    font-size: 6vw;
+    line-height: 8vw;
   }
 
   .slide-text {
@@ -330,19 +521,27 @@
   }
 
   .custom-size {
-    font-size: 20vw;
+    font-size: 18vw;
   }
 
   .state-heading {
     font-size: 18vw;
+    padding: 0;
   }
 
-  .slide-text {
-    font-size: 8vw;
+.slide-text {
+    font-size: 7vw;
   }
 
   .stats-text {
-    font-size: 12vw;
+    font-size: 9vw;
+    line-height: 0%;
+  }
+
+  .slider-state {
+    margin-top: 0vw;
+    width: 100%;
+    margin-left: 2vw;
   }
 
   .people {

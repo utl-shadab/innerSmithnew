@@ -37,12 +37,12 @@ export default function Footer() {
 
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight  title" style={{letterSpacing: "-1.16px"}}>
+        <h2 className="text-3xl md:text-5xl custom-footer-title lg:text-6xl font-light mb-6 leading-tight  title" style={{letterSpacing: "-1.16px"}}>
           Ready to take charge of
           <br />
           your emotions?
         </h2>
-        <p className="text-2xl  mb-12 opacity-90 para" style={{letterSpacing: "-0.48px"}}>The tools are here. You just have to begin.</p>
+        <p className="text-2xl  mb-12 opacity-90  footer-para" style={{letterSpacing: "-0.48px"}}>The tools are here. You just have to begin.</p>
 
         <div className="flex items-center justify-center mb-8">
           <Image
@@ -56,12 +56,12 @@ export default function Footer() {
 
         <button
           onClick={() => setPopup("form")}
-          className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center mx-auto mb-8 transform hover:scale-105"
+          className="bg-white text-gray-900 custom-button px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center mx-auto mb-8 transform hover:scale-105"
         >
           JOIN THE WAITLIST
-          <ArrowRight className="ml-2 w-5 h-5 -rotate-45" />
+          <ArrowRight className="ml-2 w-5 h-5 -rotate-45 btn-arrow" />
         </button>
-        <p className="text-xl opacity-75">(12K+ PEOPLE HAVE ALREADY JOINED)</p>
+        <p className="text-xl opacity-75 footer-btm">(12K+ PEOPLE HAVE ALREADY JOINED)</p>
       </div>
 
       {/* Background Overlay */}
@@ -106,7 +106,7 @@ export default function Footer() {
                 </div>
 
                 <div className="p-6 sm:p-8 flex flex-col justify-center w-full space-y-5 bg-white">
-                  <h3 className="text-3xl sm:text-4xl font-light text-gray-900">Join the Waitlist</h3>
+                  <h3 className="text-3xl sm:text-4xl font-custom font-light text-gray-900">Join the Waitlist</h3>
 
                   <input
                     type="text"
@@ -161,7 +161,7 @@ export default function Footer() {
                   You have been added to the InnerSmith waitlist.
                 </p>
                 <div className="w-16 h-px bg-gray-300 mx-auto my-9"></div>
-                <p className=" font-medium text-black text-lg">Stay Tuned For More Updates</p>
+                <p className=" font-medium text-black text-sm">Stay Tuned For More Updates</p>
               </div>
             )}
           </motion.div>

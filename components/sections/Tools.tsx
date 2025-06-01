@@ -29,7 +29,28 @@ const cardData = [
     description: "Experience meaningful change, or get 100% of your money back.",
   },
 ];
-
+const cardDataTwo = [
+  {
+    icon: "svgs/accuracy.svg",
+    title: "98% Tool Match Accuracy",
+    description: "Tools are handpicked based on your mood, style, and what works best for you.",
+  },
+  {
+    icon: "svgs/userFeel.svg",
+    title: "Users Feel Better in 14 Days",
+    description: "We combine ancient rituals and modern methods to support your stress relief.",
+  },
+  {
+    icon: "svgs/riskfree.svg",
+    title: "7 Days, Risk-Free Trial",
+    description: "Experience meaningful change, or get 100% of your money back.",
+  },
+  {
+    icon: "svgs/journeys.svg",
+    title: "50+ Journeys, One That Fits You",
+    description: "Your daily guidance evolves with you to keep your journey engaging.",
+  },
+];
 export default function Tools() {
   const titleRef = useRef(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -151,7 +172,7 @@ export default function Tools() {
   const variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? "100%" : "-100%",
-      y: 0, // prevent vertical motion
+      y: 0, 
       opacity: 0,
     }),
     center: {
@@ -172,7 +193,7 @@ export default function Tools() {
       style={{ scrollSnapAlign: "start" }}
     >
       <div className="w-full mx-auto px-6 lg:px-20 xl:px-24">
-        <div ref={titleRef} className="text-center mb-10 w-full max-w-3xl mx-auto">
+        <div ref={titleRef} className="text-center mb-10 card-margin w-full max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl text-gray-900 font-normal para">
             <span className="font-bold">500+</span> Scientifically-Backed
             Tools, <span className="text-[#515151] font-light">Matched to You</span>
@@ -181,7 +202,7 @@ export default function Tools() {
 
         {isMobile ? (
           <div className="relative w-full flex flex-col items-center">
-            <div className="relative w-full h-[400px] max-w-[400px] overflow-hidden">
+            <div className="relative w-full h-[600px] max-w-[600px] overflow-hidden">
               <AnimatePresence initial={false} custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -194,7 +215,7 @@ export default function Tools() {
                     x: { type: "spring", stiffness: 60, damping: 15 },
                     opacity: { duration: 0.4 },
                   }}
-                  className="absolute w-full h-full top-0 left-0"
+                  className="absolute w-full h-full top-0 left-0 card-position"
                 >
 
                   <Card
@@ -205,13 +226,13 @@ export default function Tools() {
                         <Image
                           src={cardData[currentIndex].icon}
                           alt=""
-                          className="h-auto max-h-20 object-contain"
+                          className="h-auto md:max-h-20 object-contain"
                           width={70}
                           height={70}
                           style={{ transform: "none" }}
                         />
                       </div>
-                      <h3 className="w-full max-w-[139px]  font-[500] leading-8 text-2xl mb-2 text-gray-900">
+                      <h3 className="w-full md:max-w-[139px]  font-[500] leading-8 text-2xl mb-2 text-gray-900">
                         {cardData[currentIndex].title}
                       </h3>
                       <p className="text-gray-600 text-xl leading-relaxed">
@@ -221,9 +242,48 @@ export default function Tools() {
                   </Card>
                 </motion.div>
               </AnimatePresence>
+              <AnimatePresence initial={false} custom={direction} >
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 60, damping: 15 },
+                    opacity: { duration: 0.4 },
+                  }}
+                  className="absolute w-full h-full top-80 left-0 card-hide"
+                >
+
+                  <Card
+                    className="rounded-3xl shadow-md text-left relative overflow-hidden bg-[#F3F3F3] px-4 h-auto  opacity-100"
+                  >
+                    <CardContent className="pt-8 pb-8 relative z-10 text-left">
+                      <div className="mb-4">
+                        <Image
+                          src={cardDataTwo[currentIndex].icon}
+                          alt=""
+                          className="h-auto md:max-h-20 object-contain"
+                          width={70}
+                          height={70}
+                          style={{ transform: "none" }}
+                        />
+                      </div>
+                      <h3 className="w-full md:max-w-[139px]  font-[500] leading-8 text-2xl mb-2 text-gray-900">
+                        {cardDataTwo[currentIndex].title}
+                      </h3>
+                      <p className="text-gray-600 text-xl leading-relaxed">
+                        {cardDataTwo[currentIndex].description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            <div className="flex justify-center gap-4 mt-6">
+            <div className="flex justify-center gap-4 mt-6 manage-buttons">
               <button
                 onClick={handlePrev}
                 className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
@@ -250,7 +310,7 @@ export default function Tools() {
 
                 >
 
-                  <CardContent className="pt-8  pb-8 relative z-10 text-left">
+                  <CardContent className="pt-8 card-content pb-8 relative z-10 text-left">
                     <div className="mb-4">
                       <Image
                         src={card.icon}

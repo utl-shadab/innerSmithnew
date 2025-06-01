@@ -180,7 +180,7 @@ export default function App() {
 
           <div ref={phoneFrameRef} className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
             <div className="relative">
-              <div className="frame-size relative h-[76vw] w-[40vw] sm:h-[60vw] sm:w-[32vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[330px] xl:h-[620px]">
+              <div className="frame-size relative h-[76vw] w-[40vw] sm:h-[85vw] sm:w-[45vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[330px] xl:h-[620px]">
                
                 <div className="absolute inset-0 z-20">
                   <Image

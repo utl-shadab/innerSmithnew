@@ -67,7 +67,7 @@ export default function Journey() {
       <div className="hidden lg:flex h-full">
         <div className="w-3/5 flex items-center justify-center px-8 xl:px-16">
           <div className="max-w-2xl space-y-6">
-            <h2 className="main-title title font-medium text-[#7BB338] uppercase tracking-wide">
+            <h2 className=" title font-medium text-[#7BB338] uppercase tracking-wide">
               A Journey That Fits You
             </h2>
              <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
@@ -91,9 +91,9 @@ export default function Journey() {
       </div>
 
       <div className="lg:hidden h-full flex flex-col">
-        <div className="flex-1 flex items-center px-6 md:px-8 py-8">
+        <div className="flex-1 custom-gap flex items-center px-6 md:px-8 py-8">
           <div className="space-y-4 md:space-y-6">
-            <h2 className="main-title title font-medium text-[#7BB338] uppercase tracking-wide">
+            <h2 className=" title font-medium text-[#7BB338] uppercase tracking-wide">
               A Journey That Fits You
             </h2>
              <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
@@ -110,7 +110,7 @@ export default function Journey() {
             src="/rounded-full.jpg"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
-            className="object-cover w-full h-full smallFit  max-w-lg mx-auto"
+            className="object-cover w-full h-full smallFit max-w-md md:max-w-xl sm:max-w-xl  mx-auto"
            style={{ bottom: 0, objectFit: "cover", }}
             priority
           />

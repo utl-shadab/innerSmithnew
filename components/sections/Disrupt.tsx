@@ -89,16 +89,16 @@ export default function Disrupt() {
       </div>
 
       {/* Mobile Layout (below md) */}
-      <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center items-center px-6 py-12">
+      <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center items-center padding px-6 py-12">
         <div className="w-full flex flex-col items-center text-center gap-8">
           <h2 className="text-[#6AA7BB] font-semibold text-[1.5rem] title leading-tight">
-            The Problem
+            Let’s Disrupt The Spiral
           </h2>
           <p className="text-[2rem] para text-center text-[#8a8a8a] font-light leading-relaxed">
             <span className="problem-heading font-medium text-black">
-              Stress is a lifestyle issue.
+             What if support showed up the moment the tension set in?
             </span>{" "}
-            It builds quietly, drains you daily, but we don’t talk about it enough.
+            What if something helped you feel better in minutes?
           </p>
           <div className="w-full mt-4">
             <BurdenAnimation />

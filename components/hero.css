@@ -167,7 +167,7 @@
 
 @media screen and (max-width: 600px) {
     .hero-para {
-        font-size: 4vw;
+        font-size: 5vw;
         line-height: 6vw;
     }
 
@@ -187,8 +187,8 @@
     }
 
     .scroll-text {
-        font-size: 2vw;
-        line-height: 3.5vw;
+        font-size: 3vw;
+        line-height: 2.5vw;
     }
 
     .hero-bottom {
@@ -204,14 +204,11 @@
 
 @media screen and (max-width: 400px) {
     .hero-para {
-        font-size: 3.5vw;
-        line-height: 5.5vw;
+        font-size: 6.5vw;
+        line-height: 7.5vw;
     }
 
-    .problem-heading {
-        font-size: 3.5vw;
-        line-height: 5.5vw;
-    }
+
 
     .problem-span {
         font-size: 3.5vw;
@@ -224,7 +221,7 @@
     }
 
     .scroll-text {
-        font-size: 2vw;
+        font-size: 4vw;
         line-height: 3vw;
     }
 
@@ -242,8 +239,8 @@
 
 @media screen and (max-width: 320px) {
     .hero-para {
-        font-size: 3vw;
-        line-height: 5vw;
+        font-size: 7vw;
+        line-height: 8vw;
     }
 
     .problem-heading {
@@ -262,8 +259,16 @@
     }
 
     .scroll-text {
-        font-size: 1.8vw;
-        line-height: 2.8vw;
+        font-size: 3.8vw;
+        line-height: 4.8vw;
+    }
+
+    .logo-hero {
+        left: 4vw;
+        top: 4vw;
+        width: 13vw;
+        height: 13vw;
+
     }
 
     .hero-bottom {

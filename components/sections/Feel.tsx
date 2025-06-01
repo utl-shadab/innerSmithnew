@@ -81,7 +81,7 @@ export default function Feel() {
         </div>
         
         <div className="w-2/5 h-full flex items-center justify-center px-8">
-          <div className="w-full max-w-md aspect-square bg-black rounded-3xl overflow-hidden">
+          <div className="w-full max-w-md  aspect-square bg-black rounded-3xl overflow-hidden">
             
             <div className="w-full h-full bg-black flex items-center justify-center">
               <div className="text-white/20 text-sm">Video Content</div>
@@ -107,7 +107,7 @@ export default function Feel() {
         </div>
         
         <div className="flex-1 flex items-center justify-center px-8">
-          <div className="w-[60vw] h-[60vw] aspect-square bg-black rounded-3xl overflow-hidden">
+          <div className="w-[60vw] h-[60vw]  aspect-square bg-black rounded-3xl overflow-hidden">
             <div className="w-full h-full bg-black flex items-center justify-center">
               <div className="text-white/20 text-sm">Video Content</div>
             </div>
@@ -134,7 +134,7 @@ export default function Feel() {
         
         {/* Video/Image */}
         <div className="flex-1 flex items-center justify-center px-6">
-          <div className="w-full max-w-xs aspect-square bg-black rounded-3xl overflow-hidden">
+          <div className="w-full max-w-xl video-logo aspect-square bg-black rounded-3xl overflow-hidden">
             <div className="w-full h-full bg-black flex items-center justify-center">
               <div className="text-white/20 text-sm">Video Content</div>
             </div>
