@@ -90,7 +90,7 @@ export default function Disrupt() {
 
       {/* Mobile Layout (below md) */}
       <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center items-center padding px-6 py-12">
-        <div className="w-full flex flex-col items-center text-center gap-8">
+        <div className="w-full flex flex-col items-center text-center gap:2 md:gap-8">
           <h2 className="text-[#6AA7BB] font-semibold text-[1.5rem] title leading-tight">
             Let’s Disrupt The Spiral
           </h2>

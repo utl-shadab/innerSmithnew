@@ -19,7 +19,7 @@ const AppSlides = [
   {
     title: "Wellness, simplified.",
     content: "Holistic and personalized tools designed to help you feel better, anytime, anywhere.",
-    imgLink: "/images/app-section.png",
+    imgLink: "/svgs/mobileSlider/wellness.svg",
   },
   {
     title: "Feel Supported",
@@ -99,26 +99,40 @@ export default function App() {
     return () => ctx.revert()
   }, [])
 
-  const handleDotClick = (index: number) => {
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(index)
-    }
+const handleDotClick = (index: number) => {
+  if (swiperRef.current) {
+    swiperRef.current.autoplay?.stop()
+    swiperRef.current.slideToLoop(index)
+    swiperRef.current.autoplay?.start()
   }
+}
 
-  const slideVariants = {
-    enter: {
-      opacity: 0,
-      y: 20,
+const slideVariants = {
+  enter: {
+    opacity: 0,
+    y: 10,
+    transition: {
+      duration: 0.4,
+      ease: [0.65, 0, 0.35, 1], 
     },
-    center: {
-      opacity: 1,
-      y: 0,
+  },
+  center: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.65, 0, 0.35, 1],
     },
-    exit: {
-      opacity: 0,
-      y: -20,
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.4,
+      ease: [0.65, 0, 0.35, 1],
     },
-  }
+  },
+};
 
   const transition = {
     duration: 0.6,
@@ -129,12 +143,12 @@ export default function App() {
     <section ref={sectionRef} className="h-screen w-full bg-[#F1F3F9] relative overflow-hidden flex items-center">
       <div className="w-full mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-mobile gap-12 lg:gap-16 items-center">
-        
-          <div ref={textContentRef} className="lg:col-span-7 flex flex-col space-y-6 justify-center text-center lg:text-left order-2 lg:order-1">
-            <h3 ref={titleRef} className="text-lg title main-title lg:text-xl text-[#6AA7BB] font-medium tracking-wide uppercase mb-6">
-              INSIDE THE APP
+
+          <div ref={textContentRef} className="lg:col-span-7 flex flex-col space-y-2 md:space-y-6 justify-center text-center lg:text-left order-2 lg:order-1">
+            <h3 ref={titleRef} className="text-lg title main-title lg:text-xl text-[#6AA7BB] font-medium tracking-wide  ">
+              Inside The App
             </h3>
-            
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -145,22 +159,31 @@ export default function App() {
                 transition={transition}
                 className="space-y-6"
               >
-                <h2 className="text-4xl problem-span font-light leading-tight text-gray-900">
-                  {AppSlides[activeIndex].title}
-                </h2>
-                <p className="text-lg problem-heading text-center lg:text-left leading-relaxed para text-gray-600 w-full lg:max-w-2xl">
-                  {AppSlides[activeIndex].content}
+                <p className="para text-left text-[#515151] font-[300] max-sm:text-center ">
+                <span className="problem-heading font-[400] text-black"> {AppSlides[activeIndex].title}{" "}</span>   
+                 {AppSlides[activeIndex].content}
                 </p>
+                {/* <p className="text-lg problem-heading text-center lg:text-left leading-relaxed para text-gray-600 w-full lg:max-w-2xl">
+               
+                  {AppSlides[activeIndex].content}
+                </p> */}
+                 {/* <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+             What if support showed up the moment the tension set in?
+            </span>{" "}
+           What if something helped you feel better in minutes?
+          </p> */}
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center lg:justify-start space-x-3 pt-6">
+            <div className="flex justify-center  space-x-3 pt-6 lg:justify-start 
+               absolute bottom-6 manage-dots left-1/2 -translate-x-1/2 
+               lg:relative lg:bottom-auto lg:left-auto lg:translate-x-0">
               {AppSlides.map((_, index) => (
                 <motion.button
                   key={index}
-                  className={`h-2.5 rounded-full cursor-pointer ${
-                    index === activeIndex ? "bg-teal-600" : "bg-gray-300"
-                  }`}
+                  className={`h-2.5 rounded-full cursor-pointer ${index === activeIndex ? "bg-teal-600" : "bg-gray-300"
+                    }`}style={{ width: index === activeIndex ? 40 : 10 }}
                   animate={{
                     width: index === activeIndex ? 40 : 10,
                     backgroundColor: index === activeIndex ? "#0d9488" : "#d1d5db",
@@ -179,9 +202,9 @@ export default function App() {
           </div>
 
           <div ref={phoneFrameRef} className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
-            <div className="relative">
+            <div className="relative lg:static">
               <div className="frame-size relative h-[76vw] w-[40vw] sm:h-[85vw] sm:w-[45vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[330px] xl:h-[620px]">
-               
+
                 <div className="absolute inset-0 z-20">
                   <Image
                     src="/svgs/mobileScreen.svg"
@@ -193,7 +216,7 @@ export default function App() {
                 </div>
 
                 <div className="absolute inset-0 z-10">
-                  <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-[28px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
+                  <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-sm  md:rounded-[8px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
                     <Swiper
                       modules={[Autoplay, Navigation]}
                       slidesPerView={1}
