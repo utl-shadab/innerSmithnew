@@ -12,17 +12,23 @@ const affectedDataSlide = [
 const Stats = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const goToSlide = (index:number) => {
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const goToSlide = (index: number) => {
     if (index === activeIndex) return;
     setActiveIndex(index);
     resetInterval();
   };
 
   const resetInterval = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
+    if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % affectedDataSlide.length);
     }, 4000);
@@ -31,28 +37,14 @@ const Stats = () => {
   useEffect(() => {
     resetInterval();
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
   const slideVariants = {
-    enter: {
-      opacity: 0,
-      y: 30,
-      scale: 0.95,
-    },
-    center: {
-      opacity: 1,
-      y: 20,
-      scale: 1,
-    },
-    exit: {
-      opacity: 0,
-      y: 30,
-      scale: 0.95,
-    },
+    enter: { opacity: 0, y: 30, scale: 0.95 },
+    center: { opacity: 1, y: 20, scale: 1 },
+    exit: { opacity: 0, y: 30, scale: 0.95 },
   };
 
   const transition = {
@@ -67,7 +59,7 @@ const Stats = () => {
       style={{ scrollSnapAlign: "start" }}
     >
       <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-10 lg:gap-1 mx-auto">
-        <div className=" stats-text font-light  text-center lg:text-left whitespace-nowrap">
+        <div className="stats-text font-light text-center lg:text-left whitespace-nowrap">
           You&apos;re Not Alone—
         </div>
 
@@ -82,7 +74,7 @@ const Stats = () => {
               transition={transition}
               className="absolute top-0 left-0 lg:left-20 w-full h-full flex flex-col justify-center items-start px-4 text-left"
             >
-              <motion.h1 
+              <motion.h1
                 className="text-[#FF7171] text-6xl state-heading font-bold leading-none border-b-2 border-[#FF7171] pb-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -93,18 +85,20 @@ const Stats = () => {
                   PEOPLE
                 </span>
               </motion.h1>
-              <motion.h3 
-                className="text-white text-2xl slide-text font-normal pt-2 leading-tight"
+              <motion.h3
+                className="text-white text-2xl slide-text font-normal pt-2 "
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                {affectedDataSlide[activeIndex].text.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i < affectedDataSlide[activeIndex].text.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
+                {affectedDataSlide[activeIndex].text
+                  .split("\n")
+                  .map((line, i, arr) => (
+                    <span key={i}>
+                      {line}
+                      {!isMobile && i < arr.length - 1 && <br />}
+                    </span>
+                  ))}
               </motion.h3>
             </motion.div>
           </AnimatePresence>
@@ -116,17 +110,19 @@ const Stats = () => {
               key={idx}
               onClick={() => goToSlide(idx)}
               className={`rounded-full h-3 flex-shrink-0 cursor-pointer ${
-                idx === activeIndex 
-                  ? "bg-[#FF7171]" 
-                  : "bg-[#FF7171]/50"
+                idx === activeIndex ? "bg-[#FF7171]" : "bg-[#FF7171]/50"
               }`}
               animate={{
                 width: idx === activeIndex ? 48 : 24,
-                backgroundColor: idx === activeIndex ? "#FF7171" : "rgba(255, 113, 113, 0.5)",
+                backgroundColor:
+                  idx === activeIndex ? "#FF7171" : "rgba(255, 113, 113, 0.5)",
               }}
               whileHover={{
                 scale: 1.1,
-                backgroundColor: idx === activeIndex ? "#FF7171" : "rgba(255, 113, 113, 0.7)",
+                backgroundColor:
+                  idx === activeIndex
+                    ? "#FF7171"
+                    : "rgba(255, 113, 113, 0.7)",
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.3, ease: "easeOut" }}

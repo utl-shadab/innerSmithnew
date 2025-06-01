@@ -104,10 +104,9 @@ body {
   display: none;
 }
 
-/* Show the line break on tablet screens (max-width: 1024px) */
 @media (max-width: 1024px) {
   .break-mobile {
-    display: block;
+    display: none;
   }
 }
 
@@ -119,7 +118,7 @@ body {
 }
 
 
-/* Smooth Animated Sections Styles */More actions
+/* Smooth Animated Sections Styles */
 .smooth-sections-container {
   height: 100vh;
   overflow: hidden;
@@ -253,3 +252,4 @@ body.smooth-sections-active {
 .word{
   font-weight: 400 !important; 
 }
+

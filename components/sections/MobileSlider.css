@@ -58,6 +58,11 @@
     line-height: 8vw;
   }
 
+  .hero-heading {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
   .problem-heading {
     font-size: 6vw;
     line-height: 8vw;
@@ -160,6 +165,11 @@
     line-height: 9vw;
   }
 
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
   .problem-heading {
     font-size: 7vw;
     line-height: 9vw;
@@ -218,6 +228,12 @@
   .para {
     font-size: 7vw;
     line-height: 9vw;
+  }
+
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+
   }
 
   .custom-size {
@@ -284,6 +300,11 @@
     line-height: 10vw;
   }
 
+  .hero-heading {
+    font-size: 7.5vw;
+    line-height: 10vw;
+  }
+
   .problem-heading {
     font-size: 7.5vw;
     line-height: 10vw;
@@ -314,17 +335,28 @@
     line-height: 10.5vw;
   }
 
+  .hero-heading {
+    font-size: 9vw;
+    line-height: 10.5vw;
+  }
+
   .problem-heading {
     font-size: 9vw;
     line-height: 10.5vw;
   }
 
   .custom-size {
-    font-size: 16vw;
+    font-size: 11vw;
   }
 
   .slide-text {
     font-size: 6vw;
+  }
+
+  .problem-span {
+
+    font-size: 5vw;
+    line-height: 6vw;
   }
 
   .state-heading {
@@ -343,33 +375,67 @@
 /* 420px */
 @media screen and (max-width: 420px) {
   .title {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
     line-height: 4vw;
   }
 
+  .stats-text {
+    font-size: 8vw;
+  }
+
+  .slider-state {
+    margin-top: -5vw;
+
+  }
+
   .para {
-    font-size: 6.5vw;
+    font-size: 5.5vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
-    font-size: 6.5vw;
+
+  .hero-heading {
+    font-size: 5.5vw;
     line-height: 9vw;
-  }
-
-  .custom-size {
-    font-size: 17vw;
-  }
-
-  .animate-bounce svg {
-    width: 12vw;
-    height: 14vw;
   }
 
   .second-custom {
-    font-size: 7vw;
     margin-top: 1vw;
+    font-size: 4.5vw;
+    line-height: 6.5vw;
+  }
+
+  .problem-heading {
+    font-size: 5.5vw;
     line-height: 9vw;
+  }
+
+
+  .flex-mobile {
+    display: flex;
+    gap: 35px;
+    flex-direction: column-reverse;
+  }
+
+  .animate-bounce svg {
+    width: 8vw;
+    height: 10vw;
+  }
+
+  .secondText {
+    font-weight: 600;
+  }
+
+  .logo-hero img {
+    height: 3rem;
+  }
+
+  .small-padding {
+    padding-bottom: 60vw;
+  }
+
+  .secondview {
+    align-items: start;
   }
 
   .card-hide {
@@ -403,14 +469,18 @@
     padding: 2vw;
   }
 
+  .slider-state {
+    margin-left: 14vw;
+  }
+
   .smallFit {
     top: -12% !important;
     position: absolute !important;
   }
 
   .frame-size {
-    width: 55vw;
-    height: 103vw;
+    width: 33vw;
+    height: 63vw;
   }
 
   .state-heading {
@@ -419,6 +489,7 @@
 
   .slide-text {
     font-size: 6.5vw;
+    line-height: 9vw;
   }
 
   .people {
@@ -428,22 +499,57 @@
 
 /* 380px */
 @media screen and (max-width: 380px) {
-  .title {
-    font-size: 7vw;
-    line-height: 9.5vw;
+  .slide-text {
+    font-size: 6.5vw;
+    line-height: 9vw;
+  }
+
+  .slide-text {
+    font-size: 6vw;
+    line-height: 8vw;
   }
 
   .para {
-    font-size: 9vw;
-    line-height: 12vw;
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
+  .hero-heading {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
+  .problem-heading {
+    font-weight: 400 !important;
+    font-size: 6vw;
+    line-height: 8vw;
+
   }
 
   .custom-size {
-    font-size: 18vw;
+    font-size: 11vw;
+    margin-top: 3vw;
   }
 
   .state-heading {
     font-size: 16vw;
+  }
+
+  .frame-size {
+    width: 47vw;
+    height: 91vw;
+  }
+
+  .manage-buttons {
+    margin-top: -199px;
+  }
+
+  .card-position {
+    top: 14vw;
+  }
+
+  .small-padding {
+    padding-bottom: 60vw;
   }
 
   .slide-text {
@@ -451,15 +557,15 @@
   }
 
   .stats-text {
-    font-size: 11vw;
+    font-size: 9vw;
   }
 }
 
 /* 350px */
 @media screen and (max-width: 350px) {
   .title {
-    font-size: 7.5vw;
-    line-height: 10vw;
+    font-size: 5.5vw;
+    line-height: 7vw;
   }
 
   .custom-size {
@@ -467,13 +573,18 @@
   }
 
   .para {
-    font-size: 9.5vw;
-    line-height: 12.5vw;
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+  .hero-heading {
+    font-size: 6.5vw;
+    line-height: 8.5vw;
   }
 
   .problem-heading {
-    font-size: 9.5vw;
-    line-height: 12.5vw;
+    font-size: 6.5vw;
+    line-height: 8.5vw;
   }
 
   .padding {
@@ -491,7 +602,7 @@
   }
 
   .manage-buttons {
-    margin-top: -95px;
+    display: none;
   }
 
   .font-custom {
@@ -506,22 +617,48 @@
   .people {
     font-size: 5vw;
   }
+
+  .card-position {
+    top: 8vw;
+  }
 }
 
 /* 320px */
 @media screen and (max-width: 320px) {
   .title {
-    font-size: 8vw;
-    line-height: 10.5vw;
+    font-size: 6vw;
+    line-height: 6.5vw;
   }
 
+
   .para {
-    font-size: 10vw;
-    line-height: 13vw;
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+
+  .problem-heading {
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .hero-para {
+    font-size: 5vw;
+    line-height: 6.5vw;
+  }
+
+  .scroll-text {
+    font-size: 2.8vw;
+    line-height: 3.8vw;
   }
 
   .custom-size {
-    font-size: 18vw;
+    font-size: 13vw;
   }
 
   .state-heading {
@@ -529,7 +666,7 @@
     padding: 0;
   }
 
-.slide-text {
+  .slide-text {
     font-size: 7vw;
   }
 
@@ -539,9 +676,8 @@
   }
 
   .slider-state {
-    margin-top: 0vw;
-    width: 100%;
-    margin-left: 2vw;
+    height: 36vw;
+
   }
 
   .people {
@@ -552,8 +688,8 @@
 /* 300px */
 @media screen and (max-width: 300px) {
   .title {
-    font-size: 8.5vw;
-    line-height: 11vw;
+    font-size: 5vw;
+    line-height: 5.5vw;
   }
 
   .para {

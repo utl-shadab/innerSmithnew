@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { IoVolumeMute, IoVolumeMedium } from "react-icons/io5";
-
+import "@/styles/css/music.css"; 
 export default function MusicComp({ src, autoPlay = false }: { src: string; autoPlay?: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
@@ -31,7 +31,7 @@ export default function MusicComp({ src, autoPlay = false }: { src: string; auto
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[999999] bg-[rgba(0,0,0,0.17)] p-5 rounded-[16px]  flex items-center">
+    <div className="fixed bottom-4 music-height right-4 z-[999999] bg-[rgba(0,0,0,0.17)] p-5 rounded-[16px]  flex items-center">
       <div
         className="  bg-white p-1 rounded-full shadow-lg flex items-center justify-center"
         onClick={togglePlay}

@@ -43,7 +43,6 @@ export default function SmoothAnimatedSections() {
   const [currentSection, setCurrentSection] = useState(-1)
   const [showIntro, setShowIntro] = useState(true)
 
-  // Only pinned sections (Problem to Footer) - Hero is separate
   const gsapSections = sections.slice(1)
 
   const gotoSection = useCallback((gsapIndex: number, direction: number) => {
@@ -65,12 +64,12 @@ export default function SmoothAnimatedSections() {
     const prevGsapIndex = currentIndexRef.current;
     if (gsapIndex === prevGsapIndex && currentSection === gsapIndex) return;
 
-    // SOLUTION 1: REMOVE BLACK OVERLAY - Direct transition without overlay
+   
     if (gsapIndex === 0 && prevGsapIndex === -1 && direction === 1) {
       animatingRef.current = true;
       setCurrentSection(0);
 
-      // Set fixed container visible immediately without black overlay
+     
       if (fixedContainerRef.current) {
         gsap.set(fixedContainerRef.current, { 
           opacity: 1, 
@@ -95,8 +94,8 @@ export default function SmoothAnimatedSections() {
         yPercent: (i) => i ? -100 * dFactor : 100 * dFactor 
       }, {
         yPercent: 0,
-        duration: 0.8, // Faster animation
-        ease: "power2.out", // Smoother easing
+        duration: 0.8, 
+        ease: "power2.out", 
       }, 0)
       .fromTo(backgrounds[0], { 
         yPercent: 15 * dFactor 
@@ -117,7 +116,7 @@ export default function SmoothAnimatedSections() {
     const dFactor = fromTop ? -1 : 1;
     
     const tl = gsap.timeline({
-      defaults: { duration: 0.9, ease: "power2.out" }, // Faster and smoother
+      defaults: { duration: 0.9, ease: "power2.out" }, 
       onComplete: () => {
         animatingRef.current = false;
         sectionsElements.forEach((section, i) => {
@@ -169,7 +168,7 @@ export default function SmoothAnimatedSections() {
 
   useEffect(() => {
     if (currentSection === -1) { 
-      // Hero section - normal scroll enabled
+    
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       
@@ -178,18 +177,17 @@ export default function SmoothAnimatedSections() {
         observerRef.current = null;
       }
 
-      // SOLUTION 1: Hide container completely without overlay
       if (fixedContainerRef.current) {
         gsap.set(fixedContainerRef.current, { 
           opacity: 0, 
           pointerEvents: 'none', 
           zIndex: -1,
-          display: 'none' // Completely hide to prevent any overlay
+          display: 'none' 
         });
       }
 
     } else { 
-      // GSAP pinned mode - disable scroll
+     
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
 
@@ -198,13 +196,11 @@ export default function SmoothAnimatedSections() {
           opacity: 1, 
           pointerEvents: 'auto', 
           zIndex: 50,
-          display: 'block' // Show when needed
+          display: 'block' 
         });
       }
-
-      // Initialize GSAP sections when entering pinned mode
       if (currentIndexRef.current === -1 && currentSection === 0) {
-        setTimeout(() => gotoSection(0, 1), 10); // Faster initialization
+        setTimeout(() => gotoSection(0, 1), 10); 
       } else if (currentIndexRef.current !== currentSection && currentSection >= 0 && currentSection < gsapSections.length) {
         setTimeout(() => gotoSection(currentSection, currentSection > currentIndexRef.current ? 1 : -1), 10);
       }
@@ -220,11 +216,9 @@ export default function SmoothAnimatedSections() {
             if (currentGsapIdx > 0) {
               gotoSection(currentGsapIdx - 1, -1);
             } else if (currentGsapIdx === 0) { 
-              // SOLUTION 1: Quick exit without overlay animation
               animatingRef.current = true;
               const problemSectionEl = sectionsRef.current[0];
 
-              // Quick cleanup
               if (problemSectionEl) {
                 gsap.set(problemSectionEl, { opacity: 0, visibility: "hidden", zIndex: 0 });
               }
@@ -242,8 +236,7 @@ export default function SmoothAnimatedSections() {
               currentIndexRef.current = -1; 
               animatingRef.current = false;
               
-              // Smooth scroll back to Hero
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 100, behavior: 'smooth' });
             }
           },
           onUp: () => { 
@@ -266,15 +259,13 @@ export default function SmoothAnimatedSections() {
     };
   }, [currentSection, gotoSection, gsapSections.length]);
 
-  // SOLUTION 1: Faster trigger point for smoother transition
   useEffect(() => {
     const onScroll = () => {
       if (currentSection !== -1) return; 
 
-      // Trigger GSAP mode earlier for smoother transition
       const scrollProgress = window.scrollY / window.innerHeight;
-      if (scrollProgress > 0.85) { // Earlier trigger point
-        setCurrentSection(0); // Enter GSAP mode with Problem section
+      if (scrollProgress > 0.99) {
+        setCurrentSection(0);
       }
     };
     
@@ -305,10 +296,8 @@ export default function SmoothAnimatedSections() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (currentSection === -1) {
-        // Hero section - normal scroll behavior
         if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
           e.preventDefault();
-          // Smooth transition to GSAP mode
           const scrollProgress = window.scrollY / window.innerHeight;
           if (scrollProgress > 0.8) {
             setCurrentSection(0);
@@ -324,7 +313,7 @@ export default function SmoothAnimatedSections() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       } else { 
-        // GSAP pinned mode
+     
         if (animatingRef.current) return;
         const currentGsapIdx = currentIndexRef.current;
         switch (e.key) {
@@ -334,7 +323,7 @@ export default function SmoothAnimatedSections() {
             if (currentGsapIdx > 0) {
               gotoSection(currentGsapIdx - 1, -1);
             } else if (currentGsapIdx === 0) { 
-              // SOLUTION 1: Quick exit to Hero section
+            
               animatingRef.current = true;
               const problemSectionEl = sectionsRef.current[0];
 
@@ -393,12 +382,10 @@ export default function SmoothAnimatedSections() {
 
   return (
     <div className="min-h-screen w-full bg-black">
-      {/* Hero section always visible, not pinned */}
       <div id="hero" className="relative w-full h-screen">
         <HeroSection />
       </div>
-      
-      {/* GSAP container for pinned sections (Problem to Footer) */}
+     
       <div
         ref={fixedContainerRef}
         className="smooth-sections-container fixed inset-0 w-full h-full overflow-hidden bg-black"
@@ -406,7 +393,7 @@ export default function SmoothAnimatedSections() {
           opacity: 0, 
           pointerEvents: 'none',
           zIndex: -1,
-          display: 'none', // SOLUTION 1: Hide completely to prevent overlay
+          display: 'none', 
         }}
       >
         {gsapSections.map((section, index) => {

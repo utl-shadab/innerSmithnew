@@ -37,12 +37,12 @@ export default function Footer() {
 
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl custom-footer-title lg:text-6xl font-light mb-6 leading-tight  title" style={{letterSpacing: "-1.16px"}}>
+        <h2 className="text-3xl md:text-5xl custom-footer-title lg:text-6xl font-light mb-6 leading-tight  title" style={{ letterSpacing: "-1.16px" }}>
           Ready to take charge of
           <br />
           your emotions?
         </h2>
-        <p className="text-2xl  mb-12 opacity-90  footer-para" style={{letterSpacing: "-0.48px"}}>The tools are here. You just have to begin.</p>
+        <p className="text-2xl  mb-12 opacity-90  footer-para" style={{ letterSpacing: "-0.48px" }}>The tools are here. You just have to begin.</p>
 
         <div className="flex items-center justify-center mb-8">
           <Image
@@ -96,7 +96,7 @@ export default function Footer() {
             </div>
 
             {popup === "form" && (
-              <div className="grid md:grid-cols-[30%_70%] bg-white rounded-3xl shadow-2xl max-w-3xl w-full mx-auto overflow-hidden">
+              <div className="grid md:grid-cols-[30%_70%]  rounded-3xl shadow-2xl max-w-3xl w-full mx-auto overflow-hidden">
                 <div className="hidden md:block w-full max-w-sm h-full relative">
                   <img
                     src="/Footerbg.webp"
@@ -105,7 +105,7 @@ export default function Footer() {
                   />
                 </div>
 
-                <div className="p-6 sm:p-8 flex flex-col justify-center w-full space-y-5 bg-white">
+                <div className="p-6 sm:p-8 flex flex-col justify-center w-full space-y-5 bg-[#F2FAFF]">
                   <h3 className="text-3xl sm:text-4xl font-custom font-light text-gray-900">Join the Waitlist</h3>
 
                   <input
@@ -113,7 +113,7 @@ export default function Footer() {
                     placeholder="Your name here"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full px-0 py-4 text-lg bg-transparent border-0 border-b-2 placeholder-gray-400 focus:outline-none transition-colors duration-300 ${errors.name ? "border-red-500" : "border-gray-200 focus:border-gray-400"
+                    className={`w-full px-6 py-4 text-gray-800 text-base rounded-[4px] bg-white placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-black  transition-all duration-400 ${errors.name ? 'ring-2 ring-red-400' : ''
                       }`}
                   />
 
@@ -122,7 +122,7 @@ export default function Footer() {
                     placeholder="Your email address here"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-0 py-4 text-lg bg-transparent border-0 border-b-2 placeholder-gray-400 focus:outline-none transition-colors duration-300 ${errors.email ? "border-red-500" : "border-gray-200 focus:border-gray-400"
+                    className={`w-full mt-4 px-4 py-4 text-gray-800 text-base rounded-[4px] bg-white placeholder-gray-400 shadow-sm focus:outline-none  focus:ring-2 focus:ring-black transition-all duration-400 ${errors.email ? 'ring-2 ring-red-400' : ''
                       }`}
                   />
 

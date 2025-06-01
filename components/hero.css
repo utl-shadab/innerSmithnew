@@ -4,8 +4,6 @@
     font-family: "Albert Sans";
     font-size: 40px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
 }
 
 .problem-heading {
@@ -13,6 +11,23 @@
     line-height: 73px;
     font-weight: 400 !important;
 
+}
+
+.hero-heading {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.hero-bottom {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.char {
+
+    font-weight: 400 !important;
 }
 
 .word {
@@ -46,12 +61,6 @@
     line-height: 150%;
 }
 
-.hero-bottom {
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-}
 
 .people {
 
@@ -74,6 +83,8 @@
         font-size: 6vw;
         line-height: 8vw;
     }
+
+    
 
     .small-margin {
         margin-top: 20vw;
@@ -204,11 +215,13 @@
 
 @media screen and (max-width: 400px) {
     .hero-para {
-        font-size: 6.5vw;
-        line-height: 7.5vw;
+        font-size: 4.5vw;
+        line-height: 1.5vw;
     }
 
-
+    .custom-size {
+        font-size: 11vw;
+    }
 
     .problem-span {
         font-size: 3.5vw;
@@ -221,7 +234,7 @@
     }
 
     .scroll-text {
-        font-size: 4vw;
+        font-size: 3vw;
         line-height: 3vw;
     }
 
