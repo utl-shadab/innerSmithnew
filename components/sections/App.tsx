@@ -159,7 +159,7 @@ const slideVariants = {
                 transition={transition}
                 className="space-y-6"
               >
-                <p className="para text-left text-[#515151] font-[300] max-sm:text-center ">
+                <p className="para problem-heading-main text-left text-[#515151] font-[300] max-sm:text-center ">
                 <span className="problem-heading font-[400] text-black"> {AppSlides[activeIndex].title}{" "}</span>   
                  {AppSlides[activeIndex].content}
                 </p>

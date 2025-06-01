@@ -129,7 +129,7 @@ export default function HeroSection() {
           <p className="second-custom hero-para">
             helps you break free and
             <br className="block sm:hidden" />
-            <em className="italic secondText">Feel Better, Live Better.</em>
+            <em className="italic secondText mx-0 md:mx-2">Feel Better, Live Better.</em>
           </p>
           <div className="flex flex-col items-center mt-10 small-margin gap-3">
             <div className="animate-bounce">

@@ -12,7 +12,11 @@
     font-weight: 400 !important;
 
 }
-
+.problem-heading-main{
+    font-size: 58px;
+    line-height: 73px;
+    font-weight: 300 !important;
+}
 .hero-heading {
     font-size: 48px;
     font-weight: 700;

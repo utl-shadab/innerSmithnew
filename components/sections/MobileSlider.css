@@ -20,7 +20,9 @@
 .problem-heading {
   font-weight: 400 !important;
 }
+.para{
 
+}
 .state-heading {
   font-size: 96px;
   font-style: normal;
@@ -758,34 +760,151 @@
 }
 
 /* 300px */
-@media screen and (max-width: 300px) {
+@media  screen and (max-width: 300px) {
   .title {
-    font-size: 5vw;
-    line-height: 5.5vw;
+    font-size: 6.5vw;
+    line-height: 7vw;
   }
 
   .para {
-    font-size: 11vw;
-    line-height: 13.5vw;
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .problem-heading {
+    font-size: 7vw;
+    line-height: 9vw;
   }
 
   .custom-size {
-    font-size: 21vw;
+    font-size: 14vw;
+    margin-top: 3vw;
   }
 
   .state-heading {
     font-size: 19vw;
+    padding: 0;
+  }
+
+  .slide-text {
+    font-size: 7.5vw;
+    line-height: normal;
+  }
+  
+}
+/* 280px */
+@media screen and (max-width: 280px) {
+  .title {
+    font-size: 7vw;
+    line-height: 8vw;
+  }
+
+  .para {
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .problem-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .custom-size {
+    font-size: 15vw;
+    margin-top: 3vw;
+  }
+
+  .state-heading {
+    font-size: 20vw;
+    padding: 0;
+  }
+
+  .slide-text {
+    font-size: 8vw;
+    line-height: normal;
+  }
+  
+}
+@media  screen and (max-width: 260px) {
+  .title {
+    font-size: 7.5vw;
+    line-height: 8.5vw;
+  }
+
+  .para {
+    font-size: 6.5vw;
+    line-height: 8.5vw;
+  }
+
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .problem-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .custom-size {
+    font-size: 16vw;
+    margin-top: 3vw;
+  }
+
+  .state-heading {
+    font-size: 21vw;
+    padding: 0;
   }
 
   .slide-text {
     font-size: 8.5vw;
+    line-height: normal;
+  }
+  
+}
+@media screen and (max-width: 240px) {
+  .title {
+    font-size: 8vw;
+    line-height: 9vw;
   }
 
-  .stats-text {
-    font-size: 13vw;
+  .para {
+    font-size: 6.5vw;
+    line-height: 8.5vw;
   }
 
-  .people {
-    font-size: 6vw;
+  .hero-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .problem-heading {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .custom-size {
+    font-size: 17vw;
+    margin-top: 3vw;
+  }
+
+  .state-heading {
+    font-size: 22vw;
+    padding: 0;
+  }
+
+  .slide-text {
+    font-size: 9vw;
+    line-height: normal;
   }
 }
