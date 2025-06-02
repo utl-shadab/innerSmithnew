@@ -1,7 +1,7 @@
 
 
 import Lottie from "lottie-react";
-import laptopAnimation from "@/../../public/lapman.json"; 
+import laptopAnimation from "@/../../public/manLapNew.json"; 
 
 const laptopLottie = () => {
   return (   

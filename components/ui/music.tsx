@@ -31,9 +31,9 @@ export default function MusicComp({ src, autoPlay = false }: { src: string; auto
   };
 
   return (
-    <div className="fixed bottom-4 music-height right-4 z-[999999] bg-[rgba(0,0,0,0.17)] p-5 rounded-[16px]  flex items-center">
+    <div className="fixed bottom-4 music-height right-6 md:right-20 z-[999999] bg-[rgba(0,0,0,0.17)] p-5 rounded-[16px]  flex items-center">
       <div
-        className="  bg-white p-1 rounded-full shadow-lg flex items-center justify-center"
+        className="  bg-white p-4 lg:p-1 rounded-full shadow-lg flex items-center justify-center"
         onClick={togglePlay}
       >
         <button
