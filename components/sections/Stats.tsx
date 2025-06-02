@@ -364,7 +364,7 @@ const Stats = () => {
 
         {/* Mobile Version - Simple centered layout */}
         {isMobile && (
-          <div className="relative w-full max-w-sm mx-auto h-[300px] flex flex-col justify-center items-center text-center">
+          <div className="stats-motion relative w-full max-w-sm mx-auto h-[300px] flex lg:flex-col justify-center items-center text-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -381,7 +381,7 @@ const Stats = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.3 }}
                 >
-                  <span className="text-5xl sm:text-6xl block">
+                  <span className="stats-title text-5xl sm:text-6xl block">
                     {affectedDataSlide[activeIndex].title}
                   </span>
                   <span className="uppercase text-lg font-normal block mt-2">

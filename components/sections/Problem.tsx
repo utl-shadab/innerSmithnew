@@ -41,7 +41,7 @@ export default function Problem() {
               start: 'top 80%',
               end: 'top 20%',
               toggleActions: 'play none none none',
-              markers: false,
+              markers: true,
               onEnter: () => console.log('ScrollTrigger: Entered'),
               onEnterBack: () => console.log('ScrollTrigger: Entered Back'),
               onLeave: () => console.log('ScrollTrigger: Left'),
@@ -145,7 +145,3 @@ export default function Problem() {
     </section>
   );
 }
-function imagesLoaded(body: HTMLElement, initAnimation: () => void) {
-  throw new Error('Function not implemented.');
-}
-

@@ -637,6 +637,14 @@
     font-size: 6vw;
   }
 
+  .stats-title {
+    font-size: 6vw;
+  }
+
+  .stats-motion {
+    flex-direction: row;
+  }
+
   .custom-footer-title {
     font-size: 8vw;
     line-height: 10vw;
@@ -758,7 +766,7 @@
   }
 
   .stats-text {
-    font-size: 9vw;
+    font-size: 6vw;
     line-height: 0%;
   }
 
