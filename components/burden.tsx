@@ -1,7 +1,7 @@
 
 
 import Lottie from "lottie-react";
-import laptopAnimation from "@/../../public/burden.json"; 
+import laptopAnimation from "@/../../public/burdenNew.json"; 
 
 const BurdenAnimation = () => {
   return (   

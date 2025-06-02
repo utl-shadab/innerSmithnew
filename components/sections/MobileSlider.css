@@ -24,9 +24,7 @@
 .problem-heading {
   font-weight: 400 !important;
 }
-.para{
 
-}
 .state-heading {
   font-size: 96px;
   font-style: normal;
@@ -146,6 +144,11 @@
   .title {
     font-size: 5vw;
     line-height: 7vw;
+  }
+
+  .logo-hero {
+    left: 42%;
+    top: 6vw;
   }
 
   .video-logo {
@@ -340,11 +343,11 @@
     line-height: 7vw;
   }
 
-  .manage-dots {
+  /* .manage-dots {
     left: -2rem;
     bottom: 6rem;
     rotate: 90deg;
-  }
+  } */
 
   .para {
     font-size: 7vw;
@@ -391,9 +394,9 @@
     font-size: 8vw;
   }
 
-  .manage-buttons {
+  /* .manage-buttons {
     display: none;
-  }
+  } */
 
   .slider-state {
     margin-top: 7vw;
@@ -480,9 +483,9 @@
     margin-top: 3vw;
   }
 
-  .manage-buttons {
+  /* .manage-buttons {
     display: none;
-  }
+  } */
 
   .custom-footer-title {
     font-size: 9vw;
@@ -524,7 +527,8 @@
     font-size: 4.5vw;
   }
 }
-@media  screen and (max-width: 400px) {
+
+@media screen and (max-width: 400px) {
   .title {
     font-size: 5vw;
     line-height: 6vw;
@@ -558,8 +562,9 @@
   .state-heading {
     font-size: 14vw;
   }
-  
+
 }
+
 /* 380px */
 @media screen and (max-width: 380px) {
   .slide-text {
@@ -608,9 +613,9 @@
     height: 91vw;
   }
 
-  .manage-buttons {
+  /* .manage-buttons {
     display: none;
-  }
+  } */
 
   .card-margin {
     margin-top: 1vw;
@@ -683,9 +688,9 @@
     font-size: 17vw;
   }
 
-  .manage-buttons {
+  /* .manage-buttons {
     display: none;
-  }
+  } */
 
   .font-custom {
     font-size: 6vw;
@@ -768,7 +773,7 @@
 }
 
 /* 300px */
-@media  screen and (max-width: 300px) {
+@media screen and (max-width: 300px) {
   .title {
     font-size: 6.5vw;
     line-height: 7vw;
@@ -803,8 +808,9 @@
     font-size: 7.5vw;
     line-height: normal;
   }
-  
+
 }
+
 /* 280px */
 @media screen and (max-width: 280px) {
   .title {
@@ -841,9 +847,10 @@
     font-size: 8vw;
     line-height: normal;
   }
-  
+
 }
-@media  screen and (max-width: 260px) {
+
+@media screen and (max-width: 260px) {
   .title {
     font-size: 7.5vw;
     line-height: 8.5vw;
@@ -878,8 +885,9 @@
     font-size: 8.5vw;
     line-height: normal;
   }
-  
+
 }
+
 @media screen and (max-width: 240px) {
   .title {
     font-size: 8vw;
