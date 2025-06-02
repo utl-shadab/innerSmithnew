@@ -264,7 +264,7 @@ export default function SmoothAnimatedSections() {
       if (currentSection !== -1) return; 
 
       const scrollProgress = window.scrollY / window.innerHeight;
-      if (scrollProgress > 0.99) {
+      if (scrollProgress > 0.94) {
         setCurrentSection(0);
       }
     };

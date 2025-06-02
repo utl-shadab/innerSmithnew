@@ -101,7 +101,7 @@ export default function HeroSection() {
         />
         <div
           ref={overlayRef}
-          className="absolute inset-0 bg-black/40"
+          className="absolute inset-0 bg-black/60"
           style={{ transformOrigin: "center bottom", willChange: "transform" }}
         />
       </div>
@@ -123,15 +123,15 @@ export default function HeroSection() {
         className="relative z-30 small-padding h-screen flex flex-col items-center justify-center text-white px-4"
 
       >
-        <div className="text-center max-w-6xl mx-auto mt-6">
+        <div className="text-center max-w-6xl mx-auto mt-6 lg:mt-32">
           <p className=" hero-para  opacity-90">Stress is a loop that keeps you stuck.</p>
-          <h1 className="font-light  tracking-wide custom-margin custom-size">InnerSmith</h1>
+          <h1 className="font-light  tracking-wide my-0 lg:my-3 custom-margin custom-size">InnerSmith</h1>
           <p className="second-custom hero-para">
-            helps you break free
+            helps you break free and
             <br className="block sm:hidden" />
-            <em className="italic secondText">Feel Better, Live Better.</em>
+            <em className="italic secondText mx-0 md:mx-2">Feel Better, Live Better.</em>
           </p>
-          <div className="flex flex-col items-center mt-10 small-margin gap-3">
+          <div className="flex flex-col items-center mt-10 lg:mt-32 small-margin gap-3">
             <div className="animate-bounce">
               <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40" fill="none">
                 <mask id="mask0_682_20273" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="41" height="40">
@@ -154,13 +154,20 @@ export default function HeroSection() {
       >
         <div className="text-center max-w-7xl w-full mx-auto">
           <h2 className=" para hero-bottom  ">
-            Say hello to the <span className=" hero-heading ">world's first holistic wellness app</span>
+            Say hello to the <span className=" hero-heading ">world's first holistic wellness app</span> that improves your sleep, focus, and emotional balance,  starting on day one.
           </h2>
-          <p className="hero-bottom para leading-relaxed custom-margin">
+          {/* <p className="hero-bottom para leading-relaxed custom-margin">
             that improves your sleep, focus, and emotional balance,
             <br />
             starting on day one.
-          </p>
+          </p> */}
+
+          {/* <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
+            <span className="problem-heading font-[400] text-black">
+             What if support showed up the moment the tension set in?
+            </span>{" "}
+           What if something helped you feel better in minutes?
+          </p> */}
         </div>
       </div>
       <div className="h-20 w-full "></div>

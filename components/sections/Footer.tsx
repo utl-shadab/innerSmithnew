@@ -37,7 +37,7 @@ export default function Footer() {
 
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl custom-footer-title lg:text-6xl font-light mb-6 leading-tight  title" style={{ letterSpacing: "-1.16px" }}>
+        <h2 className="text-3xl md:text-5xl max420:custom-footer-title lg:text-6xl font-light mb-6 leading-tight  " style={{ letterSpacing: "-1.16px" }}>
           Ready to take charge of
           <br />
           your emotions?
@@ -106,7 +106,7 @@ export default function Footer() {
                 </div>
 
                 <div className="p-6 sm:p-8 flex flex-col justify-center w-full space-y-5 bg-[#F2FAFF]">
-                  <h3 className="text-3xl sm:text-4xl font-custom font-light text-gray-900">Join the Waitlist</h3>
+                  <h3 className="text-3xl sm:text-2xl font-custom font-light text-gray-900">Join the Waitlist</h3>
 
                   <input
                     type="text"

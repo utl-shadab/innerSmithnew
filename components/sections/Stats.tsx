@@ -58,7 +58,7 @@ const Stats = () => {
       id="stats"
       style={{ scrollSnapAlign: "start" }}
     >
-      <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-10 lg:gap-1 mx-auto">
+      <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-1 md:gap-10 lg:gap-1 mx-auto">
         <div className="stats-text font-light text-center lg:text-left whitespace-nowrap">
           You&apos;re Not Alone—
         </div>
@@ -76,9 +76,9 @@ const Stats = () => {
             >
               <motion.h1
                 className="text-[#FF7171] text-6xl state-heading font-bold leading-none border-b-2 border-[#FF7171] pb-2"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.2 }}
               >
                 {affectedDataSlide[activeIndex].title}
                 <span className="uppercase text-3xl people font-normal ml-2">
@@ -87,9 +87,9 @@ const Stats = () => {
               </motion.h1>
               <motion.h3
                 className="text-white text-2xl slide-text font-normal pt-2 "
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.2 }}
               >
                 {affectedDataSlide[activeIndex].text
                   .split("\n")

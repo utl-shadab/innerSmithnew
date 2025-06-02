@@ -59,7 +59,7 @@ export default function Problem() {
             color: '#000',
             fontWeight: 600,
             stagger: 0.02,
-            ease: 'none',
+            ease: 'power2.out',
             repeat: -1, //infintely
             repeatDelay: 2,
             onRepeat: () => console.log(`Animation repeated for heading ${index + 1}`),
@@ -126,8 +126,8 @@ export default function Problem() {
       </div>
 
       {/* Mobile Layout (below md) */}
-      <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center padding items-center px-6 py-12">
-        <div className="w-full flex flex-col items-center text-center gap-8">
+      <div className="lg:hidden md:grid w-full h-full flex flex-col justify-center padding items-center px-2 md:px-5 py-12">
+        <div className="w-full flex flex-col items-center text-center  custom-gap">
           <h2 className="text-[#525299] font-semibold text-[1.5rem] title leading-tight" style={{ fontWeight: '400' }}>
             The Problem
           </h2>
