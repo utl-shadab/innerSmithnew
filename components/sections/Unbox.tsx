@@ -13,7 +13,7 @@ export default function Unbox() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover hidden lg:block"
       />
-      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black block lg:hidden">
+      <div className="absolute top-0 left-0 w-full h-full  items-center justify-center bg-black block lg:hidden">
         <video 
           src="https://thescaleagency.s3.amazonaws.com/innersmith_mobile.mp4" 
           autoPlay 
@@ -23,6 +23,6 @@ export default function Unbox() {
           className="w-full h-auto max-h-full object-contain"
         />
       </div>
-    </section>
+    </section>  
   )
 }

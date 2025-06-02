@@ -94,6 +94,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
               priority={true}
               width="974"
               alt=""
+              quality={70}
               className="w-full h-auto object-center max-xl:h-full max-xl:object-cover"
             />
           </div>
@@ -107,6 +108,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
               height="1700"
               width="974"
               priority={true}
+              quality={70}
               alt=""
               className="w-full h-auto rotate-x-180 translate-y-[-38vh] object-center max-xl:h-full max-xl:object-cover max-xl:translate-y-0"
             />
@@ -118,6 +120,7 @@ export default function Loader({ onComplete: onCompleteProp }: LoaderProp) {
               width="1974"
               priority={true}
               height="1028"
+              quality={70}
               className="w-full h-full object-cover"
               style={{ filter: "blur(0px)" }}
             />
