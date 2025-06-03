@@ -14,6 +14,7 @@ export default function HeroSection() {
   const logoRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const heroBottomRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -30,13 +31,11 @@ export default function HeroSection() {
         },
       );
 
-
       gsap.fromTo(
         logoRef.current,
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 7.2 },
       );
-
 
       gsap.fromTo(
         imageRef.current,
@@ -60,9 +59,13 @@ export default function HeroSection() {
         },
       );
 
-      // Second view text reveal 
+      // Second view text reveal (excluding hero-bottom)
+      const secondViewChildren = Array.from(secondViewRef.current?.children || []).filter(
+        (child) => !child.classList.contains('hero-bottom')
+      );
+      
       gsap.fromTo(
-        secondViewRef.current?.children || [],
+        secondViewChildren,
         { y: 30, opacity: 0 },
         {
           y: 0,
@@ -79,6 +82,70 @@ export default function HeroSection() {
           },
         },
       );
+
+      if (heroBottomRef.current) {
+        const originalHTML = heroBottomRef.current.innerHTML;
+        const textContent = heroBottomRef.current.textContent || '';
+        const words = textContent.split(' ');
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalHTML;
+        
+        let wordIndex = 0;
+        const walkTextNodes = (node:any) => {
+          if (node.nodeType === 3) { 
+            const text = node.textContent || '';
+            const nodeWords: string[] = text.trim().split(/\s+/).filter((word: string) => word.length > 0);
+            if (nodeWords.length > 0) {
+              const fragment = document.createDocumentFragment();
+              nodeWords.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.className = 'word-reveal';
+                span.style.opacity = '0';
+                span.style.display = 'inline-block';
+                span.style.marginRight = '0.25em';
+                span.textContent = word;
+                fragment.appendChild(span);
+                if (index < nodeWords.length - 1) {
+                  fragment.appendChild(document.createTextNode(''));
+                }
+              });
+              node.parentNode?.replaceChild(fragment, node);
+            }
+          } else {
+            Array.from(node.childNodes).forEach(walkTextNodes);
+          }
+        };
+        
+        walkTextNodes(tempDiv);
+        heroBottomRef.current.innerHTML = tempDiv.innerHTML;
+
+        const wordSpans = heroBottomRef.current.querySelectorAll('.word-reveal');
+        
+        gsap.fromTo(
+          wordSpans,
+          { 
+            opacity: 0,
+            y: 20,
+            scale: 0.8
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: heroBottomRef.current,
+              start: "top 85%",
+              end: "bottom 50%",
+              toggleActions: "play none none reverse",
+              markers: false,
+            },
+          }
+        );
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -148,27 +215,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-
       <div
         ref={secondViewRef}
         className="relative z-20 h-screen flex items-center justify-center secondview text-white px-4"
       >
         <div className="text-center max-w-7xl w-full mx-auto">
-          <h2 className=" para hero-bottom  ">
-            Say hello to the <span className=" hero-heading ">world's first holistic wellness app</span> that improves your sleep, focus, and emotional balance,  starting on day one.
+          <h2 ref={heroBottomRef} className="para hero-bottom three-line-text">
+            Say hello to the <span className="hero-heading">world's first holistic wellness app</span><br />that improves your sleep, focus, and emotional balance, starting on day one.
           </h2>
-          {/* <p className="hero-bottom para leading-relaxed custom-margin">
-            that improves your sleep, focus, and emotional balance,
-            <br />
-            starting on day one.
-          </p> */}
-
-          {/* <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
-             What if support showed up the moment the tension set in?
-            </span>{" "}
-           What if something helped you feel better in minutes?
-          </p> */}
         </div>
       </div>
       <div className="h-20 w-full "></div>

@@ -1,3 +1,6 @@
+html, body {
+  overscroll-behavior: none;
+}
 .hero-para {
     color: #FFF;
     text-align: center;
@@ -5,7 +8,33 @@
     font-size: 40px;
     font-style: normal;
 }
+.three-line-text {
+  line-height: 1.2;
+  max-width: 100%;
+  word-spacing: 0;
+  letter-spacing: 0;
+  margin: 0;
+  padding: 0;
+}
 
+.three-line-text::after {
+  content: "";
+  display: block;
+  width: 100%;
+}
+
+/* Force specific line breaks using CSS */
+.three-line-text {
+  display: inline;
+}
+
+.problem-heading .word {
+  white-space: nowrap;
+}
+#problem {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 .problem-heading {
     font-size: 58px;
     line-height: 73px;

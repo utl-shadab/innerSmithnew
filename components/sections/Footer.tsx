@@ -32,12 +32,12 @@ export default function Footer() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image src="/images/Footerbg.png" alt="Mountain landscape background" fill className="object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl max420:custom-footer-title lg:text-6xl font-light mb-6 leading-tight  " style={{ letterSpacing: "-1.16px" }}>
+        <h2 className="text-3xl md:text-5xl max420:custom-footer-title lg:text-[58px] font-light mb-6   " style={{ letterSpacing: "-1.16px", lineHeight: "127%" }}>
           Ready to take charge of
           <br />
           your emotions?
@@ -50,7 +50,7 @@ export default function Footer() {
             alt="InnerSmith Logo"
             width={1000}
             height={300}
-            className="custom-width lg:w-[20rem] h-auto"
+            className="custom-width lg:w-[21.4rem] h-auto"
           />
         </div>
 
@@ -87,7 +87,7 @@ export default function Footer() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl shadow-2xl p-8 max-w-3xl mx-auto w-full min-h-[300px]"
+            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl  p-8 max-w-3xl mx-auto w-full min-h-[300px]"
           >
             <div className="absolute top-10 right-12 z-10">
               <button onClick={closePopup}>
@@ -156,9 +156,11 @@ export default function Footer() {
                   height={108}
                   className="w-28 h-28 bg-pink-200 rounded-full flex items-center justify-center mx-auto mb-8"
                 />
-                <h3 className="text-4xl font-normal mb-2">Congratulations!</h3>
+                <h3 className="text-4xl font-normal mb-2">Thanks For Signing Up!</h3>
                 <p className="text-center text-sm text-gray-600 max-w-sm">
                   You have been added to the InnerSmith waitlist.
+                  We’re excited to have you on this journey.
+
                 </p>
                 <div className="w-16 h-px bg-gray-300 mx-auto my-9"></div>
                 <p className=" font-medium text-black text-sm">Stay Tuned For More Updates</p>

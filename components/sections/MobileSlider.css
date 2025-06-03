@@ -222,6 +222,11 @@
     line-height: 9vw;
   }
 
+  .slider-state {
+    margin-top: 10vw;
+    width: 100%;
+    margin-left: 15vw;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -291,6 +296,11 @@
   .stats-text {
     font-size: 9vw;
   }
+   .slider-state {
+    margin-top: 10vw;
+    width: 100%;
+    margin-left: 12vw;
+  }
 }
 
 /* 520px */
@@ -325,6 +335,11 @@
 
   .state-heading {
     font-size: 13vw;
+  }
+   .slider-state {
+    margin-top: 10vw;
+    width: 100%;
+    margin-left: 10vw;
   }
 }
 
@@ -409,8 +424,8 @@
   }
 
   .slider-state {
-    margin-top: -5vw;
-    margin-left: 24vw;
+    margin-top: 5vw;
+    margin-left: 10vw;
   }
 
   .para {

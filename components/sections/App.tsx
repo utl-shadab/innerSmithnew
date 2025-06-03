@@ -160,7 +160,7 @@ const slideVariants = {
                 className="space-y-6"
               >
                 <p className="para problem-heading-main text-left text-[#515151] font-[300] max-sm:text-center ">
-                <span className="problem-heading font-[400] text-black"> {AppSlides[activeIndex].title}{" "}</span>   
+                <span className="problem-heading font-[400] text-black"> {AppSlides[activeIndex].title}{" "} <br /></span>   
                  {AppSlides[activeIndex].content}
                 </p>
                 {/* <p className="text-lg problem-heading text-center lg:text-left leading-relaxed para text-gray-600 w-full lg:max-w-2xl">
