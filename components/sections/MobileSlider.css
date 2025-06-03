@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap');
+
+
 .main-title {
   font-size: 36px;
   font-style: normal;
@@ -6,11 +9,12 @@
 }
 
 .stats-text {
-  color: #C3C3C3;
-  font-size: 58px;
+  color: #fff;
+  font-size: 5rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
+  font-family: "Albert Sans";
 }
 
 .problem-span {
@@ -114,7 +118,7 @@
   }
 
   .stats-text {
-    font-size: 8vw;
+    font-size: 6vw;
   }
 
   .slider-state {
@@ -124,7 +128,7 @@
   }
 
   .slide-text {
-    font-size: 4vw;
+    font-size: 6vw;
   }
 
   .people {
@@ -294,7 +298,7 @@
   }
 
   .stats-text {
-    font-size: 9vw;
+    font-size: 6vw;
   }
    .slider-state {
     margin-top: 10vw;
@@ -308,6 +312,10 @@
   .title {
     font-size: 4.5vw;
     line-height: 5.5vw;
+  }
+
+  .stats-text {
+    font-size: 6vw;
   }
 
   .para {
@@ -641,7 +649,15 @@
   }
 
   .stats-text {
-    font-size: 9vw;
+    font-size: 6vw;
+  }
+
+  .stats-title {
+    font-size: 6vw;
+  }
+
+  .stats-motion {
+    flex-direction: row;
   }
 
   .custom-footer-title {
@@ -765,7 +781,7 @@
   }
 
   .stats-text {
-    font-size: 9vw;
+    font-size: 6vw;
     line-height: 0%;
   }
 
