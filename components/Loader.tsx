@@ -31,17 +31,16 @@ export default function Loader({ onComplete }: LoaderProps) {
       onComplete: () => onComplete?.(),
     });
 
-    // Initial positions - panels are off-screen
+    
     gsap.set(topPanelRef.current, { yPercent: -150 });
     gsap.set(bottomPanelRef.current, { yPercent: 150 });
     gsap.set(overlayRef.current, { yPercent: 100 });
 
     texts.forEach((_, i) => {
-      // Set image and text before animation starts
+
       tl.call(() => setIndex(i));
       tl.to({}, { duration: 0.8 }); 
 
-      // Animate panels in - they slide to center covering text area
       tl.to(topPanelRef.current, {
         yPercent: 0,
         duration: 1.2,
@@ -54,10 +53,10 @@ export default function Loader({ onComplete }: LoaderProps) {
         ease: "power2.out",
       }, "<");
 
-      // Hold position
+    
       tl.to({}, { duration: 0.6 }); 
 
-      // Exit animation - panels slide out
+     
       tl.to(topPanelRef.current, {
         yPercent: -150,
         duration: 1,
@@ -116,10 +115,9 @@ export default function Loader({ onComplete }: LoaderProps) {
         className="fixed top-0 left-0 w-full h-full z-50 bg-black"
       >
         <div className="relative w-full h-screen overflow-hidden flex justify-center items-center bg-black">
-          {/* Black base layer */}
+         
           <div className="absolute inset-0 bg-black/50 z-[0]"></div>
 
-          {/* Background Image - Always visible */}
           <div className="absolute inset-0 bg-black h-screen w-full z-[1]">
             <Image
               src={images[index]}
@@ -133,13 +131,9 @@ export default function Loader({ onComplete }: LoaderProps) {
              <div className="absolute inset-0 bg-black/50 z-[2]"></div>
           </div>
 
-          {/* Text with subtle blur background - Always visible */}
           <div className="w-full flex justify-center items-center relative">
             <div className="absolute z-[8] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20
-                           w-[200px] h-[150px]
-                           sm:w-[250px] sm:h-[180px]
-                           md:w-[300px] md:h-[220px]
-                           lg:w-[345px] lg:h-[272px]">
+                          h-full w-full flex justify-center items-center">
               <BlurSVG />
             </div>
             <div
@@ -162,7 +156,7 @@ export default function Loader({ onComplete }: LoaderProps) {
           <div
             ref={topPanelRef}
             className="absolute top-0 left-0 w-full z-40
-                       h-[60vh] sm:h-[55vh] md:h-[50vh] lg:h-[60vh] xl:h-[80vh]"
+                      h-screen"
           >
             <Image
               src={shutterUp}
@@ -179,7 +173,7 @@ export default function Loader({ onComplete }: LoaderProps) {
           <div
             ref={bottomPanelRef}
             className="absolute bottom-0 left-0 w-full z-40 rotate-180
-                       h-[40vh] sm:h-[35vh] md:h-[50vh] lg:h-[55vh] xl:h-[70vh]"
+                      h-screen"
           >
             <Image
               src={shutterUp}
