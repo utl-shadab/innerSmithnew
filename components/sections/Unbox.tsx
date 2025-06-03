@@ -19,7 +19,7 @@ export default function Unbox() {
           loop 
           muted 
           playsInline
-          className="w-full h-auto max-h-full object-contain"
+          className="w-full h-full object-cover"
         />
       </div>
     </section>  

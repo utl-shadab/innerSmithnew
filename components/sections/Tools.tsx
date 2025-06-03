@@ -34,13 +34,13 @@ const cardData = [
 export default function Tools() {
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCard, setExpandedCard] = useState(0);
-  const titleRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      setIsMobile(isMobile);
-      setExpandedCard(isMobile ? 0 : -1);
+      setExpandedCard(window.innerWidth < 768 ? 0 : -1);
     };
 
     checkMobile();
@@ -48,34 +48,56 @@ export default function Tools() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleCardClick = (index: any) => {
+  const handleCardClick = (index: number) => {
     setExpandedCard(expandedCard === index ? -1 : index);
   };
 
   useEffect(() => {
-    if (titleRef.current) {
-      const splitTitle = new SplitType(titleRef.current, { types: "lines" });
-      gsap.fromTo(
-        splitTitle.lines,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.2,
-        }
-      );
-    }
-  }, [titleRef]);
+    if (!titleRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const splitTitle = new SplitType(titleRef.current!, { types: "lines" });
+      console.log("SplitType initialized:", splitTitle);
+      gsap.set(splitTitle.lines, {
+        y: 50,
+        opacity: 0,
+      });
+
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+          end: "bottom 10%",
+          toggleActions: "play none none none",
+          markers: false,
+        },
+        defaults: { ease: "power3.out" },
+      }).to(splitTitle.lines, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        onStart: () => console.log("Title animation started"),
+        onComplete: () => console.log("Title animation completed"),
+      });
+
+      return () => {
+        splitTitle.revert();
+      };
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       className="bg-white min-h-screen flex justify-center items-center py-8 px-4"
       id="tools"
       style={{ scrollSnapAlign: "start" }}
+      ref={sectionRef}
     >
-      <div className="w-full max-w-7xl  mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         {/* Header */}
         <div ref={titleRef} className="text-center mb-10 card-margin w-full max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl md:leading-tight text-gray-900 font-normal para">
@@ -97,7 +119,7 @@ export default function Tools() {
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="flex flex-col items-start gap-3 flex-shrink-0 h-full max-h-[30rem] w-full   rounded-3xl border border-white bg-[#F3F3F3] cursor-pointer group "
+                className="flex flex-col items-start gap-3 flex-shrink-0 h-full max-h-[30rem] w-full rounded-3xl border border-white bg-[#F3F3F3] cursor-pointer group"
                 style={{ padding: "1.875rem" }}
               >
                 <motion.div
@@ -111,7 +133,7 @@ export default function Tools() {
                     height={70}
                     width={70}
                     draggable={false}
-                    className="w-16 h-16 object-contain "
+                    className="w-16 h-16 object-contain"
                   />
                 </motion.div>
 
@@ -130,7 +152,7 @@ export default function Tools() {
                 </motion.h3>
 
                 <motion.p
-                  className="text-lg font-light text-black leading-[2.125rem] group-hover:text-gray-500 transition-colors duration-300 text-start  md:leading-relaxed md:font-normal"
+                  className="text-lg font-light text-black leading-[2.125rem] group-hover:text-gray-500 transition-colors duration-300 text-start md:leading-relaxed md:font-normal"
                 >
                   {card.description}
                 </motion.p>
@@ -139,7 +161,7 @@ export default function Tools() {
           </div>
         )}
 
-        {/* Mobile Accordion Layout (Unchanged) */}
+        {/* Mobile Accordion Layout */}
         {isMobile && (
           <div className="space-y-4 max-w-md mx-auto">
             {cardData.map((card, index) => (
@@ -148,12 +170,11 @@ export default function Tools() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`rounded-2xl overflow-hidden ${expandedCard === index ? 'bg-[#EEF5F6]' : 'bg-[#f3f3f3]'
-                  }`}
+                className={`rounded-2xl overflow-hidden ${expandedCard === index ? 'bg-[#EEF5F6]' : 'bg-[#f3f3f3]'}`}
               >
                 <motion.div
                   onClick={() => handleCardClick(index)}
-                  className="  p-3 sm:p-6 cursor-pointer flex items-center justify-between"
+                  className="p-3 sm:p-6 cursor-pointer flex items-center justify-between"
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center space-x-4">
@@ -173,8 +194,7 @@ export default function Tools() {
                       />
                     </motion.div>
                     <h3
-                      className={`text-base sm:text-lg w-full max-w-40 ${expandedCard === index ? 'font-bold' : 'font-medium'
-                        } text-gray-900`}
+                      className={`text-base sm:text-lg w-full max-w-40 ${expandedCard === index ? 'font-bold' : 'font-medium'} text-gray-900`}
                     >
                       {card.title}
                     </h3>

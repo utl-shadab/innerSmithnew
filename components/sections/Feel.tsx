@@ -6,60 +6,59 @@ import SplitType from 'split-type';
 import "./MobileSlider.css"
 gsap.registerPlugin(ScrollTrigger);
 export default function Feel() {
-  const sectionRef = useRef(null);
-  const triggerRef = useRef<ScrollTrigger | undefined>(undefined);
+ const sectionRef = useRef<HTMLElement | null>(null);
+  const tl = useRef<gsap.core.Timeline | null>(null);
+useEffect(() => {
+    if (!sectionRef.current) return;
 
-  useEffect(() => {
-    let tl: gsap.core.Timeline | undefined;
-
-    const setupAnimations = () => {
-      const section = sectionRef.current;
-      const heading = new SplitType(".problem-headings", {
-        types: "words,chars",
-      });
-
-      if (!section) return;
-
-      gsap.set(section, { clearProps: "all" });
-      document.querySelectorAll(".problem-headings .word").forEach((el) => {
-        (el as HTMLElement).style.whiteSpace = "nowrap";
-      });
-      tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top-=100% center",
-          end: "bottom-=100% top",
-          toggleActions: "play reverse play reverse",
-          markers: false,
-        },
-        defaults: { ease: "power2.out" },
-      });
-
-      tl.fromTo(
-        ".problem-headings .char",
-        { fontWeight: "300", color: "#515151" },
-        {
-          fontWeight: "400",
-          color: "#000",
-          stagger: 0.1,
-          duration: 0.2,
-        }
-      );
-
-      triggerRef.current = tl.scrollTrigger;
-    };
-
-    requestAnimationFrame(() => {
-      setTimeout(setupAnimations, 100);
+    
+    const heading = new SplitType(".problem-headings", {
+      types: "words,chars",
     });
+
+  
+    document.querySelectorAll(".problem-headings .word").forEach((el) => {
+      (el as HTMLElement).style.whiteSpace = "nowrap";
+    });
+
+    gsap.set(".problem-headings .char", {
+      opacity: 0,
+      y: 20,
+      fontWeight: "300",
+      color: "#515151",
+    });
+
+    
+    tl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 90%",
+        end: "bottom 10%", 
+        toggleActions: "play none none none",
+        // markers: true, 
+      },
+      defaults: { ease: "power2.out" },
+    });
+
+    tl.current.to(".problem-headings .char", {
+      opacity: 1,
+      y: 0,
+      fontWeight: "400",
+      color: "#000",
+      duration: 0.3,
+      stagger: 0.05, 
+    });
+
+   
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      tl?.kill();
-      triggerRef.current?.kill();
+      if (tl.current) {
+        tl.current.kill(); 
+      }
+      heading.revert(); 
     };
   }, []);
   return (
-    <section className="h-screen relative overflow-hidden bg-gray-50"
+    <section className="h-screen relative overflow-hidden bg-white"
       id="feel"
       style={{ scrollSnapAlign: 'start' }}
       ref={sectionRef}

@@ -38,7 +38,7 @@
 }
 
 .hero-bottom {
-  font-size: 48px;
+  font-size: 46px;
   font-weight: 400;
   line-height: 150%;
 }
@@ -732,6 +732,9 @@
   .hero-small-margin {
     margin-top: 20vw;
   }
+  .manage-dots{
+    bottom: 3rem !important;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -739,7 +742,9 @@
     font-size: 5vw;
     line-height: 6vw;
   }
-
+ .manage-dots{
+    bottom: 2rem !important;
+  }
   .hero-para {
     font-size: 4.5vw;
     line-height: 1.5vw;
@@ -822,7 +827,9 @@
     font-size: 6.5vw;
     line-height: 9vw;
   }
-
+ .manage-dots{
+    bottom: 1rem !important;
+  }
   .slide-text {
     font-size: 7vw;
     line-height: 9vw;

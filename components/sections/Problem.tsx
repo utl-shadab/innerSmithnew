@@ -11,11 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Problem() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const triggerRef = useRef<ScrollTrigger | null>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    
+    let split: SplitType | null = null;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -23,12 +23,9 @@ export default function Problem() {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
-
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
-
-    gsap.ticker.lagSmoothing(0);
 
     const setupAnimations = () => {
       const section = sectionRef.current;
@@ -42,83 +39,52 @@ export default function Problem() {
         console.error("Problem heading not found");
         return;
       }
-
-      // Revert SplitType to reset text for fresh split
-      let split: SplitType | null = null;
-      if (heading.classList.contains("split-type-processed") && (heading as any)._splitInstance) {
-        (heading as any)._splitInstance.revert();
-        heading.classList.remove("split-type-processed");
-        (heading as any)._splitInstance = null;
-      }
-
-      // Initialize SplitType
-      try {
-        split = new SplitType(heading, { types: "words,chars" });
-        heading.classList.add("split-type-processed");
-        (heading as any)._splitInstance = split;
-        console.log("SplitType initialized:", split);
-      } catch (error) {
-        console.error("SplitType failed:", error);
-        return;
-      }
-
-      // Verify SplitType output
-      const chars = section.querySelectorAll(".problem-headings .char");
-      console.log("Characters found:", chars.length);
+      split = new SplitType(heading, { types: "words,chars" });
+      console.log("SplitType initialized:", split);
 
       gsap.set(".problem-headings .word", { whiteSpace: "nowrap" });
+      gsap.set(".problem-headings .char", {
+        opacity: 0,
+        y: 20,
+        fontWeight: 300,
+        color: "#515151",
+      });
 
-      // Create GSAP timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none play none", 
-          
-          fastScrollEnd: false, 
-          scroller: document.body,
-          onEnter: () => {
-            console.log("ScrollTrigger: onEnter");
-            tl.restart(); 
-          },
-          onEnterBack: () => {
-            console.log("ScrollTrigger: onEnterBack");
-            tl.restart(); 
-          },
+          start: "top 90%", 
+          end: "bottom 10%", 
+          toggleActions: "play none none none", 
+        
         },
         defaults: { ease: "power4.out" },
       });
 
-      if (chars.length) {
-        tl.fromTo(
-          ".problem-headings .char",
-          { fontWeight: 300, color: "#515151", opacity: 1 },
-          {
-            fontWeight: 400,
-            color: "#000",
-            opacity: 1,
-            stagger: 0.1,
-            duration: 0.2,
-            onStart: () => console.log("GSAP animation started"),
-            onComplete: () => console.log("GSAP animation completed"),
-          }
-        );
-      } else {
-        console.warn("No characters to animate");
-      }
+     
+      tl.to(".problem-headings .char", {
+        opacity: 1,
+        y: 0,
+        fontWeight: 400,
+        color: "#000",
+        stagger: 0.05,
+        duration: 0.3, 
+        onStart: () => console.log("GSAP animation started"),
+        onComplete: () => console.log("GSAP animation completed"),
+      });
 
       timelineRef.current = tl;
-      triggerRef.current = tl.scrollTrigger ?? null;
-      console.log("ScrollTrigger initialized:", triggerRef.current);
     };
 
-   
+  
     setupAnimations();
 
+    
     return () => {
-      if (triggerRef.current) triggerRef.current.kill();
-      if (timelineRef.current) timelineRef.current.kill();
+      if (timelineRef.current) {
+        timelineRef.current.kill(); 
+      }
+      if (split) split.revert(); 
       lenis.destroy();
     };
   }, []);

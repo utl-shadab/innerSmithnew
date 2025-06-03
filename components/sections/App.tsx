@@ -71,16 +71,16 @@ export default function App() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          start: "top 90%",
+          end: "bottom 10%",
+          toggleActions: "play none none none",
         },
       })
 
       tl.to(titleRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.5,
         ease: "power3.out",
       })
         .to(
@@ -89,10 +89,10 @@ export default function App() {
             opacity: 1,
             scale: 1,
             y: 0,
-            duration: 1.2,
+            duration: 0.8,
             ease: "power4.out",
           },
-          "-=0.4",
+          "-=0.2",
         )
     }, sectionRef)
 

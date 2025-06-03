@@ -644,7 +644,6 @@ const Stats = () => {
           </div>
         </div>
 
-        {/* Unified 3D Slider for all devices */}
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center">
           <div
             className="relative w-full slider-state max-w-[486px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] h-[250px] sm:h-[280px] md:h-[300px] lg:h-[400px] overflow-hidden"
@@ -654,7 +653,7 @@ const Stats = () => {
             }}
           >
             <AnimatePresence mode="wait">
-              {/* Previous slide */}
+            
               <motion.div
                 key={`prev-${activeIndex}`}
                 initial={{
@@ -675,9 +674,10 @@ const Stats = () => {
                   z: -600,
                   opacity: 0,
                 }}
+               
                 transition={{
-                  duration: 1.2,
-                  ease: [0.25, 0.1, 0.25, 1],
+                  duration: 2,
+                  ease: [0.4, 0, 0.2, 1], 
                 }}
                 className="absolute top-0 left-0 lg:left-20 w-full h-full flex flex-col justify-center items-start px-4 text-left"
                 style={{
@@ -708,7 +708,7 @@ const Stats = () => {
                 </motion.p>
               </motion.div>
 
-              {/* Current active slide */}
+        
               <motion.div
                 key={`current-${activeIndex}`}
                 initial={{
@@ -723,9 +723,10 @@ const Stats = () => {
                   z: 0,
                   opacity: 1,
                 }}
+               
                 transition={{
-                  duration: 1.2,
-                  ease: [0.25, 0.1, 0.25, 1],
+                  duration: 2, 
+                  ease: [0.4, 0, 0.2, 1], 
                 }}
                 className="absolute top-0 left-0 lg:left-20 w-full h-full flex flex-col justify-center items-start px-4 text-left"
                 style={{
@@ -736,9 +737,10 @@ const Stats = () => {
               >
                 <motion.h1
                   className="text-[#FF7171] text-4xl sm:text-5xl md:text-6xl state-heading font-bold leading-none border-b-2 border-[#FF7171] pb-2"
+                  
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.3 }}
+                 transition={{ delay: 0.3, duration: 0.5 }}
                 >
                   {affectedDataSlide[activeIndex].title}
                   <span className="uppercase text-lg sm:text-xl md:text-2xl people font-normal ml-2">
@@ -747,9 +749,10 @@ const Stats = () => {
                 </motion.h1>
                 <motion.p
                   className="text-white text-base sm:text-lg md:text-xl slide-text font-normal pt-2"
+                  
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.3 }}
+                  transition={{ delay: 0.3, duration: 0.5 }} 
                 >
                   {affectedDataSlide[activeIndex].text
                     .split("\n")
@@ -777,9 +780,10 @@ const Stats = () => {
                   z: -300,
                   opacity: 0.5,
                 }}
+               
                 transition={{
-                  duration: 1.2,
-                  ease: [0.25, 0.1, 0.25, 1],
+                  duration: 2, 
+                  ease: [0.4, 0, 0.2, 1], 
                 }}
                 className="absolute top-0 left-0 lg:left-20 w-full h-full flex flex-col justify-center items-start px-4 text-left"
                 style={{
@@ -812,14 +816,15 @@ const Stats = () => {
             </AnimatePresence>
           </div>
 
-          {/* Dot indicators */}
-          <div className="absolute bottom-[10%] left-36 lg:left-1/2 -translate-x-1/2 flex gap-2 z-10">
+         
+          <div className="absolute bottom-[15%] sm:bottom-[10%] left-36 lg:left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {affectedDataSlide.map((_, idx) => (
               <motion.button
                 key={idx}
                 onClick={() => goToSlide(idx)}
                 className={`rounded-full h-3 flex-shrink-0 cursor-pointer ${idx === activeIndex ? "bg-[#FF7171]" : "bg-[#FF7171]/50"
                   }`}
+             
                 animate={{
                   width: idx === activeIndex ? 48 : 24,
                   backgroundColor:
@@ -833,7 +838,7 @@ const Stats = () => {
                       : "rgba(255, 113, 113, 0.7)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.2, ease: "easeOut" }} 
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}

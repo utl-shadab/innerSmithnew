@@ -15,43 +15,48 @@ export default function Journey() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Initialize SplitType on the .problem-headings span
+
       const split = new SplitType(headingRef.current!, {
-        types: "chars", // Split into characters for animation
+        types: "chars",
         tagName: "span",
       });
 
-      // Create GSAP timeline with ScrollTrigger
+
+      gsap.set(split.chars, {
+        opacity: 0,
+        y: 20,
+        fontWeight: 300,
+        color: "#515151",
+      });
+
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 85%", // Start when top of section hits 85% of viewport
-          end: "bottom 30%", // End when bottom of section hits 30% of viewport
-          toggleActions: "play none none reverse", // Play on enter, reverse on leave
-          markers: false, // Set to true for debugging
+          start: "top 90%",
+          end: "bottom 10%",
+          toggleActions: "play none none none",
+          markers: false,
         },
         defaults: { ease: "power2.out" },
       });
 
-      // Animate characters
-      tl.fromTo(
-        split.chars, // Animate individual characters
-        { fontWeight: 300, color: "#515151" },
-        {
-          fontWeight: 400,
-          color: "#000000",
-          stagger: 0.05, // Stagger for smooth reading effect
-          duration: 0.3, // Slightly faster for character animation
-        }
-      );
 
-      // Cleanup SplitType and GSAP context
+      tl.to(split.chars, {
+        opacity: 1,
+        y: 0,
+        fontWeight: 400,
+        color: "#000000",
+        stagger: 0.04,
+        duration: 0.3,
+      });
+
       return () => {
-        split.revert(); // Revert SplitType changes
+        split.revert();
       };
     }, sectionRef);
 
-    return () => ctx.revert(); // Cleanup GSAP context
+    return () => ctx.revert();
   }, []);
 
   return (

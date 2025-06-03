@@ -1,9 +1,8 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type"; // Import SplitType
+import SplitType from "split-type"; 
 import Image from "next/image";
 import "./MobileSlider.css";
 
@@ -16,17 +15,21 @@ export default function HeroSection() {
   const logoRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null); // Ref for the h2 element
+  const headingRef = useRef<HTMLHeadingElement>(null); 
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Split the h2 text into characters or words
+      
       const split = new SplitType(headingRef.current!, {
-        types: "words", // You can use "chars" for character-level animation
-        tagName: "span", // Ensure split elements are wrapped in spans
+        types: "chars", 
+        tagName: "span", 
       });
 
-      // Animation for firstViewRef
+      gsap.set(split.chars, {
+        opacity: 0,
+        y: 20,
+      });
+
       gsap.fromTo(
         firstViewRef.current?.children || [],
         { y: 50, opacity: 0 },
@@ -40,14 +43,12 @@ export default function HeroSection() {
         }
       );
 
-      // Animation for logoRef
       gsap.fromTo(
         logoRef.current,
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 7.2 }
       );
 
-      // Animation for imageRef
       gsap.fromTo(
         imageRef.current,
         { scale: 1 },
@@ -59,7 +60,6 @@ export default function HeroSection() {
         }
       );
 
-      // Animation for overlayRef
       gsap.fromTo(
         overlayRef.current,
         { scaleY: 0, transformOrigin: "center bottom" },
@@ -71,33 +71,29 @@ export default function HeroSection() {
         }
       );
 
-      // Animation for secondViewRef h2 text (SplitType words)
-      gsap.fromTo(
-        split.words, // Animate individual words
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.05, // Small stagger for smooth reading effect
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: secondViewRef.current,
-            start: "top 85%", // Trigger when secondViewRef hits 85% from the top
-            end: "bottom 30%",
-            toggleActions: "play none none reverse",
-            markers: false,
-          },
-        }
-      );
+      gsap.to(split.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.3, 
+        stagger: 0.05, 
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: secondViewRef.current,
+          start: "top 90%", 
+          end: "bottom 10%", 
+          toggleActions: "play none none none", 
+          markers: false, 
+          
+        },
+      });
 
-      // Cleanup SplitType on unmount
+      
       return () => {
-        split.revert(); // Revert SplitType changes
+        split.revert(); 
       };
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); 
   }, []);
 
   return (
@@ -150,7 +146,7 @@ export default function HeroSection() {
           <p className="second-custom hero-para">
             helps you break free and
             <br className="block sm:hidden" />
-            <em className="italic secondText mx-0 md:mx-2">Feel Better, Live Better.</em>
+            <em className="italic secondText mx-0 md:mx-2">Feel  Feel Better, Live Better.</em>
           </p>
           <div className="flex flex-col items-center mt-10 lg:mt-28 small-margin gap-3">
             <div className="animate-bounce">
@@ -193,9 +189,12 @@ export default function HeroSection() {
           <h2 ref={headingRef} className="para hero-bottom">
             Say hello to the{" "}
             <span className="hero-headings !font-normal text-2xl md:text-3xl lg:text-5xl">
-              world's first holistic wellness app
-            </span>{" "}
-            that improves your sleep, focus, and emotional balance, starting on day one.
+              world’s first holistic wellness app
+            </span>
+            <br />
+            that improves your sleep, focus, and emotional balance,
+            <br />
+            starting on day one.
           </h2>
         </div>
       </div>

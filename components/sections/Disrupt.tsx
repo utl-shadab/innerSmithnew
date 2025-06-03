@@ -15,7 +15,7 @@ export default function Disrupt() {
   useEffect(() => {
     if (!sectionRef.current) return;
     const heading = new SplitType(".problem-headings", {
-    types: "words,chars",
+      types: "words,chars",
     });
 
     gsap.set(".problem-headings .char", {
@@ -26,34 +26,29 @@ export default function Disrupt() {
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 80%",
-         end: "bottom 20%", 
-        toggleActions: "play reverse play reverse",
+        start: "top 90%",
+        end: "bottom 10%",
+        toggleActions: "play none none none",
         once: true,
       },
     });
 
- 
+
     tl.current.to(".problem-headings .char", {
       opacity: 1,
       y: 0,
-      duration: 0.5,
-      stagger: 0.03,
+      duration: 0.2,
+      stagger: 0.02,
       ease: "power2.out",
     });
 
     triggerRef.current = tl.current.scrollTrigger ?? null;
 
     return () => {
-      
-      if (triggerRef.current) {
-        triggerRef.current.kill();
-      }
       if (tl.current) {
         tl.current.kill();
       }
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      heading.revert(); 
+      heading.revert();
     };
   }, []);
 
