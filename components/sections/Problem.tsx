@@ -37,7 +37,7 @@ export default function Problem() {
         return;
       }
 
-      const heading = section.querySelector(".problem-heading") as HTMLElement | null;
+      const heading = section.querySelector(".problem-headings") as HTMLElement | null;
       if (!heading) {
         console.error("Problem heading not found");
         return;
@@ -63,10 +63,10 @@ export default function Problem() {
       }
 
       // Verify SplitType output
-      const chars = section.querySelectorAll(".problem-heading .char");
+      const chars = section.querySelectorAll(".problem-headings .char");
       console.log("Characters found:", chars.length);
 
-      gsap.set(".problem-heading .word", { whiteSpace: "nowrap" });
+      gsap.set(".problem-headings .word", { whiteSpace: "nowrap" });
 
       // Create GSAP timeline
       const tl = gsap.timeline({
@@ -92,7 +92,7 @@ export default function Problem() {
 
       if (chars.length) {
         tl.fromTo(
-          ".problem-heading .char",
+          ".problem-headings .char",
           { fontWeight: 300, color: "#515151", opacity: 1 },
           {
             fontWeight: 400,
@@ -134,7 +134,7 @@ export default function Problem() {
         <div className="flex flex-col justify-center gap-[2rem] pr-[4rem] items-start max-sm:items-center max-sm:mb-10">
           <h2 className="text-[#525299] main-title">The Problem</h2>
           <p className="problem-span text-left text-[#515151] max-sm:text-center">
-            <span className="problem-heading text-black">Stress is a lifestyle issue.</span>{" "}
+            <span className="problem-headings text-black">Stress is a lifestyle issue.</span>{" "}
             It builds quietly, drains you daily, but we don’t talk about it enough.
           </p>
         </div>
@@ -152,7 +152,7 @@ export default function Problem() {
             The Problem
           </h2>
           <p className="text-[2rem] para text-center text-[#8a8a8a] font-light leading-relaxed">
-            <span className="problem-heading font-semibold text-black">Stress is a lifestyle issue.</span>{" "}
+            <span className="problem-headings font-semibold text-black">Stress is a lifestyle issue.</span>{" "}
             It builds quietly, drains you daily, but we don’t talk about it enough.
           </p>
           <div className="w-full mt-4">

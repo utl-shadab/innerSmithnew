@@ -160,7 +160,7 @@ const slideVariants = {
                 className="space-y-6"
               >
                 <p className="para problem-heading-main text-left text-[#515151] font-[300] max-sm:text-center ">
-                <span className="problem-heading font-[400] text-black"> {AppSlides[activeIndex].title}{" "} <br /></span>   
+                <span className="problem-headings font-[400] text-black"> {AppSlides[activeIndex].title}{" "} <br /></span>   
                  {AppSlides[activeIndex].content}
                 </p>
                 {/* <p className="text-lg problem-heading text-center lg:text-left leading-relaxed para text-gray-600 w-full lg:max-w-2xl">
@@ -176,7 +176,7 @@ const slideVariants = {
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center  space-x-3 pt-6 lg:justify-start 
+            <div className="flex justify-center  space-x-3 pt-2 md:pt-6 lg:justify-start 
                absolute bottom-6 manage-dots left-1/2 -translate-x-1/2 
                lg:relative lg:bottom-auto lg:left-auto lg:translate-x-0">
               {AppSlides.map((_, index) => (

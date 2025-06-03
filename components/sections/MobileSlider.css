@@ -8,9 +8,59 @@
   line-height: normal;
 }
 
+.custom-size {
+  font-size: 128px;
+  font-style: normal;
+}
+
+.hero-para {
+  color: #FFF;
+  text-align: center;
+  font-family: "Albert Sans";
+  font-size: 40px;
+  font-style: normal;
+}
+
+.problem-headings {
+  font-size: 58px;
+  line-height: 73px;
+  font-weight: 400 !important;
+
+}
+
+.problem-headings .word {
+  white-space: nowrap;
+}
+
+#problem {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.hero-bottom {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.char {
+
+  font-weight: 400 !important;
+}
+
+.word {
+  font-weight: 400 !important;
+}
+
+.problem-heading-main {
+  font-size: 58px;
+  line-height: 73px;
+  font-weight: 300 !important;
+}
+
 .stats-text {
-  color: #fff;
-  font-size: 5rem;
+  color: #C3C3C3;
+ font-size: 3.625rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -18,11 +68,27 @@
 }
 
 .problem-span {
+  font-weight: 300;
+  font-size: 58px;
+  line-height: 73px;
+}
+
+.problem-span {
   font-weight: 300 !important;
 }
 
-.problem-heading {
+.problem-headings {
   font-weight: 400 !important;
+}
+
+.scroll-text {
+  color: #EBEBEB;
+  text-align: center;
+  font-family: "Albert Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
 }
 
 .state-heading {
@@ -30,6 +96,23 @@
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
+}
+
+
+.people {
+
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.slide-text {
+  color: #f0f0f0;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 56px;
 }
 
 @media screen and (max-width: 900px) {
@@ -43,6 +126,21 @@
   .smallFit {
     height: 40vw;
     width: 100%;
+  }
+
+  .hero-para {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
+  .small-margin {
+    margin-top: 20vw;
+
+  }
+
+  .scroll-text {
+    font-size: 3vw;
+    line-height: 5vw;
   }
 
   .flex-mobile {
@@ -62,12 +160,12 @@
     line-height: 8vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 6vw;
     line-height: 8vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 6vw;
     line-height: 8vw;
   }
@@ -112,6 +210,11 @@
 
   }
 
+  .hero-bottom {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
   .arrow {
     width: 4vw;
     height: 4vw;
@@ -135,8 +238,23 @@
     font-size: 3vw;
   }
 
+  .people {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
   .state-heading {
     font-size: 12vw;
+  }
+
+  .problem-span {
+    font-size: 6vw;
+    line-height: 8vw;
+  }
+
+  .logo-hero {
+    left: 6vw;
+    top: 6vw;
   }
 }
 
@@ -144,6 +262,11 @@
   .title {
     font-size: 5vw;
     line-height: 7vw;
+  }
+
+  .hero-bottom {
+    font-size: 7vw;
+    line-height: 9vw;
   }
 
   .logo-hero {
@@ -157,7 +280,7 @@
 
   .custom-size {
     font-size: 13vw;
-    margin-top: 10vw;
+    margin-top: 4vw;
   }
 
   .state-heading {
@@ -174,14 +297,19 @@
     line-height: 9vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
+  }
+
+  .problem-headings {
+    font-size: 5vw;
+    line-height: 7vw;
   }
 
   .custom-button {
@@ -231,6 +359,35 @@
     width: 100%;
     margin-left: 15vw;
   }
+
+  .hero-para {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .animate-bounce svg {
+    width: 10vw;
+    height: 16vw;
+  }
+
+  .custom-size {
+    font-size: 10vw;
+    line-height: normal;
+  }
+
+  .scroll-text {
+    font-size: 3vw;
+    line-height: 4vw;
+  }
+
+  .custom-width {
+    width: 60%;
+  }
+
+  .people {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -239,12 +396,17 @@
     line-height: 6vw;
   }
 
+  .people {
+    font-size: 4vw;
+    line-height: 6vw;
+  }
+
   .para {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
 
@@ -300,10 +462,26 @@
   .stats-text {
     font-size: 6vw;
   }
-   .slider-state {
+
+  .slider-state {
     margin-top: 10vw;
     width: 100%;
     margin-left: 12vw;
+  }
+
+  .problem-span {
+    font-size: 4vw;
+    line-height: 6vw;
+  }
+
+  .hero-bottom {
+    font-size: 7vw;
+    line-height: 9vw;
+  }
+
+  .scroll-text {
+    font-size: 3vw;
+    line-height: 2.5vw;
   }
 }
 
@@ -323,12 +501,12 @@
     line-height: 10vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7.5vw;
     line-height: 10vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7.5vw;
     line-height: 10vw;
   }
@@ -344,7 +522,8 @@
   .state-heading {
     font-size: 13vw;
   }
-   .slider-state {
+
+  .slider-state {
     margin-top: 10vw;
     width: 100%;
     margin-left: 10vw;
@@ -369,12 +548,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 8.5vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 8.5vw;
   }
@@ -442,18 +621,18 @@
   }
 
 
-  .hero-heading {
-    font-size: 5.5vw;
-    line-height: 9vw;
+  .hero-headings {
+    font-size: 6.5vw;
+    line-height: 8vw;
   }
 
   .second-custom {
-    margin-top: 1vw;
+    margin-top: 3vw;
     font-size: 4.5vw;
     line-height: 6.5vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 6.5vw;
     line-height: 7vw;
   }
@@ -482,10 +661,19 @@
     padding-bottom: 15vw;
   }
 
-  .secondview {
-    align-items: start;
+  .logo-hero {
+    left: 42%;
+    top: 22vw;
   }
 
+  .secondview {
+    align-items: start;
+    margin-top: 40vw;
+  }
+
+  /* .secondview {
+        align-items: center;
+    } */
   .card-hide {
     display: none;
   }
@@ -498,9 +686,9 @@
     margin-top: 3vw;
   }
 
-  /* .manage-buttons {
-    display: none;
-  } */
+  .manage-buttons {
+    padding-top: 2vw;
+  }
 
   .custom-footer-title {
     font-size: 9vw;
@@ -518,9 +706,8 @@
   }
 
 
-
   .smallFit {
-    top: -12% !important;
+    top: -17% !important;
     position: absolute !important;
   }
 
@@ -541,6 +728,10 @@
   .people {
     font-size: 4.5vw;
   }
+
+  .hero-small-margin {
+    margin-top: 20vw;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -549,24 +740,57 @@
     line-height: 6vw;
   }
 
+  .hero-para {
+    font-size: 4.5vw;
+    line-height: 1.5vw;
+  }
+
+  .custom-size {
+    font-size: 11vw;
+  }
+
+  .problem-span {
+    font-size: 3.5vw;
+    line-height: 5.5vw;
+  }
+
+  .scroll-text {
+    font-size: 3vw;
+    line-height: 3vw;
+  }
+
+  .hero-bottom {
+    font-size: 3.5vw;
+    line-height: 5.5vw;
+  }
+
+  .people {
+    font-size: 3.5vw;
+    line-height: 5.5vw;
+  }
+
   .para {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
+  }
+
+  .stats-text {
+    font-size: 7vw;
   }
 
   .custom-size {
-    font-size: 12vw;
-    margin-top: 6vw;
+    font-size: 16vw;
+    margin: 5vw 0;
   }
 
   .slide-text {
@@ -578,6 +802,18 @@
     font-size: 14vw;
   }
 
+  .secondText {
+    line-height: 12vw;
+    font-weight: 600;
+  }
+
+  .card-margin {
+    margin-top: 0vw;
+  }
+
+  .hero-small-margin {
+    margin-top: 20vw;
+  }
 }
 
 /* 380px */
@@ -602,12 +838,12 @@
     line-height: 9vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-weight: 400 !important;
     font-size: 7vw;
     line-height: 9vw;
@@ -615,8 +851,8 @@
   }
 
   .custom-size {
-    font-size: 11vw;
-    margin-top: 3vw;
+    font-size: 17vw;
+    margin: 5vw 0;
   }
 
   .state-heading {
@@ -669,6 +905,20 @@
     font-size: 5.5vw !important;
     line-height: 7vw;
   }
+
+  .hero-para {
+    font-size: 4.5vw;
+    line-height: 1.5vw;
+  }
+
+  .logo-hero {
+    left: 42%;
+    top: 33vw;
+  }
+
+  .hero-small-margin {
+    margin-top: 57vw;
+  }
 }
 
 /* 350px */
@@ -687,12 +937,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 6.5vw;
     line-height: 8.5vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 6.5vw;
     line-height: 8.5vw;
   }
@@ -740,19 +990,27 @@
     line-height: 6.5vw;
   }
 
+  .problem-span {
+    font-size: 3vw;
+    line-height: 5vw;
+  }
 
   .para {
     font-size: 6.5vw;
     line-height: 8.5vw;
   }
 
+  .hero-bottom {
+    font-size: 3vw;
+    line-height: 5vw;
+  }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 6.5vw;
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
@@ -790,9 +1048,17 @@
 
   }
 
+  .logo-hero {
+    left: 42%;
+    top: 46vw;
+    width: 13vw;
+    height: 13vw;
+  }
+
   .people {
     font-size: 5.5vw;
   }
+
 }
 
 /* 300px */
@@ -807,12 +1073,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
@@ -846,12 +1112,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
@@ -884,12 +1150,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
@@ -922,12 +1188,12 @@
     line-height: 8.5vw;
   }
 
-  .hero-heading {
+  .hero-headings {
     font-size: 7vw;
     line-height: 9vw;
   }
 
-  .problem-heading {
+  .problem-headings {
     font-size: 7vw;
     line-height: 9vw;
   }

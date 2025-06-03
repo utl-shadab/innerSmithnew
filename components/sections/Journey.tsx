@@ -15,14 +15,14 @@ export default function Journey() {
     
         const setupAnimations = () => {
           const section = sectionRef.current;
-          const heading = new SplitType(".problem-heading", {
+          const heading = new SplitType(".problem-headings", {
             types: "words,chars",
           });
     
           if (!section) return;
     
           gsap.set(section, { clearProps: "all" });
-          document.querySelectorAll(".problem-heading .word").forEach((el) => {
+          document.querySelectorAll(".problem-headings .word").forEach((el) => {
             (el as HTMLElement).style.whiteSpace = "nowrap";
           });
           tl = gsap.timeline({
@@ -37,7 +37,7 @@ export default function Journey() {
           });
     
           tl.fromTo(
-            ".problem-heading .char",
+            ".problem-headings .char",
             { fontWeight: "300", color: "#515151" },
             {
               fontWeight: "400",
@@ -71,7 +71,7 @@ export default function Journey() {
               A Journey That Fits You
             </h2>
              <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
+            <span className="problem-headings font-[400] text-black">
               Be it heartache, loss, exhaustion, or just a rough day,
             </span>{" "}
               there's a path for you here.
@@ -97,7 +97,7 @@ export default function Journey() {
               A Journey That Fits You
             </h2>
              <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
+            <span className="problem-headings font-[400] text-black">
               Be it heartache, loss, exhaustion, or just a rough day,
             </span>{" "}
               there's a path for you here.

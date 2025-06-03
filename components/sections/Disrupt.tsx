@@ -14,11 +14,11 @@ export default function Disrupt() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    const heading = new SplitType(".problem-heading", {
+    const heading = new SplitType(".problem-headings", {
     types: "words,chars",
     });
 
-    gsap.set(".problem-heading .char", {
+    gsap.set(".problem-headings .char", {
       opacity: 0,
       y: 30,
     });
@@ -34,7 +34,7 @@ export default function Disrupt() {
     });
 
  
-    tl.current.to(".problem-heading .char", {
+    tl.current.to(".problem-headings .char", {
       opacity: 1,
       y: 0,
       duration: 0.5,
@@ -71,7 +71,7 @@ export default function Disrupt() {
             Let’s Disrupt The Spiral
           </h2>
           <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
+            <span className="problem-headings font-[400] text-black">
               What if support showed up the moment the tension set in?
             </span>{" "}
             What if something helped you feel better in minutes?
@@ -91,7 +91,7 @@ export default function Disrupt() {
             Let’s Disrupt The Spiral
           </h2>
           <p className="text-[2rem] para text-center text-[#8a8a8a] font-light leading-relaxed">
-            <span className="problem-heading font-medium text-black">
+            <span className="problem-headings font-medium text-black">
               What if support showed up the moment the tension set in?
             </span>{" "}
             What if something helped you feel better in minutes?

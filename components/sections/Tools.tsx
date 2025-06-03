@@ -39,6 +39,8 @@ export default function Tools() {
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
+      setIsMobile(isMobile);
+      setExpandedCard(isMobile ? 0 : -1);
     };
 
     checkMobile();
@@ -151,7 +153,7 @@ export default function Tools() {
               >
                 <motion.div
                   onClick={() => handleCardClick(index)}
-                  className="p-6 cursor-pointer flex items-center justify-between"
+                  className="  p-3 sm:p-6 cursor-pointer flex items-center justify-between"
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center space-x-4">
@@ -171,7 +173,7 @@ export default function Tools() {
                       />
                     </motion.div>
                     <h3
-                      className={`text-lg w-full max-w-40 ${expandedCard === index ? 'font-bold' : 'font-medium'
+                      className={`text-base sm:text-lg w-full max-w-40 ${expandedCard === index ? 'font-bold' : 'font-medium'
                         } text-gray-900`}
                     >
                       {card.title}

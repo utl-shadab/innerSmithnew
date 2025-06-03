@@ -14,14 +14,14 @@ export default function Feel() {
 
     const setupAnimations = () => {
       const section = sectionRef.current;
-      const heading = new SplitType(".problem-heading", {
+      const heading = new SplitType(".problem-headings", {
         types: "words,chars",
       });
 
       if (!section) return;
 
       gsap.set(section, { clearProps: "all" });
-      document.querySelectorAll(".problem-heading .word").forEach((el) => {
+      document.querySelectorAll(".problem-headings .word").forEach((el) => {
         (el as HTMLElement).style.whiteSpace = "nowrap";
       });
       tl = gsap.timeline({
@@ -36,7 +36,7 @@ export default function Feel() {
       });
 
       tl.fromTo(
-        ".problem-heading .char",
+        ".problem-headings .char",
         { fontWeight: "300", color: "#515151" },
         {
           fontWeight: "400",
@@ -72,7 +72,7 @@ export default function Feel() {
               Feel More Like Yourself With InnerSmith
             </h2>
             <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
-              <span className="problem-heading font-[400] text-black">
+              <span className="problem-headings font-[400] text-black">
                 InnerSmith guides you through quick, calming activities
               </span>{" "}
               that help you show up for your work, <br className='break-mobile' /> your people, and yourself.
@@ -106,7 +106,7 @@ export default function Feel() {
               Feel More Like Yourself With InnerSmith
             </h2>
             <p className="problem-span text-left para text-[#515151] font-[300] max-sm:text-center ">
-              <span className="problem-heading font-[400] text-black">
+              <span className="problem-headings font-[400] text-black">
                 InnerSmith guides you through quick, calming activities
               </span>{" "}
               that help you show up for your work, your people, and yourself.
@@ -140,7 +140,7 @@ export default function Feel() {
               Feel More Like Yourself With InnerSmith
             </h3>
             <p className="problem-span text-left para text-[#515151] font-[300] max-sm:text-center ">
-              <span className="problem-heading font-[400] text-black">
+              <span className="problem-headings font-[400] text-black">
                 InnerSmith guides you through quick, calming activities
               </span>{" "}
               that help you show up for your work, your people, and yourself.

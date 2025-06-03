@@ -1,4 +1,3 @@
-import Image from "next/image"
 
 export default function Unbox() {
   return (
@@ -6,7 +5,7 @@ export default function Unbox() {
       id="unbox"
       style={{ scrollSnapAlign: 'start' }}>
       <video 
-        src="https://thescaleagency.s3.amazonaws.com/innersmith_desktop.mp4" 
+        src="/videos/unbox.mp4" 
         autoPlay 
         loop 
         muted 
@@ -15,7 +14,7 @@ export default function Unbox() {
       />
       <div className="absolute top-0 left-0 w-full h-full  items-center justify-center bg-black block lg:hidden">
         <video 
-          src="https://thescaleagency.s3.amazonaws.com/innersmith_mobile.mp4" 
+          src="/videos/unbox.mp4"  
           autoPlay 
           loop 
           muted 
