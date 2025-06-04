@@ -71,7 +71,7 @@ export default function Journey() {
 
         <div className="w-2/5 relative">
           <Image
-            src="/images/smallFit.png"
+            src="/images/fits.png"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
             className="object-fill"
@@ -97,7 +97,7 @@ export default function Journey() {
 
         <div className="flex-1 relative -mx-0">
           <Image
-            src="/rounded-full.jpg"
+            src="images/smallFit.png"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
             className="object-cover w-full h-full smallFit max-w-[22rem] md:max-w-xl sm:max-w-xl  mx-auto"
