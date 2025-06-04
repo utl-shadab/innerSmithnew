@@ -27,7 +27,7 @@ export default function HeroSection() {
 
       gsap.set(split.chars, {
         opacity: 0,
-        y: 20,
+        x: 2,
       });
 
       gsap.fromTo(
@@ -185,15 +185,15 @@ export default function HeroSection() {
         ref={secondViewRef}
         className="relative z-20 h-screen flex items-center justify-center secondview text-white px-4"
       >
-        <div className="text-center max-w-7xl w-full mx-auto">
+         <div className="text-center max-w-7xl w-full mx-auto">
           <h2 ref={headingRef} className="para hero-bottom">
             Say hello to the{" "}
             <span className="hero-headings !font-normal text-2xl md:text-3xl lg:text-5xl">
-              world’s first holistic wellness app
+              world's first holistic wellness app
             </span>
-            <br />
+            <br className="hidden md:block" />
             that improves your sleep, focus, and emotional balance,
-            <br />
+            <br className="hidden md:block" />
             starting on day one.
           </h2>
         </div>

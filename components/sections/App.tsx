@@ -99,40 +99,40 @@ export default function App() {
     return () => ctx.revert()
   }, [])
 
-const handleDotClick = (index: number) => {
-  if (swiperRef.current) {
-    swiperRef.current.autoplay?.stop()
-    swiperRef.current.slideToLoop(index)
-    swiperRef.current.autoplay?.start()
+  const handleDotClick = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.autoplay?.stop()
+      swiperRef.current.slideToLoop(index)
+      swiperRef.current.autoplay?.start()
+    }
   }
-}
 
-const slideVariants = {
-  enter: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 0.4,
-      ease: [0.65, 0, 0.35, 1], 
+  const slideVariants = {
+    enter: {
+      opacity: 0,
+      y: 10,
+      transition: {
+        duration: 0.4,
+        ease: [0.65, 0, 0.35, 1],
+      },
     },
-  },
-  center: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.65, 0, 0.35, 1],
+    center: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.65, 0, 0.35, 1],
+      },
     },
-  },
-  exit: {
-    opacity: 0,
-    y: -10,
-    transition: {
-      duration: 0.4,
-      ease: [0.65, 0, 0.35, 1],
+    exit: {
+      opacity: 0,
+      y: -10,
+      transition: {
+        duration: 0.4,
+        ease: [0.65, 0, 0.35, 1],
+      },
     },
-  },
-};
+  };
 
   const transition = {
     duration: 0.6,
@@ -140,9 +140,9 @@ const slideVariants = {
   }
 
   return (
-    <section ref={sectionRef} className="h-screen w-full bg-[#F1F3F9] relative overflow-hidden flex items-center">
+    <section ref={sectionRef} className="h-screen w-full bg-[#F1F3F9] relative overflow-hidden flex items-stretch sm:items-center ">
       <div className="w-full mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 flex-mobile gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 flex-mobile gap-6 sm:gap-12 lg:gap-16 items-center">
 
           <div ref={textContentRef} className="lg:col-span-7 flex flex-col space-y-2 md:space-y-6 justify-center text-center lg:text-left order-2 lg:order-1">
             <h3 ref={titleRef} className="text-lg title main-title lg:text-xl text-[#6AA7BB] font-medium tracking-wide  ">
@@ -160,30 +160,20 @@ const slideVariants = {
                 className="space-y-6"
               >
                 <p className="para problem-heading-main text-left text-[#515151] font-[300] max-sm:text-center ">
-                <span className="problem-headings font-[400] text-black"> {AppSlides[activeIndex].title}{" "} <br /></span>   
-                 {AppSlides[activeIndex].content}
-                </p>
-                {/* <p className="text-lg problem-heading text-center lg:text-left leading-relaxed para text-gray-600 w-full lg:max-w-2xl">
-               
+                  <span className="problem-headings font-[400] text-black"> {AppSlides[activeIndex].title}{" "} <br /></span>
                   {AppSlides[activeIndex].content}
-                </p> */}
-                 {/* <p className="problem-span text-left text-[#515151] font-[300] max-sm:text-center ">
-            <span className="problem-heading font-[400] text-black">
-             What if support showed up the moment the tension set in?
-            </span>{" "}
-           What if something helped you feel better in minutes?
-          </p> */}
+                </p>
               </motion.div>
             </AnimatePresence>
 
             <div className="flex justify-center  space-x-3 pt-2 md:pt-6 lg:justify-start 
-               absolute bottom-6 manage-dots left-1/2 -translate-x-1/2 
+               absolute bottom-10 sm:bottom-6 manage-dots left-1/2 -translate-x-1/2 
                lg:relative lg:bottom-auto lg:left-auto lg:translate-x-0">
               {AppSlides.map((_, index) => (
                 <motion.button
                   key={index}
                   className={`h-2.5 rounded-full cursor-pointer ${index === activeIndex ? "bg-teal-600" : "bg-gray-300"
-                    }`}style={{ width: index === activeIndex ? 40 : 10 }}
+                    }`} style={{ width: index === activeIndex ? 40 : 10 }}
                   animate={{
                     width: index === activeIndex ? 40 : 10,
                     backgroundColor: index === activeIndex ? "#0d9488" : "#d1d5db",
@@ -205,7 +195,8 @@ const slideVariants = {
             <div className="relative lg:static">
               <div className="frame-size relative h-[76vw] w-[40vw] sm:h-[85vw] sm:w-[45vw] md:w-[35vw] md:h-[66vw] lg:w-[19vw] lg:h-[36vw] xl:w-[330px] xl:h-[620px]">
 
-                <div className="absolute inset-0 z-20">
+
+                <div className="absolute inset-0 z-20 pointer-events-none">
                   <Image
                     src="/svgs/mobileScreen.svg"
                     alt="Phone frame"
@@ -216,22 +207,35 @@ const slideVariants = {
                 </div>
 
                 <div className="absolute inset-0 z-10">
-                  <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-sm  md:rounded-[8px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
+                  <div className="absolute top-[1.5%] left-[7%] right-[7%] bottom-[1.5%] rounded-sm md:rounded-[8px] lg:rounded-[12px] xl:rounded-[12px] overflow-hidden">
                     <Swiper
                       modules={[Autoplay, Navigation]}
                       slidesPerView={1}
                       spaceBetween={0}
-                      speed={800}
+                      speed={600}
                       navigation={false}
                       centeredSlides={true}
                       allowTouchMove={true}
                       grabCursor={true}
                       touchRatio={1}
                       threshold={10}
+                      touchAngle={45}
                       longSwipesRatio={0.5}
+                      longSwipesMs={300}
+                      shortSwipes={true}
+                      preventClicks={false}
+                      preventClicksPropagation={false}
+                      simulateTouch={true}
+                      touchStartPreventDefault={false}
+                      touchStartForcePreventDefault={false}
+                      touchMoveStopPropagation={false}
+                      resistance={true}
+                      resistanceRatio={0.85}
+                      watchSlidesProgress={true}
+                      watchOverflow={true}
                       autoplay={{
-                        delay: 4000,
-                        disableOnInteraction: false,
+                        delay: 5000,
+                        disableOnInteraction: true,
                         pauseOnMouseEnter: true,
                       }}
                       onSwiper={(swiper) => {
@@ -240,19 +244,42 @@ const slideVariants = {
                       onSlideChange={(swiper) => {
                         setActiveIndex(swiper.realIndex)
                       }}
+                      onTouchStart={() => {
+
+                        if (swiperRef.current?.autoplay) {
+                          swiperRef.current.autoplay.stop()
+                        }
+                      }}
+                      onTouchEnd={() => {
+
+                        setTimeout(() => {
+                          if (swiperRef.current?.autoplay) {
+                            swiperRef.current.autoplay.start()
+                          }
+                        }, 3000)
+                      }}
                       loop={true}
-                      className="w-full h-full"
+                      className="w-full h-full touch-pan-x touch-pan-y select-none"
+                      style={{
+                        touchAction: 'pan-x pan-y',
+                        userSelect: 'none',
+                        WebkitUserSelect: 'none',
+                        MozUserSelect: 'none',
+                        msUserSelect: 'none'
+                      }}
+                      cssMode={false}
                     >
                       {AppSlides.map((slide, index) => (
-                        <SwiperSlide key={index} className="relative">
-                          <div className="relative w-full h-full">
+                        <SwiperSlide key={index} className="relative select-none">
+                          <div className="relative w-full h-full select-none" style={{ userSelect: 'none' }}>
                             <Image
                               src={slide.imgLink || "/placeholder.svg"}
                               alt={slide.title}
                               fill
-                              className="object-cover object-center"
+                              className="object-cover object-center select-none"
                               sizes="(max-width: 1024px) 340px, (max-width: 1280px) 280px, 420px"
                               priority={index === 0}
+                              draggable={false}
                             />
                           </div>
                         </SwiperSlide>
@@ -265,6 +292,8 @@ const slideVariants = {
           </div>
         </div>
       </div>
+
+
     </section>
   )
 }

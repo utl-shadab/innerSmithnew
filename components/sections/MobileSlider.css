@@ -60,7 +60,7 @@
 
 .stats-text {
   color: #C3C3C3;
- font-size: 3.625rem;
+  font-size: 3.625rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -98,6 +98,26 @@
   line-height: 100%;
 }
 
+.swiper-container {
+  touch-action: pan-y pinch-zoom;
+}
+
+.swiper-slide {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .swiper-container {
+    touch-action: pan-x pan-y;
+  }
+}
 
 .people {
 
@@ -537,6 +557,10 @@
     line-height: 7vw;
   }
 
+  .flex-mobile {
+    margin-top: 2rem;
+  }
+
   /* .manage-dots {
     left: -2rem;
     bottom: 6rem;
@@ -702,7 +726,7 @@
   }
 
   .custom-gap {
-    padding: 2vw;
+    padding: 4vw;
   }
 
 
@@ -712,8 +736,8 @@
   }
 
   .frame-size {
-    width: 40vw;
-    height: 76vw;
+    width: 45vw;
+    height: 90vw;
   }
 
   .state-heading {
@@ -732,7 +756,8 @@
   .hero-small-margin {
     margin-top: 20vw;
   }
-  .manage-dots{
+
+  .manage-dots {
     bottom: 3rem !important;
   }
 }
@@ -742,9 +767,11 @@
     font-size: 5vw;
     line-height: 6vw;
   }
- .manage-dots{
-    bottom: 2rem !important;
+
+  .manage-dots {
+    bottom: 4rem !important;
   }
+
   .hero-para {
     font-size: 4.5vw;
     line-height: 1.5vw;
@@ -827,9 +854,11 @@
     font-size: 6.5vw;
     line-height: 9vw;
   }
- .manage-dots{
-    bottom: 1rem !important;
+
+  .manage-dots {
+    bottom: 3rem !important;
   }
+
   .slide-text {
     font-size: 7vw;
     line-height: 9vw;
@@ -867,8 +896,8 @@
   }
 
   .frame-size {
-    width: 47vw;
-    height: 91vw;
+    width: 50vw;
+    height: 100vw;
   }
 
   /* .manage-buttons {
@@ -933,6 +962,15 @@
   .title {
     font-size: 5.5vw;
     line-height: 7vw;
+  }
+
+  .manage-dots {
+    bottom: 5rem !important;
+  }
+
+  .frame-size {
+    width: 55vw;
+    height: 112vw;
   }
 
   .custom-size {
@@ -1066,6 +1104,14 @@
     font-size: 5.5vw;
   }
 
+  .frame-size {
+    width: 55vw;
+    height: 112vw;
+  }
+
+  .manage-dots {
+    bottom: 6rem !important;
+  }
 }
 
 /* 300px */
