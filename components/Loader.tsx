@@ -6,9 +6,9 @@ import shutterUp from "@/public/images/shutterUp.svg";
 import Loading from "./loading";
 
 const images = [
-  "/images/pausebg.jpeg",
-  "/images/breathebg.jpg",
-  "/images/resetbg.jpg",
+  "/images/pauseImg.jpg",
+  "/images/breatheImg.jpg",
+  "/images/resetImg.jpg",
 ];
 const texts = ["PAUSE", "BREATHE", "RESET"];
 
