@@ -90,6 +90,8 @@ useEffect(() => {
                 muted
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
+                controls={false}
               >
                 <source src="/videos/logo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -125,6 +127,8 @@ useEffect(() => {
                 muted
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
+                controls={false}
               >
                 <source src="/videos/logo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
