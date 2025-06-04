@@ -664,7 +664,7 @@
 
   .flex-mobile {
     display: flex;
-    gap: 35px;
+    gap: 2rem;
     flex-direction: column-reverse;
   }
 
@@ -690,6 +690,9 @@
     top: 22vw;
   }
 
+.custom-state-bottom{
+  bottom: 25%;
+}
   .secondview {
     align-items: start;
     margin-top: 40vw;
@@ -731,12 +734,12 @@
 
 
   .smallFit {
-    top: -17% !important;
+    top: -31% !important;
     position: absolute !important;
   }
 
   .frame-size {
-    width: 45vw;
+    width: 48vw;
     height: 90vw;
   }
 
@@ -769,7 +772,7 @@
   }
 
   .manage-dots {
-    bottom: 4rem !important;
+    bottom: 6rem !important;
   }
 
   .hero-para {
@@ -846,6 +849,11 @@
   .hero-small-margin {
     margin-top: 20vw;
   }
+
+  .frame-size {
+    width: 47vw;
+    height: 90vw;
+  }
 }
 
 /* 380px */
@@ -856,7 +864,7 @@
   }
 
   .manage-dots {
-    bottom: 3rem !important;
+    bottom: 6rem !important;
   }
 
   .slide-text {
@@ -896,7 +904,7 @@
   }
 
   .frame-size {
-    width: 50vw;
+    width: 53vw;
     height: 100vw;
   }
 
@@ -969,7 +977,7 @@
   }
 
   .frame-size {
-    width: 55vw;
+    width: 59vw;
     height: 112vw;
   }
 
@@ -1105,7 +1113,7 @@
   }
 
   .frame-size {
-    width: 55vw;
+    width: 59vw;
     height: 112vw;
   }
 

@@ -637,14 +637,14 @@ const Stats = () => {
       id="stats"
       style={{ scrollSnapAlign: "start" }}
     >
-      <div className="flex flex-col lg:flex-row justify-center items-center h-full w-full gap-1 md:gap-10 lg:gap-1 mx-auto">
-        <div className="w-full lg:w-2/5 ml-1 lg:ml-20 flex justify-center lg:justify-end items-center">
+      <div className="flex flex-col lg:flex-row mb-40 sm:mb-2 justify-center items-center h-full w-full gap-1 md:gap-10 lg:gap-1 mx-auto">
+        <div className="w-full lg:w-2/5 ml-1  lg:ml-20 flex justify-center lg:justify-end items-center">
           <div className="stats-text font-light text-center lg:text-start whitespace-nowrap mb-4 lg:mb-0">
             You're Not Alone ―
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center">
+        <div className="w-full lg:w-1/2 state-margin flex justify-center lg:justify-end items-center">
           <div
             className="relative w-full slider-state max-w-[486px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] h-[250px] sm:h-[280px] md:h-[300px] lg:h-[400px] overflow-hidden"
             style={{
@@ -817,7 +817,7 @@ const Stats = () => {
           </div>
 
          
-          <div className="absolute bottom-[15%] sm:bottom-[10%] left-36 lg:left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          <div className="absolute custom-state-bottom bottom-[15%] sm:bottom-[10%] left-36 lg:left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {affectedDataSlide.map((_, idx) => (
               <motion.button
                 key={idx}

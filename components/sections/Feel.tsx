@@ -88,6 +88,8 @@ useEffect(() => {
                 autoPlay
                 loop
                 muted
+                playsInline
+                preload="auto"
               >
                 <source src="/videos/logo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -121,6 +123,8 @@ useEffect(() => {
                 autoPlay
                 loop
                 muted
+                playsInline
+                preload="auto"
               >
                 <source src="/videos/logo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.

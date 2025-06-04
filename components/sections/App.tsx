@@ -142,7 +142,7 @@ export default function App() {
   return (
     <section ref={sectionRef} className="h-screen w-full bg-[#F1F3F9] relative overflow-hidden flex items-stretch sm:items-center ">
       <div className="w-full mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 flex-mobile gap-6 sm:gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 flex-mobile gap-2 sm:gap-12 lg:gap-16 items-center">
 
           <div ref={textContentRef} className="lg:col-span-7 flex flex-col space-y-2 md:space-y-6 justify-center text-center lg:text-left order-2 lg:order-1">
             <h3 ref={titleRef} className="text-lg title main-title lg:text-xl text-[#6AA7BB] font-medium tracking-wide  ">
@@ -166,16 +166,16 @@ export default function App() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center  space-x-3 pt-2 md:pt-6 lg:justify-start 
+            <div className="flex justify-center  space-x-3 pt-0 sm:pt-3 md:pt-6 lg:justify-start 
                absolute bottom-10 sm:bottom-6 manage-dots left-1/2 -translate-x-1/2 
                lg:relative lg:bottom-auto lg:left-auto lg:translate-x-0">
               {AppSlides.map((_, index) => (
                 <motion.button
                   key={index}
-                  className={`h-2.5 rounded-full cursor-pointer ${index === activeIndex ? "bg-teal-600" : "bg-gray-300"
-                    }`} style={{ width: index === activeIndex ? 40 : 10 }}
+                  className={`h-2.5 rounded-full cursor-pointer ${index === activeIndex ? "bg-teal-600" : "bg-gray-300"}`}
+                  style={{ width: index === activeIndex ? "2.5rem" : "0.625rem" }} 
                   animate={{
-                    width: index === activeIndex ? 40 : 10,
+                    width: index === activeIndex ? "2.5rem" : "0.625rem",
                     backgroundColor: index === activeIndex ? "#0d9488" : "#d1d5db",
                   }}
                   whileHover={{

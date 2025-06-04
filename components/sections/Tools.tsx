@@ -92,14 +92,14 @@ export default function Tools() {
 
   return (
     <section
-      className="bg-white min-h-screen flex justify-center items-center py-8 px-4"
+      className="bg-white min-h-screen flex justify-center items-start sm:items-center pb-8 sm:py-8 px-4"
       id="tools"
       style={{ scrollSnapAlign: "start" }}
       ref={sectionRef}
     >
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto mt-10 sm:mt-3">
         {/* Header */}
-        <div ref={titleRef} className="text-center mb-10 card-margin w-full max-w-3xl mx-auto">
+        <div ref={titleRef} className="text-center mb-3 sm:mb-10 card-margin w-full max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl md:leading-tight text-gray-900 font-normal para">
             <span className="font-bold">500+</span> Scientifically-Backed
             Tools, <span className="text-[#515151] font-light">Matched to You</span>
