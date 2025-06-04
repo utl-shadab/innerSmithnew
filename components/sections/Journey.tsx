@@ -86,6 +86,7 @@ export default function Journey() {
             <h2 className=" title font-medium text-[#7BB338]  tracking-wide">
               A Journey That Fits You
             </h2>
+            
             <p className="problem-span para text-left text-[#515151] font-[300] max-sm:text-center ">
               <span className="problem-headings font-[400] text-black">
                 Be it heartache, loss, exhaustion, or just a rough day,
