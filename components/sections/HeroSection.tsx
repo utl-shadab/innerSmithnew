@@ -20,15 +20,9 @@ export default function HeroSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       
-      const split = new SplitType(headingRef.current!, {
-        types: "chars", 
-        tagName: "span", 
-      });
+     
 
-      gsap.set(split.chars, {
-        opacity: 0,
-        x: 2,
-      });
+    
 
       gsap.fromTo(
         firstViewRef.current?.children || [],
@@ -71,26 +65,7 @@ export default function HeroSection() {
         }
       );
 
-      gsap.to(split.chars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.3, 
-        stagger: 0.05, 
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: secondViewRef.current,
-          start: "top 90%", 
-          end: "bottom 10%", 
-          toggleActions: "play none none none", 
-          markers: false, 
-          
-        },
-      });
-
-      
-      return () => {
-        split.revert(); 
-      };
+     
     }, heroRef);
 
     return () => ctx.revert(); 
@@ -145,7 +120,6 @@ export default function HeroSection() {
           <h1 className="font-light tracking-normal my-0 custom-margin custom-size">InnerSmith</h1>
           <p className="second-custom hero-para">
             helps you break free and
-            <br className="block sm:hidden" />
             <em className="italic secondText mx-0 md:mx-2">Feel  Feel Better, Live Better.</em>
           </p>
           <div className="flex flex-col items-center mt-10 lg:mt-28 small-margin gap-3">

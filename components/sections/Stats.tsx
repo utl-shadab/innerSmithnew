@@ -621,7 +621,7 @@ const Stats = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % affectedDataSlide.length);
-    }, 4000);
+    }, 4000); // Change to 4000ms for a slower transition
   };
 
   useEffect(() => {
@@ -838,7 +838,7 @@ const Stats = () => {
                       : "rgba(255, 113, 113, 0.7)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }} 
+                transition={{ duration: 0.2, ease: "easeOut" }}  //update slide time 
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}

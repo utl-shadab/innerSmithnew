@@ -612,6 +612,12 @@
     font-size: 8vw;
   }
 
+  .custom-button {
+    font-size: 3vw;
+    padding: 2.5vw 5vw;
+    margin-top: 6vw;
+  }
+
   /* .manage-buttons {
     display: none;
   } */
@@ -690,9 +696,10 @@
     top: 22vw;
   }
 
-.custom-state-bottom{
-  bottom: 25%;
-}
+  .custom-state-bottom {
+    bottom: 25%;
+  }
+
   .secondview {
     align-items: start;
     margin-top: 40vw;
@@ -723,9 +730,9 @@
   }
 
   .footer-para {
-    font-size: 5vw;
-    margin-top: 3vw;
-    line-height: 6vw;
+    font-size: 4vw;
+    margin-top: 1vw;
+    line-height: 5vw;
   }
 
   .custom-gap {

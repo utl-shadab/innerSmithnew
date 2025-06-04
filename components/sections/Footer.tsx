@@ -38,12 +38,18 @@ export default function Footer() {
 
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl max420:custom-footer-title lg:text-[58px] font-light mb-6" style={{ letterSpacing: "-1.16px", lineHeight: "127%" }}>
+        <h2 className="text-3xl hidden sm:block md:text-5xl max420:custom-footer-title lg:text-[58px] font-light mb-6" style={{ letterSpacing: "-1.16px", lineHeight: "127%" }}>
           Ready to take charge of
           <br />
           your emotions?
         </h2>
-        <p className="text-2xl mb-12 opacity-90 footer-para" style={{ letterSpacing: "-0.48px" }}>The tools are here. You just have to begin.</p>
+        <h2 className="text-3xl font-bold block sm:hidden md:text-5xl max420:custom-footer-title lg:text-[58px]  mb-6" style={{ letterSpacing: "-1.16px", lineHeight: "127%" }}>
+          Ready to take charge 
+          <br />
+         of your emotions?
+        </h2>
+        <p className="text-2xl mb-12 opacity-90 footer-para block  sm:hidden" style={{ letterSpacing: "-0.48px" }}>The tools are here. <br /> You just have to begin.</p>
+        <p className="text-2xl mb-12 opacity-90 footer-para hidden sm:block" style={{ letterSpacing: "-0.48px" }}>The tools are here. You just have to begin.</p>
 
         <div className="flex items-center justify-center mb-8">
           <Image
@@ -186,7 +192,7 @@ export default function Footer() {
 
                 {/* Success Content */}
                 <div className="text-center space-y-6">
-                  <h3 className="text-2xl font-medium text-gray-900">Congratulations!</h3>
+                  <h3 className="text-2xl font-medium text-gray-900">Thanks for Signing Up!</h3>
 
                   <p className="text-sm text-gray-600 leading-relaxed px-2">
                     You have been added to the<br />

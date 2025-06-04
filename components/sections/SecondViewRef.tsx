@@ -13,34 +13,7 @@ export default function HeroSecondView() {
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const split = new SplitType(headingRef.current!, {
-        types: "chars",
-        tagName: "span",
-      });
-
-      gsap.set(split.chars, { opacity: 0, y: 10 });
-
-      gsap.to(split.chars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.3,
-        stagger: 0.05,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: secondViewRef.current,
-          start: "top 90%",
-          end: "bottom 10%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      return () => split.revert();
-    }, secondViewRef);
-
-    return () => ctx.revert();
-  }, []);
+ 
 
   return (
     <div ref={secondViewRef} className="relative h-screen text-white">
