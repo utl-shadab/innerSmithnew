@@ -44,7 +44,7 @@ export default function SmoothAnimatedSections() {
   const animatingRef = useRef(false)
   const observerRef = useRef<Observer | null>(null)
 
-  const [currentSection, setCurrentSection] = useState(0)  // Start with Hero section
+  const [currentSection, setCurrentSection] = useState(0)  
   const [showIntro, setShowIntro] = useState(true)
 
   const gotoSection = useCallback((sectionIndex: number, direction: number) => {
@@ -66,7 +66,7 @@ export default function SmoothAnimatedSections() {
     const prevIndex = currentIndexRef.current;
     if (sectionIndex === prevIndex && currentSection === sectionIndex) return;
 
-    // Handle first section entry
+   
     if (sectionIndex === 0 && prevIndex === -1 && direction === 1) {
       animatingRef.current = true;
       setCurrentSection(0);
@@ -160,12 +160,12 @@ export default function SmoothAnimatedSections() {
   }, [sections.length, currentSection]);
 
   const goBackToNormalScroll = useCallback(() => {
-    // Removed - not needed anymore since we always stay in GSAP mode
+   
   }, []);
 
   useEffect(() => {
     if (currentSection >= 0) {
-      // GSAP animation mode - always active now
+   
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
 
@@ -178,7 +178,7 @@ export default function SmoothAnimatedSections() {
         });
       }
 
-      // Initialize first section
+   
       if (currentIndexRef.current === -1) {
         setTimeout(() => gotoSection(currentSection, 1), 10);
       } else if (currentIndexRef.current !== currentSection && currentSection >= 0 && currentSection < sections.length) {
@@ -218,7 +218,7 @@ export default function SmoothAnimatedSections() {
     };
   }, [currentSection, gotoSection, sections.length]);
 
-  // Removed scroll listener - not needed anymore
+
 
   useEffect(() => {
     const sectionsElements = sectionsRef.current.filter(Boolean);
