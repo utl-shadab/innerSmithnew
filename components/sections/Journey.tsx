@@ -71,7 +71,7 @@ export default function Journey() {
 
         <div className="w-2/5 relative">
           <Image
-            src="/images/fits.png"
+            src="/images/smallFit.png"
             alt="Peaceful landscape with winding path through rolling hills"
             fill
             className="object-fill"
