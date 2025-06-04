@@ -99,7 +99,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative h-[200vh] overflow-hidden z-10"
+      className="relative h-screen overflow-hidden z-10"
       id="hero"
       style={{ scrollSnapAlign: "start" }}
     >
@@ -109,7 +109,7 @@ export default function HeroSection() {
         style={{ willChange: "transform", backgroundColor: "rgba(0, 0, 0, 0.64)" }}
       >
         <Image
-          src="/images/heroFullbg.png"
+          src="/images/heroFullbgsecond.png"
           alt="Mountain landscape background"
           fill
           className="object-cover full-bg-image"
@@ -181,24 +181,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div
-        ref={secondViewRef}
-        className="relative z-20 h-screen flex items-center justify-center secondview text-white px-4"
-      >
-         <div className="text-center max-w-7xl w-full mx-auto">
-          <h2 ref={headingRef} className="para hero-bottom">
-            Say hello to the{" "}
-            <span className="hero-headings !font-normal text-2xl md:text-3xl lg:text-5xl">
-              world's first holistic wellness app
-            </span>
-            <br className="hidden md:block" />
-            that improves your sleep, focus, and emotional balance,
-            <br className="hidden md:block" />
-            starting on day one.
-          </h2>
-        </div>
-      </div>
-      <div className="h-20 w-full"></div>
+      
     </section>
   );
 }

@@ -5,6 +5,8 @@ import { gsap } from "gsap"
 import { Observer } from "gsap/Observer"
 import HeroSection from "./sections/HeroSection"
 import Problem from "./sections/Problem"
+import SecondViewRef from './sections/SecondViewRef'
+// import FirstViewRef from './sections/FirstViewRef'
 import Stats from "./sections/Stats"
 import Disrupt from "./sections/Disrupt"
 import Feel from "./sections/Feel"
@@ -18,6 +20,8 @@ gsap.registerPlugin(Observer)
 
 const sections = [
   { id: "hero", component: HeroSection, title: "Hero" },
+  // { id: "firstView", component: FirstViewRef, title: "First View" },
+  { id: "secondView", component: SecondViewRef, title: "Second View" },
   { id: "problem", component: Problem, title: "Problem" },
   { id: "stats", component: Stats, title: "Stats" },
   { id: "disrupt", component: Disrupt, title: "Disrupt" },
@@ -40,14 +44,12 @@ export default function SmoothAnimatedSections() {
   const animatingRef = useRef(false)
   const observerRef = useRef<Observer | null>(null)
 
-  const [currentSection, setCurrentSection] = useState(-1)
+  const [currentSection, setCurrentSection] = useState(0)  // Start with Hero section
   const [showIntro, setShowIntro] = useState(true)
 
-  const gsapSections = sections.slice(1)
-
-  const gotoSection = useCallback((gsapIndex: number, direction: number) => {
+  const gotoSection = useCallback((sectionIndex: number, direction: number) => {
     if (animatingRef.current) return;
-    if (gsapIndex < 0 || gsapIndex >= gsapSections.length) {
+    if (sectionIndex < 0 || sectionIndex >= sections.length) {
       return;
     }
 
@@ -56,27 +58,18 @@ export default function SmoothAnimatedSections() {
     const innerWrappers = innerWrappersRef.current.filter(Boolean) as HTMLDivElement[];
     const backgrounds = backgroundsRef.current.filter(Boolean) as HTMLDivElement[];
 
-    if (sectionsElements.length === 0 || gsapIndex >= sectionsElements.length || !outerWrappers[gsapIndex] || !innerWrappers[gsapIndex] || !backgrounds[gsapIndex]) {
-      console.error("GSAP target elements not found for index:", gsapIndex);
+    if (sectionsElements.length === 0 || sectionIndex >= sectionsElements.length || !outerWrappers[sectionIndex] || !innerWrappers[sectionIndex] || !backgrounds[sectionIndex]) {
+      console.error("GSAP target elements not found for index:", sectionIndex);
       return;
     }
 
-    const prevGsapIndex = currentIndexRef.current;
-    if (gsapIndex === prevGsapIndex && currentSection === gsapIndex) return;
+    const prevIndex = currentIndexRef.current;
+    if (sectionIndex === prevIndex && currentSection === sectionIndex) return;
 
-
-    if (gsapIndex === 0 && prevGsapIndex === -1 && direction === 1) {
+    // Handle first section entry
+    if (sectionIndex === 0 && prevIndex === -1 && direction === 1) {
       animatingRef.current = true;
       setCurrentSection(0);
-
-
-      if (fixedContainerRef.current) {
-        gsap.set(fixedContainerRef.current, {
-          opacity: 1,
-          pointerEvents: 'auto',
-          zIndex: 50
-        });
-      }
 
       gsap.set(sectionsElements[0], {
         zIndex: 10,
@@ -110,7 +103,7 @@ export default function SmoothAnimatedSections() {
     }
 
     animatingRef.current = true;
-    setCurrentSection(gsapIndex);
+    setCurrentSection(sectionIndex);
 
     const fromTop = direction === -1;
     const dFactor = fromTop ? -1 : 1;
@@ -121,137 +114,58 @@ export default function SmoothAnimatedSections() {
         animatingRef.current = false;
         sectionsElements.forEach((section, i) => {
           gsap.set(section, {
-            zIndex: i === gsapIndex ? 10 : 0,
-            opacity: i === gsapIndex ? 1 : 0,
-            visibility: i === gsapIndex ? "visible" : "hidden"
+            zIndex: i === sectionIndex ? 10 : 0,
+            opacity: i === sectionIndex ? 1 : 0,
+            visibility: i === sectionIndex ? "visible" : "hidden"
           });
         });
       }
     });
 
-    gsap.set(sectionsElements[gsapIndex], {
+    gsap.set(sectionsElements[sectionIndex], {
       zIndex: 10,
       opacity: 1,
       visibility: "visible"
     });
 
-    if (prevGsapIndex >= 0 && prevGsapIndex < gsapSections.length && prevGsapIndex !== gsapIndex) {
-      if (outerWrappers[prevGsapIndex] && innerWrappers[prevGsapIndex] && backgrounds[prevGsapIndex]) {
-        gsap.set(sectionsElements[prevGsapIndex], {
+    if (prevIndex >= 0 && prevIndex < sections.length && prevIndex !== sectionIndex) {
+      if (outerWrappers[prevIndex] && innerWrappers[prevIndex] && backgrounds[prevIndex]) {
+        gsap.set(sectionsElements[prevIndex], {
           zIndex: 5,
           opacity: 1,
           visibility: "visible"
         });
 
-        tl.to([outerWrappers[prevGsapIndex], innerWrappers[prevGsapIndex]], {
+        tl.to([outerWrappers[prevIndex], innerWrappers[prevIndex]], {
           yPercent: (i) => i ? 100 * dFactor : -100 * dFactor,
         }, 0)
-          .to(backgrounds[prevGsapIndex], {
+          .to(backgrounds[prevIndex], {
             yPercent: -15 * dFactor,
           }, 0);
       }
     }
 
-    tl.fromTo([outerWrappers[gsapIndex], innerWrappers[gsapIndex]], {
+    tl.fromTo([outerWrappers[sectionIndex], innerWrappers[sectionIndex]], {
       yPercent: (i) => i ? -100 * dFactor : 100 * dFactor
     }, {
       yPercent: 0,
     }, 0)
-      .fromTo(backgrounds[gsapIndex], {
+      .fromTo(backgrounds[sectionIndex], {
         yPercent: 15 * dFactor
       }, {
         yPercent: 0,
       }, 0);
 
-    currentIndexRef.current = gsapIndex;
-  }, [gsapSections.length, currentSection]);
+    currentIndexRef.current = sectionIndex;
+  }, [sections.length, currentSection]);
 
-
-  const goBackToHero = useCallback(() => {
-    if (animatingRef.current) return;
-
-    animatingRef.current = true;
-    const currentGsapIdx = currentIndexRef.current;
-
-  
-    if (currentGsapIdx >= 0 && currentGsapIdx < gsapSections.length) {
-      const outerWrappers = outerWrappersRef.current.filter(Boolean) as HTMLDivElement[];
-      const innerWrappers = innerWrappersRef.current.filter(Boolean) as HTMLDivElement[];
-      const backgrounds = backgroundsRef.current.filter(Boolean) as HTMLDivElement[];
-
-      if (outerWrappers[currentGsapIdx] && innerWrappers[currentGsapIdx] && backgrounds[currentGsapIdx]) {
-       
-        gsap.timeline({
-          onComplete: () => {
-           
-            if (fixedContainerRef.current) {
-              gsap.set(fixedContainerRef.current, {
-                opacity: 0,
-                pointerEvents: 'none',
-                zIndex: -1,
-                display: 'none'
-              });
-            }
-
-            setCurrentSection(-1);
-            currentIndexRef.current = -1;
-            animatingRef.current = false;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        })
-          .to([outerWrappers[currentGsapIdx], innerWrappers[currentGsapIdx]], {
-            yPercent: (i) => i ? -100 : -100, 
-            duration: 0.5,
-            ease: "power2.inOut"
-          }, 0)
-          .to(backgrounds[currentGsapIdx], {
-            yPercent: -100, 
-            duration: 0.5,
-            ease: "power2.inOut"
-          }, 0);
-
-        return;
-      }
-    }
-
-    // Fallback if no current section
-    if (fixedContainerRef.current) {
-      gsap.set(fixedContainerRef.current, {
-        opacity: 0,
-        pointerEvents: 'none',
-        zIndex: -1,
-        display: 'none'
-      });
-    }
-
-    setCurrentSection(-1);
-    currentIndexRef.current = -1;
-    animatingRef.current = false;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [gsapSections.length]);
+  const goBackToNormalScroll = useCallback(() => {
+    // Removed - not needed anymore since we always stay in GSAP mode
+  }, []);
 
   useEffect(() => {
-    if (currentSection === -1) {
-
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-
-      if (observerRef.current) {
-        observerRef.current.kill();
-        observerRef.current = null;
-      }
-
-      if (fixedContainerRef.current) {
-        gsap.set(fixedContainerRef.current, {
-          opacity: 0,
-          pointerEvents: 'none',
-          zIndex: -1,
-          display: 'none'
-        });
-      }
-
-    } else {
-
+    if (currentSection >= 0) {
+      // GSAP animation mode - always active now
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
 
@@ -263,9 +177,11 @@ export default function SmoothAnimatedSections() {
           display: 'block'
         });
       }
-      if (currentIndexRef.current === -1 && currentSection === 0) {
-        setTimeout(() => gotoSection(0, 1), 10);
-      } else if (currentIndexRef.current !== currentSection && currentSection >= 0 && currentSection < gsapSections.length) {
+
+      // Initialize first section
+      if (currentIndexRef.current === -1) {
+        setTimeout(() => gotoSection(currentSection, 1), 10);
+      } else if (currentIndexRef.current !== currentSection && currentSection >= 0 && currentSection < sections.length) {
         setTimeout(() => gotoSection(currentSection, currentSection > currentIndexRef.current ? 1 : -1), 10);
       }
 
@@ -276,19 +192,16 @@ export default function SmoothAnimatedSections() {
           wheelSpeed: -1,
           onDown: () => {
             if (animatingRef.current) return;
-            const currentGsapIdx = currentIndexRef.current;
-            if (currentGsapIdx > 0) {
-              gotoSection(currentGsapIdx - 1, -1);
-            } else if (currentGsapIdx === 0) {
-              // Quick transition back to hero
-              goBackToHero();
+            const currentIdx = currentIndexRef.current;
+            if (currentIdx > 0) {
+              gotoSection(currentIdx - 1, -1);
             }
           },
           onUp: () => {
             if (animatingRef.current) return;
-            const currentGsapIdx = currentIndexRef.current;
-            if (currentGsapIdx < gsapSections.length - 1) {
-              gotoSection(currentGsapIdx + 1, 1);
+            const currentIdx = currentIndexRef.current;
+            if (currentIdx < sections.length - 1) {
+              gotoSection(currentIdx + 1, 1);
             }
           },
           tolerance: 10,
@@ -296,31 +209,16 @@ export default function SmoothAnimatedSections() {
         });
       }
     }
+
     return () => {
       if (observerRef.current) {
         observerRef.current.kill();
         observerRef.current = null;
       }
     };
-  }, [currentSection, gotoSection, gsapSections.length, goBackToHero]);
+  }, [currentSection, gotoSection, sections.length]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (currentSection !== -1) return;
-
-      const scrollProgress = window.scrollY / window.innerHeight;
-      if (scrollProgress > 0.98) {
-        setCurrentSection(0);
-      }
-    };
-
-    if (currentSection === -1) {
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, [currentSection]);
+  // Removed scroll listener - not needed anymore
 
   useEffect(() => {
     const sectionsElements = sectionsRef.current.filter(Boolean);
@@ -340,89 +238,61 @@ export default function SmoothAnimatedSections() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (currentSection === -1) {
-        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+      if (animatingRef.current) return;
+      const currentIdx = currentIndexRef.current;
+      switch (e.key) {
+        case 'ArrowUp':
+        case 'PageUp':
           e.preventDefault();
-          const scrollProgress = window.scrollY / window.innerHeight;
-          if (scrollProgress > 0.8) {
-            setCurrentSection(0);
-          } else {
-            window.scrollBy({ top: window.innerHeight / 2, behavior: 'smooth' });
+          if (currentIdx > 0) {
+            gotoSection(currentIdx - 1, -1);
           }
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          break;
+        case 'ArrowDown':
+        case 'PageDown':
+        case ' ':
           e.preventDefault();
-          if (window.scrollY === 0) return;
-          window.scrollBy({ top: -window.innerHeight / 2, behavior: 'smooth' });
-        } else if (e.key === 'Home') {
+          if (currentIdx < sections.length - 1) {
+            gotoSection(currentIdx + 1, 1);
+          }
+          break;
+        case 'Home':
           e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      } else {
-
-        if (animatingRef.current) return;
-        const currentGsapIdx = currentIndexRef.current;
-        switch (e.key) {
-          case 'ArrowUp':
-          case 'PageUp':
-            e.preventDefault();
-            if (currentGsapIdx > 0) {
-              gotoSection(currentGsapIdx - 1, -1);
-            } else if (currentGsapIdx === 0) {
-              // Quick transition back to hero
-              goBackToHero();
-            }
-            break;
-          case 'ArrowDown':
-          case 'PageDown':
-          case ' ':
-            e.preventDefault();
-            if (currentGsapIdx < gsapSections.length - 1) {
-              gotoSection(currentGsapIdx + 1, 1);
-            }
-            break;
-          case 'Home':
-            e.preventDefault();
-            setCurrentSection(-1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            break;
-          case 'End':
-            e.preventDefault();
-            if (gsapSections.length > 0) {
-              gotoSection(gsapSections.length - 1, 1);
-            }
-            break;
-        }
+          gotoSection(0, -1);
+          break;
+        case 'End':
+          e.preventDefault();
+          if (sections.length > 0) {
+            gotoSection(sections.length - 1, 1);
+          }
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSection, gotoSection, gsapSections.length, goBackToHero]);
+  }, [gotoSection, sections.length]);
 
   useEffect(() => {
-    if (showIntro && currentSection === -1) {
+    if (showIntro && currentSection === 0) {
       const timer = setTimeout(() => setShowIntro(false), 4000);
       return () => clearTimeout(timer);
     }
   }, [showIntro, currentSection]);
 
   return (
-    <div className="min-h-screen w-full bg-black/75">
-      <div id="hero" className="relative w-full h-screen">
-        <HeroSection />
-      </div>
-
+    <div className="min-h-screen w-full bg-black">
       <div
         ref={fixedContainerRef}
-        className="smooth-sections-container fixed inset-0 w-full h-full overflow-hidden bg-transparent"
+        className="smooth-sections-container fixed inset-0 w-full h-full overflow-hidden"
         style={{
-          opacity: 0,
-          pointerEvents: 'none',
-          zIndex: -1,
-          display: 'none',
+          opacity: 1,
+          pointerEvents: 'auto',
+          zIndex: 50,
+          display: 'block',
         }}
       >
-        {gsapSections.map((section, index) => {
+        {sections.map((section, index) => {
           const SectionComponent = section.component;
           return (
             <div
